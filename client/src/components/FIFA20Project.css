@@ -1,0 +1,384 @@
+.fifa-project-container {
+  min-height: 100vh;
+  background: #f5f5dc; /* Cream background */
+  font-family: 'Inter', sans-serif;
+  color: #8b4513;
+}
+
+.fifa-project-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Header Section */
+.fifa-header {
+  position: relative;
+  padding: 2rem 0 4rem 0;
+}
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  background: none;
+  border: none;
+  color: #8b4513;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(139, 69, 19, 0.1);
+  transform: translateX(-5px);
+}
+
+.back-button:focus {
+  outline: 2px solid #8b4513;
+  outline-offset: 2px;
+}
+
+.fifa-hero {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.fifa-image-container {
+  flex-shrink: 0;
+}
+
+.fifa-hero-image {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border: 5px solid #8b4513;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+}
+
+.fifa-title-container {
+  flex: 1;
+}
+
+.fifa-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+}
+
+.fifa-subtitle {
+  font-size: 1.5rem;
+  color: #8b4513;
+  margin: 0;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* Section Styling */
+.fifa-section {
+  margin: 4rem 0;
+  padding: 2rem 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 2rem 0;
+  line-height: 1.2;
+}
+
+.section-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #8b4513;
+}
+
+.section-content p {
+  margin: 0 0 1.5rem 0;
+}
+
+.section-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Problem Statement Specific */
+.problem-parts {
+  margin-top: 2rem;
+}
+
+.problem-part {
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 2px solid #8b4513;
+  border-radius: 12px;
+  background: rgba(139, 69, 19, 0.05);
+}
+
+.problem-part h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1rem 0;
+}
+
+.problem-part p {
+  margin: 0 0 1rem 0;
+}
+
+.problem-part p:last-child {
+  margin-bottom: 0;
+}
+
+/* Links */
+.fifa-link {
+  color: #8b4513;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: all 0.3s ease;
+}
+
+.fifa-link:hover {
+  color: #654321;
+  text-decoration: none;
+}
+
+/* Presentation Section */
+.presentation-container {
+  text-align: center;
+}
+
+.presentation-iframe {
+  width: 100%;
+  height: 600px;
+  border: 3px solid #8b4513;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+}
+
+.presentation-options {
+  margin-top: 2rem;
+}
+
+.presentation-note {
+  margin: 1rem 0;
+  font-size: 1rem;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.presentation-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.presentation-button {
+  background: none;
+  border: 2px solid #8b4513;
+  color: #8b4513;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.presentation-button:hover {
+  background: #8b4513;
+  color: #f5f5dc;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+}
+
+.presentation-button:focus {
+  outline: 2px solid #8b4513;
+  outline-offset: 2px;
+}
+
+.download-button:hover {
+  background: #2ecc71;
+  border-color: #2ecc71;
+}
+
+.view-button:hover {
+  background: #3498db;
+  border-color: #3498db;
+}
+
+/* Resources Section */
+.resources-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.resource-button {
+  background: none;
+  border: 3px solid #8b4513;
+  color: #8b4513;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 250px;
+  justify-content: center;
+}
+
+.resource-button:hover {
+  background: #8b4513;
+  color: #f5f5dc;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+}
+
+.resource-button:focus {
+  outline: 2px solid #8b4513;
+  outline-offset: 2px;
+}
+
+.button-icon {
+  font-size: 1.2rem;
+}
+
+.github-button:hover {
+  background: #333;
+  border-color: #333;
+}
+
+.video-button:hover {
+  background: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.report-button:hover {
+  background: #9b59b6;
+  border-color: #9b59b6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .fifa-project-content {
+    padding: 0 1rem;
+  }
+  
+  .fifa-header {
+    padding: 1rem 0 2rem 0;
+  }
+  
+  .back-button {
+    position: static;
+    margin-bottom: 2rem;
+  }
+  
+  .fifa-hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .fifa-hero-image {
+    width: 350px;
+    height: 250px;
+  }
+  
+  .fifa-title {
+    font-size: 3rem;
+  }
+  
+  .fifa-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-content {
+    font-size: 1rem;
+  }
+  
+  .problem-part {
+    padding: 1.5rem;
+  }
+  
+  .problem-part h3 {
+    font-size: 1.3rem;
+  }
+  
+  .presentation-iframe {
+    height: 400px;
+  }
+  
+  .resources-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .resource-button {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fifa-hero-image {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .fifa-title {
+    font-size: 2.5rem;
+  }
+  
+  .fifa-subtitle {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .problem-part {
+    padding: 1rem;
+  }
+  
+  .problem-part h3 {
+    font-size: 1.2rem;
+  }
+  
+  .presentation-iframe {
+    height: 300px;
+  }
+  
+  .resource-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    min-width: 180px;
+  }
+} 

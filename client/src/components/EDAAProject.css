@@ -1,0 +1,386 @@
+.edaa-project-container {
+  min-height: 100vh;
+  background: #f5f5dc; /* Cream background */
+  font-family: 'Inter', sans-serif;
+  color: #8b4513;
+}
+
+.edaa-project-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Header Section */
+.edaa-header {
+  position: relative;
+  padding: 2rem 0 4rem 0;
+}
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  background: none;
+  border: none;
+  color: #8b4513;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(139, 69, 19, 0.1);
+  transform: translateX(-5px);
+}
+
+.back-button:focus {
+  outline: 2px solid #8b4513;
+  outline-offset: 2px;
+}
+
+.edaa-hero {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.edaa-image-container {
+  flex-shrink: 0;
+}
+
+.edaa-hero-image {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border: 5px solid #8b4513;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+}
+
+.edaa-title-container {
+  flex: 1;
+}
+
+.edaa-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+}
+
+.edaa-subtitle {
+  font-size: 1.5rem;
+  color: #8b4513;
+  margin: 0;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* Section Styling */
+.edaa-section {
+  margin: 4rem 0;
+  padding: 2rem 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 2rem 0;
+  line-height: 1.2;
+}
+
+.section-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #8b4513;
+}
+
+.section-content p {
+  margin: 0 0 1.5rem 0;
+}
+
+.section-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Architecture Section */
+.architecture-section {
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 2px solid #8b4513;
+  border-radius: 12px;
+  background: rgba(139, 69, 19, 0.03);
+}
+
+.architecture-section h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1.5rem 0;
+}
+
+.architecture-image-container {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.architecture-image {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #8b4513;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(139, 69, 19, 0.2);
+  background: white;
+}
+
+.workflow-description {
+  margin: 1.5rem 0;
+}
+
+/* Data Processing Section */
+.data-processing {
+  margin: 2rem 0;
+}
+
+.data-processing h5 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 2rem 0 1rem 0;
+  line-height: 1.3;
+}
+
+.data-processing ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.data-processing li {
+  margin: 0.8rem 0;
+  line-height: 1.6;
+}
+
+.data-processing strong {
+  color: #8b4513;
+  font-weight: 700;
+}
+
+/* Code Block Styling */
+.code-block {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: #2f2f2f;
+  border-radius: 8px;
+  border: 2px solid #8b4513;
+  overflow-x: auto;
+}
+
+.code-block pre {
+  color: #f8f8f2;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+  white-space: pre;
+}
+
+/* Links */
+.edaa-link {
+  color: #8b4513;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: all 0.3s ease;
+}
+
+.edaa-link:hover {
+  color: #654321;
+  text-decoration: none;
+}
+
+/* Resources Section */
+.resources-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.resource-button {
+  background: none;
+  border: 3px solid #8b4513;
+  color: #8b4513;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  text-align: center;
+}
+
+.resource-button:hover {
+  background: #8b4513;
+  color: #f5f5dc;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+}
+
+.resource-button:focus {
+  outline: 2px solid #8b4513;
+  outline-offset: 2px;
+}
+
+.button-icon {
+  font-size: 1.2rem;
+}
+
+.github-button:hover {
+  background: #333;
+  border-color: #333;
+}
+
+.video-button:hover {
+  background: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.report-button:hover {
+  background: #9b59b6;
+  border-color: #9b59b6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .edaa-project-content {
+    padding: 0 1rem;
+  }
+  
+  .edaa-header {
+    padding: 1rem 0 2rem 0;
+  }
+  
+  .back-button {
+    position: static;
+    margin-bottom: 2rem;
+  }
+  
+  .edaa-hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .edaa-hero-image {
+    width: 350px;
+    height: 250px;
+  }
+  
+  .edaa-title {
+    font-size: 3rem;
+  }
+  
+  .edaa-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-content {
+    font-size: 1rem;
+  }
+  
+  .architecture-section {
+    padding: 1.5rem;
+  }
+  
+  .architecture-section h4 {
+    font-size: 1.2rem;
+  }
+  
+  .architecture-image {
+    border: 1px solid #8b4513;
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+  }
+  
+  .data-processing h5 {
+    font-size: 1.1rem;
+  }
+  
+  .code-block {
+    padding: 1rem;
+  }
+  
+  .code-block pre {
+    font-size: 0.8rem;
+  }
+  
+  .resources-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .edaa-hero-image {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .edaa-title {
+    font-size: 2.5rem;
+  }
+  
+  .edaa-subtitle {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .architecture-section {
+    padding: 1rem;
+  }
+  
+  .architecture-section h4 {
+    font-size: 1.1rem;
+  }
+  
+  .architecture-image {
+    border: 1px solid #8b4513;
+    box-shadow: 0 3px 10px rgba(139, 69, 19, 0.2);
+  }
+  
+  .data-processing h5 {
+    font-size: 1rem;
+  }
+  
+  .code-block {
+    padding: 0.8rem;
+  }
+  
+  .code-block pre {
+    font-size: 0.75rem;
+  }
+  
+  .resource-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+} 

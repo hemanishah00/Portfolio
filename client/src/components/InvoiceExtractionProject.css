@@ -1,0 +1,85 @@
+@import './EyePrescriptionBotProject.css';
+
+.invoice-extraction-project-container {
+  min-height: 100vh;
+  background: #f5f5dc;
+  font-family: 'Inter', sans-serif;
+  color: #8b4513;
+}
+
+.invoice-extraction-project-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.invoice-extraction-header {
+  position: relative;
+  padding: 2rem 0 4rem 0;
+}
+
+.invoice-extraction-hero {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.invoice-extraction-image-container {
+  flex-shrink: 0;
+}
+
+.invoice-extraction-hero-image {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border: 5px solid #8b4513;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+}
+
+.invoice-extraction-title-container {
+  flex: 1;
+}
+
+.invoice-extraction-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+}
+
+.invoice-extraction-subtitle {
+  font-size: 1.5rem;
+  color: #8b4513;
+  margin: 0;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.invoice-extraction-section {
+  margin: 4rem 0;
+  padding: 2rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .invoice-extraction-project-content { padding: 0 1rem; }
+  .invoice-extraction-header { padding: 1rem 0 2rem 0; }
+  .invoice-extraction-hero { 
+    flex-direction: column; 
+    text-align: center; 
+    gap: 2rem; 
+    margin-top: 2rem; 
+  }
+  .invoice-extraction-hero-image { width: 350px; height: 250px; }
+  .invoice-extraction-title { font-size: 3rem; }
+  .invoice-extraction-subtitle { font-size: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  .invoice-extraction-hero-image { width: 300px; height: 200px; }
+  .invoice-extraction-title { font-size: 2.5rem; }
+  .invoice-extraction-subtitle { font-size: 1rem; }
+} 

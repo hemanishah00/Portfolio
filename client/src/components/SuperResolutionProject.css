@@ -1,0 +1,302 @@
+.super-resolution-project-container {
+  min-height: 100vh;
+  background: #f5f5dc; /* Cream background */
+  font-family: 'Inter', sans-serif;
+  color: #8b4513;
+}
+
+.super-resolution-project-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Header Section */
+.super-resolution-header {
+  position: relative;
+  padding: 2rem 0 4rem 0;
+}
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  background: none;
+  border: none;
+  color: #8b4513;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(139, 69, 19, 0.1);
+  transform: translateX(-5px);
+}
+
+.back-button:focus {
+  outline: 2px solid #8b4513;
+  outline-offset: 2px;
+}
+
+.super-resolution-hero {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.super-resolution-image-container {
+  flex-shrink: 0;
+}
+
+.super-resolution-hero-image {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border: 5px solid #8b4513;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+}
+
+.super-resolution-title-container {
+  flex: 1;
+}
+
+.super-resolution-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+}
+
+.super-resolution-subtitle {
+  font-size: 1.5rem;
+  color: #8b4513;
+  margin: 0;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* Section Styling */
+.super-resolution-section {
+  margin: 4rem 0;
+  padding: 2rem 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 2rem 0;
+  line-height: 1.2;
+}
+
+.section-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #8b4513;
+}
+
+.section-content p {
+  margin: 0 0 1.5rem 0;
+}
+
+.section-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Methodology Section */
+.methodology-section {
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 2px solid #8b4513;
+  border-radius: 12px;
+  background: rgba(139, 69, 19, 0.03);
+}
+
+.methodology-section h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Pipeline Steps */
+.pipeline-steps {
+  margin: 2rem 0;
+}
+
+.step-section {
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border: 2px solid #8b4513;
+  border-radius: 8px;
+  background: rgba(139, 69, 19, 0.05);
+}
+
+.step-section h5 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 0.8rem 0;
+  line-height: 1.3;
+}
+
+.step-section p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Application Benefits */
+.application-benefits {
+  margin: 2rem 0 0 0;
+  padding: 1.5rem;
+  border: 3px solid #8b4513;
+  border-radius: 12px;
+  background: rgba(139, 69, 19, 0.08);
+}
+
+.application-benefits h5 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+
+.application-benefits ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.application-benefits li {
+  margin: 0.8rem 0;
+  line-height: 1.6;
+}
+
+.application-benefits strong {
+  color: #8b4513;
+  font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .super-resolution-project-content {
+    padding: 0 1rem;
+  }
+  
+  .super-resolution-header {
+    padding: 1rem 0 2rem 0;
+  }
+  
+  .back-button {
+    position: static;
+    margin-bottom: 2rem;
+  }
+  
+  .super-resolution-hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .super-resolution-hero-image {
+    width: 350px;
+    height: 250px;
+  }
+  
+  .super-resolution-title {
+    font-size: 3rem;
+  }
+  
+  .super-resolution-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-content {
+    font-size: 1rem;
+  }
+  
+  .methodology-section {
+    padding: 1.5rem;
+  }
+  
+  .methodology-section h4 {
+    font-size: 1.2rem;
+  }
+  
+  .step-section {
+    padding: 1rem;
+  }
+  
+  .step-section h5 {
+    font-size: 1.1rem;
+  }
+  
+  .application-benefits {
+    padding: 1rem;
+  }
+  
+  .application-benefits h5 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .super-resolution-hero-image {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .super-resolution-title {
+    font-size: 2.5rem;
+  }
+  
+  .super-resolution-subtitle {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .methodology-section {
+    padding: 1rem;
+  }
+  
+  .methodology-section h4 {
+    font-size: 1.1rem;
+  }
+  
+  .step-section {
+    padding: 0.8rem;
+  }
+  
+  .step-section h5 {
+    font-size: 1rem;
+  }
+  
+  .step-section p {
+    font-size: 0.9rem;
+  }
+  
+  .application-benefits {
+    padding: 0.8rem;
+  }
+  
+  .application-benefits h5 {
+    font-size: 1.1rem;
+  }
+} 

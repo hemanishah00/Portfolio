@@ -1,0 +1,192 @@
+.experience-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5dc; /* Cream background */
+  padding: 4rem 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.experience-content {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+/* Education Section */
+.education-section {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 3rem;
+  transition: all 0.3s ease;
+}
+
+.education-image-container {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.education-image {
+  width: 450px;
+  height: 300px;
+  object-fit: cover;
+  border: 5px solid #8b4513; /* Brown frame */
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+  transition: all 0.3s ease;
+}
+
+.education-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(139, 69, 19, 0.4);
+}
+
+.education-text {
+  flex: 1;
+  color: #8b4513; /* Same brown as other sections */
+}
+
+.education-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 2rem 0;
+  color: #8b4513; /* Same brown */
+  line-height: 1.2;
+}
+
+.education-description {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #8b4513; /* Same brown */
+}
+
+.education-description p {
+  margin: 0;
+}
+
+/* Work Experience Section */
+.work-section {
+  padding: 3rem;
+  text-align: center;
+}
+
+.work-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 3rem 0;
+  color: #8b4513; /* Same brown */
+  line-height: 1.2;
+}
+
+.company-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.company-logo-container {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(139, 69, 19, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid rgba(139, 69, 19, 0.1);
+}
+
+.company-logo-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.2);
+  border-color: rgba(139, 69, 19, 0.3);
+}
+
+.company-logo {
+  height: 80px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.company-logo:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .experience-container {
+    padding: 2rem 1rem;
+  }
+  
+  .experience-content {
+    gap: 4rem;
+  }
+  
+  .education-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .education-title {
+    font-size: 2.5rem;
+  }
+  
+  .education-description {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  .education-image {
+    width: 350px;
+    height: 250px;
+  }
+  
+  .work-title {
+    font-size: 2.5rem;
+  }
+  
+  .company-logos {
+    gap: 2rem;
+  }
+  
+  .company-logo {
+    height: 60px;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .education-section,
+  .work-section {
+    padding: 1.5rem;
+  }
+  
+  .education-title,
+  .work-title {
+    font-size: 2rem;
+  }
+  
+  .education-image {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .company-logos {
+    gap: 1.5rem;
+  }
+  
+  .company-logo-container {
+    padding: 1rem;
+  }
+  
+  .company-logo {
+    height: 50px;
+    max-width: 120px;
+  }
+} 

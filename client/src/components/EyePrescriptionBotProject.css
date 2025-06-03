@@ -1,0 +1,270 @@
+.eye-prescription-bot-project-container {
+  min-height: 100vh;
+  background: #f5f5dc; /* Cream background */
+  font-family: 'Inter', sans-serif;
+  color: #8b4513;
+}
+
+.eye-prescription-bot-project-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Header Section */
+.eye-prescription-bot-header {
+  position: relative;
+  padding: 2rem 0 4rem 0;
+}
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  background: none;
+  border: none;
+  color: #8b4513;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(139, 69, 19, 0.1);
+  transform: translateX(-5px);
+}
+
+.back-button:focus {
+  outline: 2px solid #8b4513;
+  outline-offset: 2px;
+}
+
+.eye-prescription-bot-hero {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.eye-prescription-bot-image-container {
+  flex-shrink: 0;
+}
+
+.eye-prescription-bot-hero-image {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border: 5px solid #8b4513;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+}
+
+.eye-prescription-bot-title-container {
+  flex: 1;
+}
+
+.eye-prescription-bot-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+}
+
+.eye-prescription-bot-subtitle {
+  font-size: 1.5rem;
+  color: #8b4513;
+  margin: 0;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* Section Styling */
+.eye-prescription-bot-section {
+  margin: 4rem 0;
+  padding: 2rem 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 2rem 0;
+  line-height: 1.2;
+}
+
+.section-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #8b4513;
+}
+
+.section-content p {
+  margin: 0 0 1.5rem 0;
+}
+
+.section-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Features Section */
+.features-section {
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 2px solid #8b4513;
+  border-radius: 12px;
+  background: rgba(139, 69, 19, 0.03);
+}
+
+.features-section h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1.5rem 0;
+}
+
+.features-section ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.features-section li {
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.features-section strong {
+  color: #8b4513;
+  font-weight: 700;
+}
+
+/* Coming Soon Section */
+.coming-soon-section {
+  text-align: center;
+  padding: 3rem 2rem;
+  border: 3px solid #8b4513;
+  border-radius: 12px;
+  background: rgba(139, 69, 19, 0.05);
+}
+
+.coming-soon-section h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1.5rem 0;
+}
+
+.coming-soon-section p {
+  font-size: 1.2rem;
+  color: #8b4513;
+  margin: 0;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .eye-prescription-bot-project-content {
+    padding: 0 1rem;
+  }
+  
+  .eye-prescription-bot-header {
+    padding: 1rem 0 2rem 0;
+  }
+  
+  .back-button {
+    position: static;
+    margin-bottom: 2rem;
+  }
+  
+  .eye-prescription-bot-hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .eye-prescription-bot-hero-image {
+    width: 350px;
+    height: 250px;
+  }
+  
+  .eye-prescription-bot-title {
+    font-size: 3rem;
+  }
+  
+  .eye-prescription-bot-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-content {
+    font-size: 1rem;
+  }
+  
+  .features-section {
+    padding: 1.5rem;
+  }
+  
+  .features-section h4 {
+    font-size: 1.2rem;
+  }
+  
+  .coming-soon-section {
+    padding: 2rem 1rem;
+  }
+  
+  .coming-soon-section h3 {
+    font-size: 1.6rem;
+  }
+  
+  .coming-soon-section p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .eye-prescription-bot-hero-image {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .eye-prescription-bot-title {
+    font-size: 2.5rem;
+  }
+  
+  .eye-prescription-bot-subtitle {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .features-section {
+    padding: 1rem;
+  }
+  
+  .features-section h4 {
+    font-size: 1.1rem;
+  }
+  
+  .coming-soon-section {
+    padding: 1.5rem 0.8rem;
+  }
+  
+  .coming-soon-section h3 {
+    font-size: 1.4rem;
+  }
+  
+  .coming-soon-section p {
+    font-size: 0.9rem;
+  }
+} 

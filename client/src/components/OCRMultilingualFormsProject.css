@@ -1,0 +1,91 @@
+@import './EyePrescriptionBotProject.css';
+
+/* Import and adapt the same styling pattern with different class prefixes */
+.ocr-multilingual-forms-project-container {
+  min-height: 100vh;
+  background: #f5f5dc;
+  font-family: 'Inter', sans-serif;
+  color: #8b4513;
+}
+
+.ocr-multilingual-forms-project-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.ocr-multilingual-forms-header {
+  position: relative;
+  padding: 2rem 0 4rem 0;
+}
+
+.ocr-multilingual-forms-hero {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.ocr-multilingual-forms-image-container {
+  flex-shrink: 0;
+}
+
+.ocr-multilingual-forms-hero-image {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border: 5px solid #8b4513;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+}
+
+.ocr-multilingual-forms-title-container {
+  flex: 1;
+}
+
+.ocr-multilingual-forms-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #8b4513;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+}
+
+.ocr-multilingual-forms-subtitle {
+  font-size: 1.5rem;
+  color: #8b4513;
+  margin: 0;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.ocr-multilingual-forms-section {
+  margin: 4rem 0;
+  padding: 2rem 0;
+}
+
+/* Apply the same styling from EyePrescriptionBotProject.css for back-button, section-title, section-content, features-section, and coming-soon-section */
+.back-button, .section-title, .section-content, .section-content p, .features-section, .features-section h4, .features-section ul, .features-section li, .features-section strong, .coming-soon-section, .coming-soon-section h3, .coming-soon-section p {
+  /* Inherit all the styles from the base project CSS */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ocr-multilingual-forms-project-content { padding: 0 1rem; }
+  .ocr-multilingual-forms-header { padding: 1rem 0 2rem 0; }
+  .ocr-multilingual-forms-hero { 
+    flex-direction: column; 
+    text-align: center; 
+    gap: 2rem; 
+    margin-top: 2rem; 
+  }
+  .ocr-multilingual-forms-hero-image { width: 350px; height: 250px; }
+  .ocr-multilingual-forms-title { font-size: 3rem; }
+  .ocr-multilingual-forms-subtitle { font-size: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  .ocr-multilingual-forms-hero-image { width: 300px; height: 200px; }
+  .ocr-multilingual-forms-title { font-size: 2.5rem; }
+  .ocr-multilingual-forms-subtitle { font-size: 1rem; }
+} 
