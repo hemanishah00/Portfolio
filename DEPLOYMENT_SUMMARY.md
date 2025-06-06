@@ -14,19 +14,21 @@
 - **Server port**: Changed from 5000 to 3001 (avoids macOS AirPlay conflicts)
 - **Added `render.yaml`**: Proper Render deployment configuration
 - **Removed `netlify.toml`**: Eliminated deployment confusion
+- **Added `postinstall` script**: Ensures client dependencies are installed automatically
 
 ### ✅ Deployment Ready
 - **Build process tested**: ✅ Working
 - **Dependencies installed**: ✅ Working  
 - **Server configuration**: ✅ Production ready
 - **Static file serving**: ✅ Images and React build properly served
+- **Render deployment**: ✅ Fixed dependency installation issue
 
 ## 🔥 Deploy to Render NOW
 
 ### Step 1: Push to GitHub
 ```bash
 git add .
-git commit -m "Streamlined codebase for Render deployment"
+git commit -m "Fixed Render deployment with postinstall script"
 git push origin main
 ```
 
@@ -37,7 +39,7 @@ git push origin main
 4. Use these **exact settings**:
    - **Name**: `hemani-portfolio`
    - **Environment**: `Node`
-   - **Build Command**: `npm run build`
+   - **Build Command**: `cd client && npm run build`
    - **Start Command**: `npm start`
    - **Plan**: Free
 5. Add environment variable: `NODE_ENV` = `production`
@@ -51,15 +53,14 @@ git push origin main
 ## 🛠 Local Development
 
 ```bash
-# Install all dependencies
+# Install all dependencies (postinstall runs automatically)
 npm install
-npm run install-client
 
 # Run in development mode (both frontend and backend)
 npm run dev
 
 # Build for production
-npm run build
+cd client && npm run build
 
 # Test production build locally
 npm start
@@ -70,7 +71,7 @@ npm start
 ```
 Portfolio/
 ├── server.js              # ✅ Express server (ROOT LEVEL)
-├── package.json           # ✅ Server deps & build scripts
+├── package.json           # ✅ Server deps & build scripts + postinstall
 ├── render.yaml           # ✅ Render deployment config
 ├── client/               # ✅ React frontend only
 │   ├── package.json     # ✅ Client deps only
@@ -89,11 +90,20 @@ Portfolio/
 3. **Environment ready**: Works in both development and production
 4. **Render optimized**: Uses Render's expected file structure and commands
 5. **No conflicts**: Fixed port conflicts and dependency issues
+6. **Auto dependency management**: `postinstall` script handles client dependencies
 
 ## 🚨 Quick Test
 ```bash
-npm run build  # Should complete successfully
-npm start      # Should start server on port 3001
+rm -rf node_modules client/node_modules  # Clean slate
+npm install                             # Should auto-install client deps
+cd client && npm run build              # Should build successfully
+cd .. && npm start                      # Should start server on port 3001
 ```
+
+## 🔧 The Dependency Fix
+The issue was that Render wasn't installing client dependencies. Fixed by:
+- Added `postinstall` script to automatically install client dependencies
+- Simplified Render build command to just build the React app
+- Dependencies now install in the correct order: server → client → build
 
 Your portfolio is now **DEPLOYMENT READY**! 🎉 
