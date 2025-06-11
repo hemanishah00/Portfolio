@@ -6,7 +6,6 @@ import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import AnalyticsProjects from './components/AnalyticsProjects';
 import ComputerVisionProjects from './components/ComputerVisionProjects';
-import RecommendationSystemsProjects from './components/RecommendationSystemsProjects';
 import GenerativeAIProjects from './components/GenerativeAIProjects';
 import OCRProjects from './components/OCRProjects';
 import FIFA20Project from './components/FIFA20Project';
@@ -17,7 +16,6 @@ import VehicleDetectionProject from './components/VehicleDetectionProject';
 import SuperResolutionProject from './components/SuperResolutionProject';
 import EDAAProject from './components/EDAAProject';
 import FireBrandsProject from './components/FireBrandsProject';
-import RestaurantRecommendationProject from './components/RestaurantRecommendationProject';
 import EyePrescriptionBotProject from './components/EyePrescriptionBotProject';
 import OCRMultilingualFormsProject from './components/OCRMultilingualFormsProject';
 import InvoiceExtractionProject from './components/InvoiceExtractionProject';
@@ -42,10 +40,6 @@ function App() {
 
   const handleComputerVisionClick = () => {
     setCurrentPage('computer-vision');
-  };
-
-  const handleRecommendationSystemsClick = () => {
-    setCurrentPage('recommendation-systems');
   };
 
   const handleGenerativeAIClick = () => {
@@ -86,10 +80,6 @@ function App() {
 
   const handleFireBrandsClick = () => {
     setCurrentPage('firebrands');
-  };
-
-  const handleRestaurantRecommendationClick = () => {
-    setCurrentPage('restaurant-recommendation');
   };
 
   const handleEyePrescriptionBotClick = () => {
@@ -157,10 +147,6 @@ function App() {
     setCurrentPage('computer-vision');
   };
 
-  const handleBackToRecommendationSystems = () => {
-    setCurrentPage('recommendation-systems');
-  };
-
   const handleBackToGenerativeAI = () => {
     setCurrentPage('generative-ai');
   };
@@ -199,10 +185,6 @@ function App() {
 
   if (currentPage === 'firebrands') {
     return <FireBrandsProject onBack={handleBackToComputerVision} />;
-  }
-
-  if (currentPage === 'restaurant-recommendation') {
-    return <RestaurantRecommendationProject onBack={handleBackToRecommendationSystems} />;
   }
 
   if (currentPage === 'eye-prescription-bot') {
@@ -266,10 +248,6 @@ function App() {
     return <ComputerVisionProjects onBack={handleBackToMain} onAttendanceFaceRecognitionClick={handleAttendanceFaceRecognitionClick} onVehicleDetectionClick={handleVehicleDetectionClick} onSuperResolutionClick={handleSuperResolutionClick} onEDAAClick={handleEDAAClick} onFireBrandsClick={handleFireBrandsClick} />;
   }
 
-  if (currentPage === 'recommendation-systems') {
-    return <RecommendationSystemsProjects onBack={handleBackToMain} onRestaurantRecommendationClick={handleRestaurantRecommendationClick} />;
-  }
-
   if (currentPage === 'generative-ai') {
     return <GenerativeAIProjects 
       onBack={handleBackToMain} 
@@ -295,7 +273,7 @@ function App() {
       <IntroPage />
       <GenAISection />
       <ExperienceSection />
-      <ProjectsSection onAnalyticsClick={handleAnalyticsClick} onComputerVisionClick={handleComputerVisionClick} onRecommendationSystemsClick={handleRecommendationSystemsClick} onGenerativeAIClick={handleGenerativeAIClick} onOCRClick={handleOCRClick} />
+      <ProjectsSection onAnalyticsClick={handleAnalyticsClick} onComputerVisionClick={handleComputerVisionClick} onGenerativeAIClick={handleGenerativeAIClick} onOCRClick={handleOCRClick} />
       <ContactSection />
     </div>
   );

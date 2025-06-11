@@ -64,12 +64,6 @@ const ProjectsSection = ({ onAnalyticsClick, onComputerVisionClick, onRecommenda
       file: 'Generative_AI.jpeg',
       alt: 'Generative AI Projects',
       description: 'AI Content Generation'
-    },
-    {
-      name: 'Recommendation Systems',
-      file: 'Recommendation_Systems.jpeg',
-      alt: 'Recommendation Systems',
-      description: 'Personalized Recommendations'
     }
   ];
 
