@@ -2,7 +2,7 @@
   "name": "portfolio-client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://hemanishah.github.io/Portfolio",
+  "homepage": "https://hemanishah00.github.io/Portfolio",
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
