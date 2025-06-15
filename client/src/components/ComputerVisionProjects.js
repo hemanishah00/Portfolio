@@ -1,5 +1,6 @@
 import React from 'react';
 import './ComputerVisionProjects.css';
+import config from '../config';
 
 const ComputerVisionProjects = ({ onBack, onAttendanceFaceRecognitionClick, onVehicleDetectionClick, onSuperResolutionClick, onEDAAClick, onFireBrandsClick }) => {
   const projects = [
@@ -88,7 +89,7 @@ const ComputerVisionProjects = ({ onBack, onAttendanceFaceRecognitionClick, onVe
                 aria-label={`View ${project.title} project details`}
               >
                 <img 
-                  src={`/${project.image}`}
+                  src={config.getImagePath(project.image)}
                   alt={project.title}
                   className="project-image"
                   onError={handleImageError(project.image)}

@@ -1,5 +1,6 @@
 import React from 'react';
 import './DocBotProject.css';
+import config from '../config';
 
 const DocBotProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -34,7 +35,7 @@ const DocBotProject = ({ onBack }) => {
           <div className="doc-bot-hero">
             <div className="doc-bot-image-container">
               <img 
-                src="/Images/DocBot.png"
+                src={config.getImagePath('DocBot.png')}
                 alt="Doc Bot Project"
                 className="doc-bot-hero-image"
                 onError={handleImageError}

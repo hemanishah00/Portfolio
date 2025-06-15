@@ -1,5 +1,6 @@
 import React from 'react';
 import './HRBotProject.css';
+import config from '../config';
 
 const HRBotProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -34,7 +35,7 @@ const HRBotProject = ({ onBack }) => {
           <div className="hr-bot-hero">
             <div className="hr-bot-image-container">
               <img 
-                src="/Images/HRBot.jpg"
+                src={config.getImagePath('HRBot.jpg')}
                 alt="HR Bot Project"
                 className="hr-bot-hero-image"
                 onError={handleImageError}

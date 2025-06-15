@@ -1,5 +1,6 @@
 import React from 'react';
 import './CycleGANsProject.css';
+import config from '../config';
 
 const CycleGANsProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -46,7 +47,7 @@ const CycleGANsProject = ({ onBack }) => {
           <div className="cycle-gans-hero">
             <div className="cycle-gans-image-container">
               <img 
-                src="/Images/CycleGAN.jpg"
+                src={config.getImagePath('CycleGAN.jpg')}
                 alt="Cycle GANs Project"
                 className="cycle-gans-hero-image"
                 onError={handleImageError}

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './EDAAProject.css';
+import config from '../config';
 
 const EDAAProject = ({ onBack }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleImageError = (e) => {
     console.log('EDAA image failed to load, trying alternative paths...');
     const imagePaths = [
+      config.getImagePath('EDAA.jpg'),
       '/EDAA.jpg',
       '/images/EDAA.jpg',
       'http://localhost:5000/images/EDAA.jpg',
@@ -19,6 +23,20 @@ const EDAAProject = ({ onBack }) => {
       // Placeholder if all paths fail
       e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmNWRjIi8+CjxwYXRoIGQ9Ik0yMDAgMTUwQzIyMi4wOTEgMTUwIDI0MCAxMzIuMDkxIDI0MCAxMTBDMjQwIDg3LjkwODYgMjIyLjA5MSA3MCAyMDAgNzBDMTc3LjkwOSA3MCAyNjAgODcuOTA4NiAyNjAgMTEwQzI2MCAxMzIuMDkxIDE3Ny45MDkgMTUwIDIwMCAxNTBaIiBmaWxsPSIjOGI0NTEzIi8+PHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJJbnRlciIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzhmNDUxMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RURBQTwvdGV4dD48L3N2Zz4=';
       console.log('All EDAA image paths failed, using placeholder');
+    }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalClick = (e) => {
+    if (e.target.classList.contains('image-modal-overlay')) {
+      closeModal();
     }
   };
 
@@ -45,12 +63,18 @@ const EDAAProject = ({ onBack }) => {
           <div className="edaa-hero">
             <div className="edaa-image-container">
               <img 
-                src="/EDAA.jpg"
+                src={config.getImagePath('EDAA.jpg')}
                 alt="EDAA - Emotion Detection and Analysis Project"
-                className="edaa-hero-image"
+                className="edaa-hero-image clickable-image"
                 onError={handleImageError}
                 onLoad={() => console.log('EDAA image loaded successfully!')}
+                onClick={openModal}
+                style={{ cursor: 'pointer' }}
+                title="Click to view full size"
               />
+              <div className="image-overlay">
+                <span className="expand-icon">🔍</span>
+              </div>
             </div>
             <div className="edaa-title-container">
               <h1 className="edaa-title">EDAA</h1>
@@ -218,6 +242,23 @@ const EDAAProject = ({ onBack }) => {
           </div>
         </section>
       </div>
+
+      {/* Image Modal */}
+      {isModalOpen && (
+        <div className="image-modal-overlay" onClick={handleModalClick}>
+          <div className="image-modal">
+            <button className="modal-close-button" onClick={closeModal} aria-label="Close image modal">
+              ×
+            </button>
+            <img 
+              src={config.getImagePath('EDAA.jpg')}
+              alt="EDAA - Emotion Detection and Analysis Project - Full Size"
+              className="modal-image"
+              onError={handleImageError}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

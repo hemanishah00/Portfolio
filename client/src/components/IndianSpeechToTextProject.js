@@ -1,5 +1,6 @@
 import React from 'react';
 import './IndianSpeechToTextProject.css';
+import config from '../config';
 
 const IndianSpeechToTextProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -28,7 +29,7 @@ const IndianSpeechToTextProject = ({ onBack }) => {
           <div className="indian-speech-hero">
             <div className="indian-speech-image-container">
               <img 
-                src="/Images/IndianSpeechToText.png"
+                src={config.getImagePath('IndianSpeechToText.png')}
                 alt="Indian Speech-to-text Project"
                 className="indian-speech-hero-image"
                 onError={handleImageError}

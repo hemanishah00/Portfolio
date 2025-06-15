@@ -1,5 +1,6 @@
 import React from 'react';
 import './FIFA20Project.css';
+import config from '../config';
 
 const FIFA20Project = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -50,7 +51,7 @@ const FIFA20Project = ({ onBack }) => {
           <div className="fifa-hero">
             <div className="fifa-image-container">
               <img 
-                src="/FIFA-20.jpeg"
+                src={config.getImagePath('FIFA-20.jpeg')}
                 alt="FIFA-20 Project"
                 className="fifa-hero-image"
                 onError={handleImageError}

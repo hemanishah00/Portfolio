@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './OCRMultilingualFormsProject.css';
+import config from '../config';
 
 const OCRMultilingualFormsProject = ({ onBack }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleImageError = (e) => {
     console.log('OCR Multilingual Forms image failed to load, trying alternative paths...');
     const imagePaths = [
+      config.getImagePath('OCROnMultilingualForms.png'),
       '/OCROnMultilingualForms.png',
       '/images/OCROnMultilingualForms.png',
       'http://localhost:5000/images/OCROnMultilingualForms.png',
@@ -22,6 +26,20 @@ const OCRMultilingualFormsProject = ({ onBack }) => {
     }
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalClick = (e) => {
+    if (e.target.classList.contains('image-modal-overlay')) {
+      closeModal();
+    }
+  };
+
   return (
     <div className="ocr-multilingual-forms-project-container">
       <div className="ocr-multilingual-forms-project-content">
@@ -33,12 +51,18 @@ const OCRMultilingualFormsProject = ({ onBack }) => {
           <div className="ocr-multilingual-forms-hero">
             <div className="ocr-multilingual-forms-image-container">
               <img 
-                src="/OCROnMultilingualForms.png"
+                src={config.getImagePath('OCROnMultilingualForms.png')}
                 alt="OCR on Multilingual Forms Project"
-                className="ocr-multilingual-forms-hero-image"
+                className="ocr-multilingual-forms-hero-image clickable-image"
                 onError={handleImageError}
                 onLoad={() => console.log('OCR Multilingual Forms image loaded successfully!')}
+                onClick={openModal}
+                style={{ cursor: 'pointer' }}
+                title="Click to view full size"
               />
+              <div className="image-overlay">
+                <span className="expand-icon">🔍</span>
+              </div>
             </div>
             <div className="ocr-multilingual-forms-title-container">
               <h1 className="ocr-multilingual-forms-title">OCR on Multilingual Forms</h1>
@@ -68,6 +92,23 @@ const OCRMultilingualFormsProject = ({ onBack }) => {
           </div>
         </section>
       </div>
+
+      {/* Image Modal */}
+      {isModalOpen && (
+        <div className="image-modal-overlay" onClick={handleModalClick}>
+          <div className="image-modal">
+            <button className="modal-close-button" onClick={closeModal} aria-label="Close image modal">
+              ×
+            </button>
+            <img 
+              src={config.getImagePath('OCROnMultilingualForms.png')}
+              alt="OCR on Multilingual Forms Project - Full Size"
+              className="modal-image"
+              onError={handleImageError}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

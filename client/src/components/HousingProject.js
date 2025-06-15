@@ -1,5 +1,6 @@
 import React from 'react';
 import './HousingProject.css';
+import config from '../config';
 
 const HousingProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -49,7 +50,7 @@ const HousingProject = ({ onBack }) => {
           <div className="housing-hero">
             <div className="housing-image-container">
               <img 
-                src="/DDOHII.webp"
+                src={config.getImagePath('DDOHII.webp')}
                 alt="Deep Dive of Housing in India Project"
                 className="housing-hero-image"
                 onError={handleImageError}

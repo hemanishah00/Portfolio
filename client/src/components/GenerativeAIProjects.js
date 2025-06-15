@@ -1,5 +1,6 @@
 import React from 'react';
 import './GenerativeAIProjects.css';
+import config from '../config';
 
 const GenerativeAIProjects = ({ 
   onBack, 
@@ -15,94 +16,79 @@ const GenerativeAIProjects = ({
   onVoice2InsightClick
 }) => {
   const handleImageError = (imageName) => (e) => {
-    console.log(`${imageName} failed to load, trying alternative paths...`);
-    const baseName = imageName.split('/').pop();
-    const imagePaths = [
-      `/${baseName}`,
-      `/images/${baseName}`,
-      `/Images/${baseName}`,
-      `http://localhost:5000/images/${baseName}`,
-    ];
-    
-    const currentSrc = e.target.src;
-    const currentIndex = imagePaths.findIndex(path => currentSrc.includes(baseName));
-    
-    if (currentIndex < imagePaths.length - 1) {
-      e.target.src = imagePaths[currentIndex + 1];
-    } else {
-      // Placeholder if all paths fail
-      e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmNWRjIi8+CjxwYXRoIGQ9Ik0xNTAgMTAwQzE2NS4wNDMgMTAwIDE3NyA4OC4wNDI2IDE3NyA3M0MxNzcgNTcuOTU3NCAxNjUuMDQzIDQ2IDE1MCA0NkMxMzQuOTU3IDQ2IDEyMyA1Ny45NTc0IDEyMyA3M0MxMjMgODguMDQyNiAxMzQuOTU3IDEwMCAxNTAgMTAwWiIgZmlsbD0iIzhmNDUxMyIvPjx0ZXh0IHg9IjE1MCIgeT0iMTMwIiBmb250LWZhbWlseT0iSW50ZXIiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM4YjQ1MTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlByb2plY3Q8L3RleHQ+PC9zdmc+';
-      console.log(`All ${imageName} paths failed, using placeholder`);
-    }
+    console.log(`${imageName} failed to load, using placeholder...`);
+    // Use a placeholder with cream and brown colors
+    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmNWRjIi8+CjxwYXRoIGQ9Ik0xNTAgMTAwQzE2NS4wNDMgMTAwIDE3NyA4OC4wNDI2IDE3NyA3M0MxNzcgNTcuOTU3NCAxNjUuMDQzIDQ2IDE1MCA0NkMxMzQuOTU3IDQ2IDEyMyA1Ny45NTc0IDEyMyA3M0MxMjMgODguMDQyNiAxMzQuOTU3IDEwMCAxNTAgMTAwWiIgZmlsbD0iIzhmNDUxMyIvPjx0ZXh0IHg9IjE1MCIgeT0iMTMwIiBmb250LWZhbWlseT0iSW50ZXIiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM4YjQ1MTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlByb2plY3Q8L3RleHQ+PC9zdmc+';
+    console.log(`${imageName} path failed, using placeholder`);
   };
 
   const projects = [
     {
       name: 'Airport Bot',
-      file: 'Images/AirportBot.jpeg',
+      file: 'AirportBot.jpeg',
       alt: 'Airport Bot Project',
       description: 'Intelligent Airport Assistant',
       onClick: onAirportBotClick
     },
     {
       name: 'Cycle GANs',
-      file: 'Images/CycleGAN.jpg',
+      file: 'CycleGAN.jpg',
       alt: 'Cycle GANs Project',
       description: 'Image-to-Image Translation',
       onClick: onCycleGANsClick
     },
     {
       name: 'Doc Bot',
-      file: 'Images/DocBot.png',
+      file: 'DocBot.png',
       alt: 'Doc Bot Project',
       description: 'Document Processing Assistant',
       onClick: onDocBotClick
     },
     {
       name: 'HR Bot',
-      file: 'Images/HRBot.jpg',
+      file: 'HRBot.jpg',
       alt: 'HR Bot Project',
       description: 'Human Resources Assistant',
       onClick: onHRBotClick
     },
     {
       name: 'Indian Speech-to-text',
-      file: 'Images/IndianSpeechToText.png',
+      file: 'IndianSpeechToText.png',
       alt: 'Indian Speech-to-text Project',
       description: 'Indian Language Speech Recognition',
       onClick: onIndianSpeechToTextClick
     },
     {
       name: 'Pharma Bot',
-      file: 'Images/PharmaBot.jpg',
+      file: 'PharmaBot.jpg',
       alt: 'Pharma Bot Project',
       description: 'Pharmaceutical Assistant',
       onClick: onPharmaBotClick
     },
     {
       name: 'VLM fine-tuning',
-      file: 'Images/VLMFinetuning.jpeg',
+      file: 'VLMFinetuning.jpeg',
       alt: 'VLM fine-tuning Project',
       description: 'Vision Language Model Tuning',
       onClick: onVLMFinetuningClick
     },
     {
       name: 'IntelliExtract',
-      file: 'Images/IntelliExtract.jpeg',
+      file: 'IntelliExtract.jpeg',
       alt: 'IntelliExtract Project',
       description: 'Intelligent Data Extraction',
       onClick: onIntelliExtractClick
     },
     {
       name: 'SmartTable Extractor',
-      file: 'Images/SmartTableExtractor.png',
+      file: 'SmartTableExtractor.png',
       alt: 'SmartTable Extractor Project',
       description: 'Advanced Table Processing',
       onClick: onSmartTableExtractorClick
     },
     {
       name: 'Voice2Insight',
-      file: 'Images/Voice2Insight.png',
+      file: 'Voice2Insight.png',
       alt: 'Voice2Insight Project',
       description: 'Voice Analytics Platform',
       onClick: onVoice2InsightClick
@@ -130,7 +116,7 @@ const GenerativeAIProjects = ({
             >
               <div className="project-image-container">
                 <img 
-                  src={`/${project.file}`}
+                  src={config.getImagePath(project.file)}
                   alt={project.alt}
                   className="project-image"
                   onError={handleImageError(project.file)}

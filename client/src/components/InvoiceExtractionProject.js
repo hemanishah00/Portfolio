@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './InvoiceExtractionProject.css';
+import config from '../config';
 
 const InvoiceExtractionProject = ({ onBack }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleImageError = (e) => {
     console.log('Invoice Extraction image failed to load, trying alternative paths...');
     const imagePaths = [
+      config.getImagePath('InvoiceExtractionAndAutomation.png'),
       '/InvoiceExtractionAndAutomation.png',
       '/images/InvoiceExtractionAndAutomation.png',
       'http://localhost:5000/images/InvoiceExtractionAndAutomation.png',
@@ -22,6 +26,20 @@ const InvoiceExtractionProject = ({ onBack }) => {
     }
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalClick = (e) => {
+    if (e.target.classList.contains('image-modal-overlay')) {
+      closeModal();
+    }
+  };
+
   return (
     <div className="invoice-extraction-project-container">
       <div className="invoice-extraction-project-content">
@@ -33,12 +51,18 @@ const InvoiceExtractionProject = ({ onBack }) => {
           <div className="invoice-extraction-hero">
             <div className="invoice-extraction-image-container">
               <img 
-                src="/InvoiceExtractionAndAutomation.png"
+                src={config.getImagePath('InvoiceExtractionAndAutomation.png')}
                 alt="Invoice Extraction and Automation Project"
-                className="invoice-extraction-hero-image"
+                className="invoice-extraction-hero-image clickable-image"
                 onError={handleImageError}
                 onLoad={() => console.log('Invoice Extraction image loaded successfully!')}
+                onClick={openModal}
+                style={{ cursor: 'pointer' }}
+                title="Click to view full size"
               />
+              <div className="image-overlay">
+                <span className="expand-icon">🔍</span>
+              </div>
             </div>
             <div className="invoice-extraction-title-container">
               <h1 className="invoice-extraction-title">Invoice Extraction and Automation</h1>
@@ -68,6 +92,23 @@ const InvoiceExtractionProject = ({ onBack }) => {
           </div>
         </section>
       </div>
+
+      {/* Image Modal */}
+      {isModalOpen && (
+        <div className="image-modal-overlay" onClick={handleModalClick}>
+          <div className="image-modal">
+            <button className="modal-close-button" onClick={closeModal} aria-label="Close image modal">
+              ×
+            </button>
+            <img 
+              src={config.getImagePath('InvoiceExtractionAndAutomation.png')}
+              alt="Invoice Extraction and Automation Project - Full Size"
+              className="modal-image"
+              onError={handleImageError}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
