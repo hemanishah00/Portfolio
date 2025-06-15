@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './IntroPage.css';
+import config from '../config';
 
 const IntroPage = () => {
   const [profile, setProfile] = useState(null);
@@ -58,8 +59,8 @@ const IntroPage = () => {
     );
   }
 
-  // Use public folder image as primary source
-  const imageSource = '/hemani.jpeg';
+  // Use config helper for proper path handling
+  const imageSource = config.getImagePath('hemani.jpeg');
 
   return (
     <div className="intro-container">

@@ -1,5 +1,6 @@
 import React from 'react';
 import './ProjectsSection.css';
+import config from '../config';
 
 const ProjectsSection = ({ onAnalyticsClick, onComputerVisionClick, onRecommendationSystemsClick, onOCRClick, onGenerativeAIClick }) => {
   const handleImageError = (imageName) => (e) => {
@@ -81,7 +82,7 @@ const ProjectsSection = ({ onAnalyticsClick, onComputerVisionClick, onRecommenda
             >
               <div className="project-image-container">
                 <img 
-                  src={`/${project.file}`}
+                  src={config.getImagePath(project.file)}
                   alt={project.alt}
                   className="project-image"
                   onError={handleImageError(project.file)}

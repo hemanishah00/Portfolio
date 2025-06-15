@@ -1,5 +1,6 @@
 import React from 'react';
 import './ContactSection.css';
+import config from '../config';
 
 const ContactSection = () => {
   const handleImageError = (e) => {
@@ -102,7 +103,7 @@ const ContactSection = () => {
           
           <div className="contact-image-container">
             <img 
-              src="/last.jpeg" 
+              src={config.getImagePath('last.jpeg')} 
               alt="Contact" 
               className="contact-image"
               onError={handleImageError}

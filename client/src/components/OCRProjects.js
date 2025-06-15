@@ -1,5 +1,6 @@
 import React from 'react';
 import './OCRProjects.css';
+import config from '../config';
 
 const OCRProjects = ({ onBack, onEyePrescriptionBotClick, onOCRMultilingualFormsClick, onInvoiceExtractionClick }) => {
   const projects = [
@@ -74,7 +75,7 @@ const OCRProjects = ({ onBack, onEyePrescriptionBotClick, onOCRMultilingualForms
                 aria-label={`View ${project.title} project details`}
               >
                 <img 
-                  src={`/${project.image}`}
+                  src={config.getImagePath(project.image)}
                   alt={project.title}
                   className="project-image"
                   onError={handleImageError(project.image)}
