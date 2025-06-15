@@ -25,22 +25,20 @@ const ContactSection = () => {
 
   const handleResumeClick = () => {
     console.log('Resume clicked - opening PDF');
-    // Open the resume PDF in a new tab
-    const resumePaths = [
-      '/H N Shah.pdf',
-      '/pdfs/H N Shah.pdf',
-      config.getImagePath('H N Shah.pdf'),
-      '/images/H N Shah.pdf',
-      'http://localhost:5000/images/H N Shah.pdf'
+    
+    // Try multiple possible URLs for the resume
+    const resumeUrls = [
+      'https://hemanishah00.github.io/Portfolio/HN_Shah_Resume.pdf',
+      'https://hemani-shah.github.io/Portfolio/HN_Shah_Resume.pdf',
+      `${window.location.origin}${process.env.PUBLIC_URL || ''}/HN_Shah_Resume.pdf`,
+      '/HN_Shah_Resume.pdf'
     ];
     
-    // Try to open the first path, if it fails the browser will handle it
-    const resumeUrl = process.env.NODE_ENV === 'production' 
-      ? `${process.env.PUBLIC_URL}/H N Shah.pdf`
-      : resumePaths[0];
-    
+    const resumeUrl = resumeUrls[0]; // Try the primary URL first
     console.log('Opening resume at:', resumeUrl);
-    window.open(encodeURI(resumeUrl), '_blank');
+    
+    // Open the PDF in a new tab
+    window.open(resumeUrl, '_blank');
   };
 
   const handleEmailClick = () => {
