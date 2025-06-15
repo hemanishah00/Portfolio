@@ -1,5 +1,6 @@
 import React from 'react';
 import './AirportBotProject.css';
+import config from '../config';
 
 const AirportBotProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -34,7 +35,7 @@ const AirportBotProject = ({ onBack }) => {
           <div className="airport-bot-hero">
             <div className="airport-bot-image-container">
               <img 
-                src="/Images/AirportBot.jpeg"
+                src={config.getImagePath('AirportBot.jpeg')}
                 alt="Airport Bot Project"
                 className="airport-bot-hero-image"
                 onError={handleImageError}

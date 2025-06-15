@@ -1,5 +1,6 @@
 import React from 'react';
 import './NERProject.css';
+import config from '../config';
 
 const NERProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -49,7 +50,7 @@ const NERProject = ({ onBack }) => {
           <div className="ner-hero">
             <div className="ner-image-container">
               <img 
-                src="/NER.jpeg"
+                src={config.getImagePath('NER.jpeg')}
                 alt="NER Project"
                 className="ner-hero-image"
                 onError={handleImageError}
