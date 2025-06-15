@@ -1,5 +1,6 @@
 import React from 'react';
 import './PharmaBotProject.css';
+import config from '../config';
 
 const PharmaBotProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -28,7 +29,7 @@ const PharmaBotProject = ({ onBack }) => {
           <div className="pharma-bot-hero">
             <div className="pharma-bot-image-container">
               <img 
-                src="/Images/PharmaBot.jpg"
+                src={config.getImagePath('PharmaBot.jpg')}
                 alt="Pharma Bot Project"
                 className="pharma-bot-hero-image"
                 onError={handleImageError}

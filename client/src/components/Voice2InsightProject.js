@@ -1,5 +1,6 @@
 import React from 'react';
 import './Voice2InsightProject.css';
+import config from '../config';
 
 const Voice2InsightProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -28,7 +29,7 @@ const Voice2InsightProject = ({ onBack }) => {
           <div className="voice2insight-hero">
             <div className="voice2insight-image-container">
               <img 
-                src="/Images/Voice2Insight.png"
+                src={config.getImagePath('Voice2Insight.png')}
                 alt="Voice2Insight Project"
                 className="voice2insight-hero-image"
                 onError={handleImageError}

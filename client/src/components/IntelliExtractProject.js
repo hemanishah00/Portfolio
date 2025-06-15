@@ -1,5 +1,6 @@
 import React from 'react';
 import './IntelliExtractProject.css';
+import config from '../config';
 
 const IntelliExtractProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -28,7 +29,7 @@ const IntelliExtractProject = ({ onBack }) => {
           <div className="intelli-extract-hero">
             <div className="intelli-extract-image-container">
               <img 
-                src="/Images/IntelliExtract.jpeg"
+                src={config.getImagePath('IntelliExtract.jpeg')}
                 alt="IntelliExtract Project"
                 className="intelli-extract-hero-image"
                 onError={handleImageError}

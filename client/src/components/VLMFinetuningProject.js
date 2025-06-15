@@ -1,5 +1,6 @@
 import React from 'react';
 import './VLMFinetuningProject.css';
+import config from '../config';
 
 const VLMFinetuningProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -28,7 +29,7 @@ const VLMFinetuningProject = ({ onBack }) => {
           <div className="vlm-finetuning-hero">
             <div className="vlm-finetuning-image-container">
               <img 
-                src="/Images/VLMFinetuning.jpeg"
+                src={config.getImagePath('VLMFinetuning.jpeg')}
                 alt="VLM fine-tuning Project"
                 className="vlm-finetuning-hero-image"
                 onError={handleImageError}

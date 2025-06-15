@@ -1,5 +1,6 @@
 import React from 'react';
 import './SmartTableExtractorProject.css';
+import config from '../config';
 
 const SmartTableExtractorProject = ({ onBack }) => {
   const handleImageError = (e) => {
@@ -28,7 +29,7 @@ const SmartTableExtractorProject = ({ onBack }) => {
           <div className="smart-table-hero">
             <div className="smart-table-image-container">
               <img 
-                src="/Images/SmartTableExtractor.png"
+                src={config.getImagePath('SmartTableExtractor.png')}
                 alt="SmartTable Extractor Project"
                 className="smart-table-hero-image"
                 onError={handleImageError}
