@@ -27,13 +27,20 @@ const ContactSection = () => {
     console.log('Resume clicked - opening PDF');
     // Open the resume PDF in a new tab
     const resumePaths = [
-      '/H N Shah Resume.pdf',
-      '/images/H N Shah Resume.pdf',
-      'http://localhost:5000/images/H N Shah Resume.pdf'
+      '/H N Shah.pdf',
+      '/pdfs/H N Shah.pdf',
+      config.getImagePath('H N Shah.pdf'),
+      '/images/H N Shah.pdf',
+      'http://localhost:5000/images/H N Shah.pdf'
     ];
     
     // Try to open the first path, if it fails the browser will handle it
-    window.open(encodeURI(resumePaths[0]), '_blank');
+    const resumeUrl = process.env.NODE_ENV === 'production' 
+      ? `${process.env.PUBLIC_URL}/H N Shah.pdf`
+      : resumePaths[0];
+    
+    console.log('Opening resume at:', resumeUrl);
+    window.open(encodeURI(resumeUrl), '_blank');
   };
 
   const handleEmailClick = () => {
