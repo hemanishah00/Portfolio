@@ -1,10 +1,10 @@
-name: Deploy to GitHub Pages
+name: Deploy React App to GitHub Pages
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, stable ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, master, stable ]
 
 jobs:
   build-and-deploy:
@@ -26,14 +26,14 @@ jobs:
         cd client
         npm ci
         
-    - name: Build
+    - name: Build React App
       run: |
         cd client
         npm run build
         
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/stable'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: client/build 
