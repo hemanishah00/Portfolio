@@ -1,5 +1,6 @@
 import React from 'react';
 import './AnalyticsProjects.css';
+import config from '../config';
 
 const AnalyticsProjects = ({ onBack, onFIFA20Click, onHousingClick, onNERClick }) => {
   const projects = [
@@ -21,24 +22,10 @@ const AnalyticsProjects = ({ onBack, onFIFA20Click, onHousingClick, onNERClick }
   ];
 
   const handleImageError = (imageName) => (e) => {
-    console.log(`${imageName} failed to load, trying alternative paths...`);
-    const baseName = imageName.split('/').pop();
-    const imagePaths = [
-      `/${baseName}`,
-      `/images/${baseName}`,
-      `http://localhost:5000/images/${baseName}`,
-    ];
-    
-    const currentSrc = e.target.src;
-    const currentIndex = imagePaths.findIndex(path => currentSrc.includes(baseName));
-    
-    if (currentIndex < imagePaths.length - 1) {
-      e.target.src = imagePaths[currentIndex + 1];
-    } else {
-      // Placeholder if all paths fail
-      e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmNWRjIi8+CjxwYXRoIGQ9Ik0xNTAgMTAwQzE2NS4wNDMgMTAwIDE3NyA4OC4wNDI2IDE3NyA3M0MxNzcgNTcuOTU3NCAxNjUuMDQzIDQ2IDE1MCA0NkMxMzQuOTU3IDQ2IDEyMyA1Ny45NTc0IDEyMyA3M0MxMjMgODguMDQyNiAxMzQuOTU3IDEwMCAxNTAgMTAwWiIgZmlsbD0iIzhmNDUxMyIvPjx0ZXh0IHg9IjE1MCIgeT0iMTMwIiBmb250LWZhbWlseT0iSW50ZXIiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM4YjQ1MTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlByb2plY3Q8L3RleHQ+PC9zdmc+';
-      console.log(`All ${imageName} paths failed, using placeholder`);
-    }
+    console.log(`${imageName} failed to load, using placeholder...`);
+    // Use a placeholder with cream and brown colors
+    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmNWRjIi8+CjxwYXRoIGQ9Ik0xNTAgMTAwQzE2NS4wNDMgMTAwIDE3NyA4OC4wNDI2IDE3NyA3M0MxNzcgNTcuOTU3NCAxNjUuMDQzIDQ2IDE1MCA0NkMxMzQuOTU3IDQ2IDEyMyA1Ny45NTc0IDEyMyA3M0MxMjMgODguMDQyNiAxMzQuOTU3IDEwMCAxNTAgMTAwWiIgZmlsbD0iIzhmNDUxMyIvPjx0ZXh0IHg9IjE1MCIgeT0iMTMwIiBmb250LWZhbWlseT0iSW50ZXIiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM4YjQ1MTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlByb2plY3Q8L3RleHQ+PC9zdmc+';
+    console.log(`${imageName} path failed, using placeholder`);
   };
 
   const handleProjectClick = (projectId) => {
@@ -74,7 +61,7 @@ const AnalyticsProjects = ({ onBack, onFIFA20Click, onHousingClick, onNERClick }
                 aria-label={`View ${project.title} project details`}
               >
                 <img 
-                  src={`/${project.image}`}
+                  src={config.getImagePath(project.image)}
                   alt={project.title}
                   className="project-image"
                   onError={handleImageError(project.image)}
