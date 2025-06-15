@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './EyePrescriptionBotProject.css';
+import config from '../config';
 
 const EyePrescriptionBotProject = ({ onBack }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleImageError = (e) => {
     console.log('Eye Prescription Bot image failed to load, trying alternative paths...');
     const imagePaths = [
+      config.getImagePath('EyePrescriptionBot.jpg'),
       '/EyePrescriptionBot.jpg',
       '/images/EyePrescriptionBot.jpg',
       'http://localhost:5000/images/EyePrescriptionBot.jpg',
@@ -22,6 +26,20 @@ const EyePrescriptionBotProject = ({ onBack }) => {
     }
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalClick = (e) => {
+    if (e.target.classList.contains('image-modal-overlay')) {
+      closeModal();
+    }
+  };
+
   return (
     <div className="eye-prescription-bot-project-container">
       <div className="eye-prescription-bot-project-content">
@@ -33,12 +51,18 @@ const EyePrescriptionBotProject = ({ onBack }) => {
           <div className="eye-prescription-bot-hero">
             <div className="eye-prescription-bot-image-container">
               <img 
-                src="/EyePrescriptionBot.jpg"
+                src={config.getImagePath('EyePrescriptionBot.jpg')}
                 alt="Eye Prescription Bot Project"
-                className="eye-prescription-bot-hero-image"
+                className="eye-prescription-bot-hero-image clickable-image"
                 onError={handleImageError}
                 onLoad={() => console.log('Eye Prescription Bot image loaded successfully!')}
+                onClick={openModal}
+                style={{ cursor: 'pointer' }}
+                title="Click to view full size"
               />
+              <div className="image-overlay">
+                <span className="expand-icon">🔍</span>
+              </div>
             </div>
             <div className="eye-prescription-bot-title-container">
               <h1 className="eye-prescription-bot-title">Eye Prescription Bot</h1>
@@ -68,6 +92,23 @@ const EyePrescriptionBotProject = ({ onBack }) => {
           </div>
         </section>
       </div>
+
+      {/* Image Modal */}
+      {isModalOpen && (
+        <div className="image-modal-overlay" onClick={handleModalClick}>
+          <div className="image-modal">
+            <button className="modal-close-button" onClick={closeModal} aria-label="Close image modal">
+              ×
+            </button>
+            <img 
+              src={config.getImagePath('EyePrescriptionBot.jpg')}
+              alt="Eye Prescription Bot Project - Full Size"
+              className="modal-image"
+              onError={handleImageError}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

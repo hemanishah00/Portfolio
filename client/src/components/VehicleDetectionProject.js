@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './VehicleDetectionProject.css';
+import config from '../config';
 
 const VehicleDetectionProject = ({ onBack }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleImageError = (e) => {
     console.log('Vehicle Detection image failed to load, trying alternative paths...');
     const imagePaths = [
+      config.getImagePath('VehicleDetection.jpg'),
       '/VehicleDetection.jpg',
       '/images/VehicleDetection.jpg',
       'http://localhost:5000/images/VehicleDetection.jpg',
@@ -22,6 +26,20 @@ const VehicleDetectionProject = ({ onBack }) => {
     }
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalClick = (e) => {
+    if (e.target.classList.contains('image-modal-overlay')) {
+      closeModal();
+    }
+  };
+
   return (
     <div className="vehicle-project-container">
       <div className="vehicle-project-content">
@@ -33,12 +51,18 @@ const VehicleDetectionProject = ({ onBack }) => {
           <div className="vehicle-hero">
             <div className="vehicle-image-container">
               <img 
-                src="/VehicleDetection.jpg"
+                src={config.getImagePath('VehicleDetection.jpg')}
                 alt="Vehicle Detection Project"
-                className="vehicle-hero-image"
+                className="vehicle-hero-image clickable-image"
                 onError={handleImageError}
                 onLoad={() => console.log('Vehicle Detection image loaded successfully!')}
+                onClick={openModal}
+                style={{ cursor: 'pointer' }}
+                title="Click to view full size"
               />
+              <div className="image-overlay">
+                <span className="expand-icon">🔍</span>
+              </div>
             </div>
             <div className="vehicle-title-container">
               <h1 className="vehicle-title">Vehicle Detection</h1>
@@ -88,6 +112,23 @@ const VehicleDetectionProject = ({ onBack }) => {
           </div>
         </section>
       </div>
+
+      {/* Image Modal */}
+      {isModalOpen && (
+        <div className="image-modal-overlay" onClick={handleModalClick}>
+          <div className="image-modal">
+            <button className="modal-close-button" onClick={closeModal} aria-label="Close image modal">
+              ×
+            </button>
+            <img 
+              src={config.getImagePath('VehicleDetection.jpg')}
+              alt="Vehicle Detection Project - Full Size"
+              className="modal-image"
+              onError={handleImageError}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

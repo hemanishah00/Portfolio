@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AttendanceFaceRecognitionProject.css';
+import config from '../config';
 
 const AttendanceFaceRecognitionProject = ({ onBack }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleImageError = (e) => {
     console.log('Attendance Face Recognition image failed to load, trying alternative paths...');
     const imagePaths = [
+      config.getImagePath('AttendanceFaceRecognition.jpeg'),
       '/AttendanceFaceRecognition.jpeg',
       '/images/AttendanceFaceRecognition.jpeg',
       'http://localhost:5000/images/AttendanceFaceRecognition.jpeg',
@@ -22,6 +26,20 @@ const AttendanceFaceRecognitionProject = ({ onBack }) => {
     }
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalClick = (e) => {
+    if (e.target.classList.contains('image-modal-overlay')) {
+      closeModal();
+    }
+  };
+
   return (
     <div className="attendance-project-container">
       <div className="attendance-project-content">
@@ -33,12 +51,18 @@ const AttendanceFaceRecognitionProject = ({ onBack }) => {
           <div className="attendance-hero">
             <div className="attendance-image-container">
               <img 
-                src="/AttendanceFaceRecognition.jpeg"
+                src={config.getImagePath('AttendanceFaceRecognition.jpeg')}
                 alt="Attendance Face Recognition Project"
-                className="attendance-hero-image"
+                className="attendance-hero-image clickable-image"
                 onError={handleImageError}
                 onLoad={() => console.log('Attendance Face Recognition image loaded successfully!')}
+                onClick={openModal}
+                style={{ cursor: 'pointer' }}
+                title="Click to view full size"
               />
+              <div className="image-overlay">
+                <span className="expand-icon">🔍</span>
+              </div>
             </div>
             <div className="attendance-title-container">
               <h1 className="attendance-title">Attendance Using Face Recognition</h1>
@@ -69,6 +93,23 @@ const AttendanceFaceRecognitionProject = ({ onBack }) => {
           </div>
         </section>
       </div>
+
+      {/* Image Modal */}
+      {isModalOpen && (
+        <div className="image-modal-overlay" onClick={handleModalClick}>
+          <div className="image-modal">
+            <button className="modal-close-button" onClick={closeModal} aria-label="Close image modal">
+              ×
+            </button>
+            <img 
+              src={config.getImagePath('AttendanceFaceRecognition.jpeg')}
+              alt="Attendance Face Recognition Project - Full Size"
+              className="modal-image"
+              onError={handleImageError}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

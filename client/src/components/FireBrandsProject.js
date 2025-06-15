@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './FireBrandsProject.css';
+import config from '../config';
 
 const FireBrandsProject = ({ onBack }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleImageError = (e) => {
     console.log('FireBrands image failed to load, trying alternative paths...');
     const imagePaths = [
+      config.getImagePath('Firebrands.jpg'),
       '/Firebrands.jpg',
       '/images/Firebrands.jpg',
       'http://localhost:5000/images/Firebrands.jpg',
@@ -19,6 +23,20 @@ const FireBrandsProject = ({ onBack }) => {
       // Placeholder if all paths fail
       e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmNWRjIi8+CjxwYXRoIGQ9Ik0yMDAgMTUwQzIyMi4wOTEgMTUwIDI0MCAxMzIuMDkxIDI0MCAxMTBDMjQwIDg3LjkwODYgMjIyLjA5MSA3MCAyMDAgNzBDMTc3LjkwOSA3MCAyNjAgODcuOTA4NiAyNjAgMTEwQzI2MCAxMzIuMDkxIDE3Ny45MDkgMTUwIDIwMCAxNTBaIiBmaWxsPSIjOGI0NTEzIi8+PHRleHQgeD0iMjAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJJbnRlciIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzhmNDUxMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RmlyZUJyYW5kczwvdGV4dD48L3N2Zz4=';
       console.log('All FireBrands image paths failed, using placeholder');
+    }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalClick = (e) => {
+    if (e.target.classList.contains('image-modal-overlay')) {
+      closeModal();
     }
   };
 
@@ -49,12 +67,18 @@ const FireBrandsProject = ({ onBack }) => {
           <div className="firebrands-hero">
             <div className="firebrands-image-container">
               <img 
-                src="/Firebrands.jpg"
+                src={config.getImagePath('Firebrands.jpg')}
                 alt="FireBrands Project"
-                className="firebrands-hero-image"
+                className="firebrands-hero-image clickable-image"
                 onError={handleImageError}
                 onLoad={() => console.log('FireBrands image loaded successfully!')}
+                onClick={openModal}
+                style={{ cursor: 'pointer' }}
+                title="Click to view full size"
               />
+              <div className="image-overlay">
+                <span className="expand-icon">🔍</span>
+              </div>
             </div>
             <div className="firebrands-title-container">
               <h1 className="firebrands-title">FireBrands</h1>
@@ -166,6 +190,23 @@ const FireBrandsProject = ({ onBack }) => {
           </div>
         </section>
       </div>
+
+      {/* Image Modal */}
+      {isModalOpen && (
+        <div className="image-modal-overlay" onClick={handleModalClick}>
+          <div className="image-modal">
+            <button className="modal-close-button" onClick={closeModal} aria-label="Close image modal">
+              ×
+            </button>
+            <img 
+              src={config.getImagePath('Firebrands.jpg')}
+              alt="FireBrands Project - Full Size"
+              className="modal-image"
+              onError={handleImageError}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
