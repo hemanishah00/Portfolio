@@ -1,25 +1,13 @@
 import React from 'react';
 import './GenAISection.css';
+import config from '../config';
 
 const GenAISection = () => {
   const handleImageError = (e) => {
-    console.log('GenAI section image failed to load, trying alternative paths...');
-    const imagePaths = [
-      '/2.jpeg',
-      '/images/2.jpeg',
-      'http://localhost:5000/images/2.jpeg',
-    ];
-    
-    const currentSrc = e.target.src;
-    const currentIndex = imagePaths.findIndex(path => currentSrc.includes(path.split('/').pop()));
-    
-    if (currentIndex < imagePaths.length - 1) {
-      e.target.src = imagePaths[currentIndex + 1];
-    } else {
-      // Placeholder if all paths fail
-      e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQ1MCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmNWRjIi8+CjxwYXRoIGQ9Ik0yMjUgMTUwQzI0Ny4wOTEgMTUwIDI2NSAxMzIuMDkxIDI2NSAxMTBDMjY1IDg3LjkwODYgMjQ3LjA5MSA3MCAyMjUgNzBDMjAyLjkwOSA3MCAyODUgODcuOTA4NiAyODUgMTEwQzI4NSAxMzIuMDkxIDIwMi45MDkgMTUwIDIyNSAxNTBaIiBmaWxsPSIjOGI0NTEzIi8+CjxwYXRoIGQ9Ik0xNTAgMjMwQzE1MCAyMDEuMzQxIDE3MS4zNDEgMTgwIDIwMCAxODBIMjUwQzI3OC42NTkgMTgwIDMwMCAyMDEuMzQxIDMwMCAyMzBWMzAwSDE1MFYyMzBaIiBmaWxsPSIjOGI0NTEzIi8+PC9zdmc+';
-      console.log('All GenAI image paths failed, using placeholder');
-    }
+    console.log('GenAI section image failed to load, using placeholder...');
+    // Use a placeholder with cream and brown colors
+    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQ1MCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmNWRjIi8+CjxwYXRoIGQ9Ik0yMjUgMTUwQzI0Ny4wOTEgMTUwIDI2NSAxMzIuMDkxIDI2NSAxMTBDMjY1IDg3LjkwODYgMjQ3LjA5MSA3MCAyMjUgNzBDMjAyLjkwOSA3MCAyODUgODcuOTA4NiAyODUgMTEwQzI4NSAxMzIuMDkxIDIwMi45MDkgMTUwIDIyNSAxNTBaIiBmaWxsPSIjOGI0NTEzIi8+CjxwYXRoIGQ9Ik0xNTAgMjMwQzE1MCAyMDEuMzQxIDE3MS4zNDEgMTgwIDIwMCAxODBIMjUwQzI3OC42NTkgMTgwIDMwMCAyMDEuMzQxIDMwMCAyMzBWMzAwSDE1MFYyMzBaIiBmaWxsPSIjOGI0NTEzIi8+PC9zdmc+';
+    console.log('GenAI image path failed, using placeholder');
   };
 
   return (
@@ -42,7 +30,7 @@ const GenAISection = () => {
           </div>
           <div className="genai-image-container">
             <img 
-              src="/2.jpeg" 
+              src={config.getImagePath('2.jpeg')} 
               alt="GenAI Development" 
               className="genai-image"
               onError={handleImageError}

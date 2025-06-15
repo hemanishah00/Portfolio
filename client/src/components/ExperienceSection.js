@@ -1,26 +1,13 @@
 import React from 'react';
 import './ExperienceSection.css';
+import config from '../config';
 
 const ExperienceSection = () => {
   const handleImageError = (imageName) => (e) => {
-    console.log(`${imageName} failed to load, trying alternative paths...`);
-    const baseName = imageName.split('/').pop();
-    const imagePaths = [
-      `/${baseName}`,
-      `/images/${baseName}`,
-      `http://localhost:5000/images/${baseName}`,
-    ];
-    
-    const currentSrc = e.target.src;
-    const currentIndex = imagePaths.findIndex(path => currentSrc.includes(baseName));
-    
-    if (currentIndex < imagePaths.length - 1) {
-      e.target.src = imagePaths[currentIndex + 1];
-    } else {
-      // Placeholder if all paths fail
-      e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmNWRjIi8+CjxwYXRoIGQ9Ik0xNTAgMTAwQzE2NS4wNDMgMTAwIDE3NyA4OC4wNDI2IDE3NyA3M0MxNzcgNTcuOTU3NCAxNjUuMDQzIDQ2IDE1MCA0NkMxMzQuOTU3IDQ2IDEyMyA1Ny45NTc0IDEyMyA3M0MxMjMgODguMDQyNiAxMzQuOTU3IDEwMCAxNTAgMTAwWiIgZmlsbD0iIzhmNDUxMyIvPjx0ZXh0IHg9IjE1MCIgeT0iMTMwIiBmb250LWZhbWlseT0iSW50ZXIiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM4YjQ1MTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkltYWdlPC90ZXh0Pjwvc3ZnPg==';
-      console.log(`All ${imageName} paths failed, using placeholder`);
-    }
+    console.log(`${imageName} failed to load, using placeholder...`);
+    // Use a placeholder with cream and brown colors
+    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjVmNWRjIi8+CjxwYXRoIGQ9Ik0xNTAgMTAwQzE2NS4wNDMgMTAwIDE3NyA4OC4wNDI2IDE3NyA3M0MxNzcgNTcuOTU3NCAxNjUuMDQzIDQ2IDE1MCA0NkMxMzQuOTU3IDQ2IDEyMyA1Ny45NTc0IDEyMyA3M0MxMjMgODguMDQyNiAxMzQuOTU3IDEwMCAxNTAgMTAwWiIgZmlsbD0iIzhmNDUxMyIvPjx0ZXh0IHg9IjE1MCIgeT0iMTMwIiBmb250LWZhbWlseT0iSW50ZXIiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM4YjQ1MTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkltYWdlPC90ZXh0Pjwvc3ZnPg==';
+    console.log(`${imageName} path failed, using placeholder`);
   };
 
   const companyLogos = [
@@ -37,7 +24,7 @@ const ExperienceSection = () => {
         <div className="education-section">
           <div className="education-image-container">
             <img 
-              src="/3.jpeg" 
+              src={config.getImagePath('3.jpeg')} 
               alt="Education" 
               className="education-image"
               onError={handleImageError('3.jpeg')}
@@ -59,7 +46,7 @@ const ExperienceSection = () => {
             {companyLogos.map((company, index) => (
               <div key={index} className="company-logo-container">
                 <img 
-                  src={`/${company.file}`}
+                  src={config.getImagePath(company.file)}
                   alt={company.alt}
                   className="company-logo"
                   onError={handleImageError(company.file)}
