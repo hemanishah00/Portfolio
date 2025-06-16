@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "deploy": "node deploy-github-pages.js"
+  },
   "devDependencies": {
     "gh-pages": "^6.3.0"
   }
