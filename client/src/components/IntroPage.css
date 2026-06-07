@@ -1,0 +1,124 @@
+.intro-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5dc; /* Cream background */
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.intro-content {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 3rem;
+  transition: all 0.3s ease;
+}
+
+.profile-image-container {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.profile-image {
+  width: 450px;
+  height: 450px;
+  object-fit: cover;
+  border: 5px solid #8b4513; /* Brown frame */
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+  transition: all 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(139, 69, 19, 0.4);
+}
+
+.profile-info {
+  flex: 1;
+  color: #8b4513; /* Saddle brown for main text */
+}
+
+.profile-name {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #8b4513; /* Same brown as other text */
+  line-height: 1.2;
+}
+
+.profile-designation {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #8b4513; /* Same brown as other text */
+  margin: 0 0 1.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.profile-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #8b4513; /* Same brown as other text */
+  margin: 0;
+  max-width: 500px;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #8b4513; /* Same brown as other text */
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .intro-container {
+    padding: 1rem;
+  }
+  
+  .profile-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .profile-image {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .profile-name {
+    font-size: 2.5rem;
+  }
+  
+  .profile-designation {
+    font-size: 1.2rem;
+  }
+  
+  .profile-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-section {
+    padding: 1.5rem;
+  }
+  
+  .profile-image {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .profile-name {
+    font-size: 2rem;
+  }
+} 

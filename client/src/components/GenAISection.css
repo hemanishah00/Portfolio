@@ -1,0 +1,111 @@
+.genai-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5dc; /* Cream background */
+  padding: 4rem 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.genai-content {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.genai-section {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 3rem;
+  transition: all 0.3s ease;
+}
+
+.genai-text {
+  flex: 1;
+  color: #8b4513; /* Same brown as other sections */
+}
+
+.genai-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 2rem 0;
+  color: #8b4513; /* Same brown */
+  line-height: 1.2;
+}
+
+.genai-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #8b4513; /* Same brown */
+}
+
+.genai-description p {
+  margin: 0 0 1.5rem 0;
+}
+
+.genai-description p:last-child {
+  margin-bottom: 0;
+}
+
+.genai-image-container {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.genai-image {
+  width: 450px;
+  height: 300px;
+  object-fit: cover;
+  border: 5px solid #8b4513; /* Brown frame */
+  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+  transition: all 0.3s ease;
+}
+
+.genai-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(139, 69, 19, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .genai-container {
+    padding: 2rem 1rem;
+  }
+  
+  .genai-section {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .genai-title {
+    font-size: 2.5rem;
+  }
+  
+  .genai-description {
+    font-size: 1rem;
+    text-align: left;
+  }
+  
+  .genai-image {
+    width: 350px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .genai-section {
+    padding: 1.5rem;
+  }
+  
+  .genai-title {
+    font-size: 2rem;
+  }
+  
+  .genai-image {
+    width: 300px;
+    height: 200px;
+  }
+} 
