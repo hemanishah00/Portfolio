@@ -15,16 +15,16 @@ const GenAISection = () => {
       <div className="genai-content">
         <div className="genai-section">
           <div className="genai-text">
-            <h2 className="genai-title">As a Generative AI Engineer</h2>
+            <h2 className="genai-title">As a Senior Data Scientist</h2>
             <div className="genai-description">
               <p>
-                I specialize in building AI-powered systems that solve complex, real-world problems using Large Language Models (LLMs), Computer Vision, and Natural Language Processing. My work includes developing RAG-based pipelines, voice assistants, multilingual bots, document intelligence solutions, and advanced dashboards that uncover insights from unstructured data.
+                I design and develop AI-powered systems that solve complex, real-world business problems. Over the past several years, I have worked across Generative AI, Large Language Models (LLMs), Agentic AI, Computer Vision, Intelligent Document Processing, and Natural Language Processing, building solutions that move from research and experimentation into production.
               </p>
               <p>
-                I have worked on impactful projects across healthcare, pharma, airports, and enterprise operations—delivering solutions that improve efficiency, accuracy, and decision-making. My experience includes fine-tuning models like LLaMA, designing structured agents, and building scalable, end-to-end AI systems.
+                My experience spans developing multi-agent workflows, Retrieval-Augmented Generation (RAG) applications, conversational AI systems, intelligent document processing pipelines, and computer vision solutions for enterprise clients across healthcare, pharmaceuticals, customer service, and business operations. More recently, I have been focused on designing AI-driven workflow automation systems that leverage agent orchestration, evaluation frameworks, and personalized content generation to support customer engagement and business growth at scale. I have built scalable AI products using technologies such as LangGraph, Azure AI Services, Vector Databases, and modern LLM frameworks, with a strong emphasis on reliability, observability, and measurable business impact.
               </p>
               <p>
-                I enjoy connecting ideas across domains, learning continuously, and collaborating with diverse teams. Let's connect and build something intelligent together.
+                From analyzing hundreds of thousands of employee feedback comments to uncover operational bottlenecks, to building multilingual virtual assistants, automated document intelligence systems, and intelligent customer interaction workflows, I enjoy transforming complex data and emerging AI technologies into practical solutions that deliver real value. My passion lies in bridging the gap between cutting-edge AI capabilities and the business challenges they are designed to solve.
               </p>
             </div>
           </div>
