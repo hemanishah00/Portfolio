@@ -1,14 +1,7 @@
 import React from 'react';
 import './GenAISection.css';
-import config from '../config';
 
 const GenAISection = () => {
-  const handleImageError = (e) => {
-    console.log('GenAI section image failed to load, using placeholder...');
-    // Use a placeholder with cream and brown colors
-    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQ1MCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjVmNWRjIi8+CjxwYXRoIGQ9Ik0yMjUgMTUwQzI0Ny4wOTEgMTUwIDI2NSAxMzIuMDkxIDI2NSAxMTBDMjY1IDg3LjkwODYgMjQ3LjA5MSA3MCAyMjUgNzBDMjAyLjkwOSA3MCAyODUgODcuOTA4NiAyODUgMTEwQzI4NSAxMzIuMDkxIDIwMi45MDkgMTUwIDIyNSAxNTBaIiBmaWxsPSIjOGI0NTEzIi8+CjxwYXRoIGQ9Ik0xNTAgMjMwQzE1MCAyMDEuMzQxIDE3MS4zNDEgMTgwIDIwMCAxODBIMjUwQzI3OC42NTkgMTgwIDMwMCAyMDEuMzQxIDMwMCAyMzBWMzAwSDE1MFYyMzBaIiBmaWxsPSIjOGI0NTEzIi8+PC9zdmc+';
-    console.log('GenAI image path failed, using placeholder');
-  };
 
   return (
     <section className="genai-container">
@@ -27,15 +20,6 @@ const GenAISection = () => {
                 I enjoy transforming complex data and emerging AI technologies into practical solutions that deliver real value. My passion lies in bridging the gap between cutting-edge AI capabilities and the business challenges they are designed to solve.
               </p>
             </div>
-          </div>
-          <div className="genai-image-container">
-            <img 
-              src={config.getImagePath('2.jpeg')} 
-              alt="GenAI Development" 
-              className="genai-image"
-              onError={handleImageError}
-              onLoad={() => console.log('GenAI section image loaded successfully!')}
-            />
           </div>
         </div>
       </div>
