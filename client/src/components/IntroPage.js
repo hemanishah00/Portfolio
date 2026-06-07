@@ -6,7 +6,7 @@ const IntroPage = () => {
   // Static profile data - no need for API calls
   const profile = {
     name: 'Hemani Shah',
-    designation: 'Senior Data Scientist',
+    designation: 'Generative AI Engineer',
     location: 'Bengaluru',
     specializations: ['Natural Language Processing', 'Computer Vision']
   };
@@ -42,8 +42,9 @@ const IntroPage = () => {
             <h1 className="profile-name">{profile.name}</h1>
             <h2 className="profile-designation">{profile.designation}</h2>
             <p className="profile-description">
-              I am a {profile.designation} based in {profile.location}. My 
-              specializations include {profile.specializations.join(' and ')}.
+              I build production-grade AI systems using LLMs,
+              RAG pipelines, multi-agent architectures, and
+              computer vision.
             </p>
           </div>
         </div>
