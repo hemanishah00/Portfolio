@@ -15,7 +15,7 @@ const GenAISection = () => {
       <div className="genai-content">
         <div className="genai-section">
           <div className="genai-text">
-            <h2 className="genai-title">As a GenAI Developer</h2>
+            <h2 className="genai-title">As a Senior Data Scientist</h2>
             <div className="genai-description">
               <p>
                 I specialize in building AI-powered systems that solve complex, real-world problems using Large Language Models (LLMs), Computer Vision, and Natural Language Processing. My work includes developing RAG-based pipelines, voice assistants, multilingual bots, document intelligence solutions, and advanced dashboards that uncover insights from unstructured data.

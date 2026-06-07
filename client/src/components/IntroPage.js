@@ -6,8 +6,8 @@ const IntroPage = () => {
   // Static profile data - no need for API calls
   const profile = {
     name: 'Hemani Shah',
-    designation: 'GenAI Developer',
-    location: 'Valsad, Gujarat',
+    designation: 'Senior Data Scientist',
+    location: 'Bengaluru',
     specializations: ['Natural Language Processing', 'Computer Vision']
   };
 
