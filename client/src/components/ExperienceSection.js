@@ -14,7 +14,8 @@ const ExperienceSection = () => {
     { name: 'GSK', file: 'GSK.jpeg', alt: 'GSK Logo' },
     { name: 'Cognizant', file: 'Cognizant.jpeg', alt: 'Cognizant Logo' },
     { name: 'ARThink AI', file: 'ARThinkAI.webp', alt: 'ARThink AI Logo' },
-    { name: 'Univ.AI', file: 'Univ.AI.png', alt: 'Univ.AI Logo' }
+    { name: 'Univ.AI', file: 'Univ.AI.png', alt: 'Univ.AI Logo' },
+    { name: 'Relanto', file: 'Relanto.png', alt: 'Relanto Logo' }
   ];
 
   return (
