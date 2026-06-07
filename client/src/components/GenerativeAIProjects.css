@@ -1,6 +1,6 @@
 .generative-ai-projects-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f5dc 0%, #faf8f3 100%);
+  background: linear-gradient(135deg, var(--color-bg) 0%, #1a2744 100%);
   padding: 2rem 1rem;
 }
 
@@ -19,7 +19,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  background: #8b4513;
+  background: var(--color-primary);
   color: white;
   border: none;
   padding: 12px 24px;
@@ -28,26 +28,26 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(139, 69, 19, 0.2);
+  box-shadow: 0 4px 8px rgba(var(--color-primary-rgb), 0.2);
 }
 
 .back-button:hover {
-  background: #a0522d;
+  background: var(--color-accent);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(139, 69, 19, 0.3);
+  box-shadow: 0 6px 12px rgba(var(--color-primary-rgb), 0.3);
 }
 
 .generative-ai-projects-title {
   font-size: 3rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.1);
+  text-shadow: 2px 2px 4px rgba(var(--color-primary-rgb), 0.1);
 }
 
 .generative-ai-projects-subtitle {
   font-size: 1.2rem;
-  color: #a0522d;
+  color: var(--color-accent);
   font-weight: 400;
   margin: 0;
 }
@@ -60,20 +60,20 @@
 }
 
 .project-card {
-  background: white;
+  background: var(--color-card);
   border: none;
   border-radius: 15px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
+  box-shadow: 0 4px 15px rgba(var(--color-primary-rgb), 0.1);
   position: relative;
   height: 250px;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(139, 69, 19, 0.2);
+  box-shadow: 0 8px 25px rgba(var(--color-primary-rgb), 0.2);
 }
 
 .project-image-container {
@@ -99,7 +99,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, rgba(139, 69, 19, 0.8));
+  background: linear-gradient(transparent, rgba(var(--color-primary-rgb), 0.8));
   color: white;
   padding: 2rem 1.5rem 1.5rem;
   transform: translateY(0);
@@ -107,7 +107,7 @@
 }
 
 .project-card:hover .project-overlay {
-  background: linear-gradient(transparent, rgba(139, 69, 19, 0.9));
+  background: linear-gradient(transparent, rgba(var(--color-primary-rgb), 0.9));
 }
 
 .project-name {
@@ -121,7 +121,7 @@
 .project-description {
   font-size: 0.9rem;
   margin: 0;
-  color: #f5f5dc;
+  color: var(--color-text);
   opacity: 0.9;
   font-weight: 400;
 }

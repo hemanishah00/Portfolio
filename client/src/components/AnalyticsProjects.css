@@ -1,6 +1,6 @@
 .analytics-projects-container {
   min-height: 100vh;
-  background: #f5f5dc; /* Cream background */
+  background: var(--color-bg); /* Cream background */
   padding: 2rem;
   font-family: 'Inter', sans-serif;
 }
@@ -22,7 +22,7 @@
   left: 2rem;
   background: none;
   border: none;
-  color: #8b4513;
+  color: var(--color-text);
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 600;
@@ -33,26 +33,26 @@
 }
 
 .back-button:hover {
-  background: rgba(139, 69, 19, 0.1);
+  background: rgba(var(--color-primary-rgb), 0.1);
   transform: translateX(-5px);
 }
 
 .back-button:focus {
-  outline: 2px solid #8b4513;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
 .analytics-title {
   font-size: 3.5rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0 0 1rem 0;
   line-height: 1.2;
 }
 
 .analytics-subtitle {
   font-size: 1.2rem;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0;
   opacity: 0.8;
 }
@@ -68,7 +68,7 @@
 
 .project-card {
   background: transparent;
-  border: 3px solid #8b4513;
+  border: 3px solid var(--color-primary);
   border-radius: 16px;
   padding: 0;
   transition: all 0.3s ease;
@@ -80,8 +80,8 @@
 
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
-  border-color: #654321;
+  box-shadow: 0 15px 35px rgba(var(--color-primary-rgb), 0.3);
+  border-color: var(--color-accent);
 }
 
 .project-button {
@@ -99,7 +99,7 @@
 }
 
 .project-button:focus {
-  outline: 2px solid #8b4513;
+  outline: 2px solid var(--color-primary);
   outline-offset: -2px;
 }
 
@@ -116,18 +116,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(245, 245, 220, 0.95);
-  border-top: 2px solid #8b4513;
+  background: rgba(var(--color-card-rgb), 0.95);
+  border-top: 2px solid var(--color-primary);
 }
 
 .project-title {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0;
   line-height: 1.3;
   text-align: center;
-  text-shadow: 1px 1px 0 rgba(245, 245, 220, 1);
+  text-shadow: 1px 1px 0 rgba(var(--color-card-rgb), 1);
 }
 
 .project-arrow {
@@ -135,11 +135,11 @@
   bottom: 1.5rem;
   right: 1.5rem;
   font-size: 1.5rem;
-  color: #8b4513;
+  color: var(--color-text);
   opacity: 0;
   transform: translateX(-10px);
   transition: all 0.3s ease;
-  background: rgba(245, 245, 220, 0.9);
+  background: rgba(var(--color-card-rgb), 0.9);
   width: 30px;
   height: 30px;
   display: flex;

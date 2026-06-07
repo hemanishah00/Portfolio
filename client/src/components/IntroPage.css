@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f5dc; /* Cream background */
+  background: var(--color-bg); /* Cream background */
   padding: 2rem;
   font-family: 'Inter', sans-serif;
 }
@@ -30,33 +30,33 @@
   width: 450px;
   height: 450px;
   object-fit: cover;
-  border: 5px solid #8b4513; /* Brown frame */
-  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+  border: 5px solid var(--color-primary); /* Brown frame */
+  box-shadow: 0 15px 35px rgba(var(--color-primary-rgb), 0.3);
   transition: all 0.3s ease;
 }
 
 .profile-image:hover {
   transform: scale(1.05);
-  box-shadow: 0 20px 40px rgba(139, 69, 19, 0.4);
+  box-shadow: 0 20px 40px rgba(var(--color-primary-rgb), 0.4);
 }
 
 .profile-info {
   flex: 1;
-  color: #8b4513; /* Saddle brown for main text */
+  color: var(--color-text); /* Saddle brown for main text */
 }
 
 .profile-name {
   font-size: 3.5rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
-  color: #8b4513; /* Same brown as other text */
+  color: var(--color-text); /* Same brown as other text */
   line-height: 1.2;
 }
 
 .profile-designation {
   font-size: 1.5rem;
   font-weight: 500;
-  color: #8b4513; /* Same brown as other text */
+  color: var(--color-text); /* Same brown as other text */
   margin: 0 0 1.5rem 0;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -65,7 +65,7 @@
 .profile-description {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #8b4513; /* Same brown as other text */
+  color: var(--color-text); /* Same brown as other text */
   margin: 0;
   max-width: 500px;
 }
@@ -73,7 +73,7 @@
 .loading {
   text-align: center;
   font-size: 1.2rem;
-  color: #8b4513; /* Same brown as other text */
+  color: var(--color-text); /* Same brown as other text */
   font-weight: 500;
 }
 

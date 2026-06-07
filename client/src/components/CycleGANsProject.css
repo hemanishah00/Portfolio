@@ -1,8 +1,8 @@
 .cycle-gans-project-container {
   min-height: 100vh;
-  background: #f5f5dc; /* Cream background */
+  background: var(--color-bg); /* Cream background */
   font-family: 'Inter', sans-serif;
-  color: #8b4513;
+  color: var(--color-text);
 }
 
 .cycle-gans-project-content {
@@ -23,7 +23,7 @@
   left: 0;
   background: none;
   border: none;
-  color: #8b4513;
+  color: var(--color-text);
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 600;
@@ -34,12 +34,12 @@
 }
 
 .back-button:hover {
-  background: rgba(139, 69, 19, 0.1);
+  background: rgba(var(--color-primary-rgb), 0.1);
   transform: translateX(-5px);
 }
 
 .back-button:focus {
-  outline: 2px solid #8b4513;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
@@ -58,9 +58,9 @@
   width: 400px;
   height: 300px;
   object-fit: cover;
-  border: 5px solid #8b4513;
+  border: 5px solid var(--color-primary);
   border-radius: 12px;
-  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+  box-shadow: 0 15px 35px rgba(var(--color-primary-rgb), 0.3);
 }
 
 .cycle-gans-title-container {
@@ -70,14 +70,14 @@
 .cycle-gans-title {
   font-size: 4rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0 0 1rem 0;
   line-height: 1.1;
 }
 
 .cycle-gans-subtitle {
   font-size: 1.5rem;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0;
   opacity: 0.8;
   font-weight: 500;
@@ -92,7 +92,7 @@
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0 0 2rem 0;
   line-height: 1.2;
 }
@@ -100,7 +100,7 @@
 .section-content {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #8b4513;
+  color: var(--color-text);
 }
 
 .section-content p {
@@ -115,15 +115,15 @@
 .technical-section {
   margin: 2rem 0;
   padding: 2rem;
-  border: 2px solid #8b4513;
+  border: 2px solid var(--color-primary);
   border-radius: 12px;
-  background: rgba(139, 69, 19, 0.03);
+  background: rgba(var(--color-primary-rgb), 0.03);
 }
 
 .technical-section h4 {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0 0 1.5rem 0;
 }
 
@@ -137,15 +137,15 @@
 
 .method-section {
   padding: 1.5rem;
-  border: 2px solid #8b4513;
+  border: 2px solid var(--color-primary);
   border-radius: 8px;
-  background: rgba(139, 69, 19, 0.05);
+  background: rgba(var(--color-primary-rgb), 0.05);
 }
 
 .method-section h5 {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0 0 1rem 0;
   line-height: 1.3;
 }
@@ -161,7 +161,7 @@
 }
 
 .method-section strong {
-  color: #8b4513;
+  color: var(--color-text);
   font-weight: 700;
 }
 
@@ -169,15 +169,15 @@
 .results-section {
   margin: 2rem 0;
   padding: 1.5rem;
-  border: 2px solid #8b4513;
+  border: 2px solid var(--color-primary);
   border-radius: 12px;
-  background: rgba(139, 69, 19, 0.06);
+  background: rgba(var(--color-primary-rgb), 0.06);
 }
 
 .results-section h5 {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0 0 1rem 0;
   line-height: 1.3;
 }
@@ -189,14 +189,14 @@
 
 .feature-item {
   padding: 1rem;
-  border: 1px solid #8b4513;
+  border: 1px solid var(--color-primary);
   border-radius: 8px;
-  background: rgba(139, 69, 19, 0.03);
+  background: rgba(var(--color-primary-rgb), 0.03);
   line-height: 1.6;
 }
 
 .feature-item strong {
-  color: #8b4513;
+  color: var(--color-text);
   font-weight: 700;
 }
 
@@ -204,15 +204,15 @@
 .impact-section {
   margin: 2rem 0 0 0;
   padding: 1.5rem;
-  border: 3px solid #8b4513;
+  border: 3px solid var(--color-primary);
   border-radius: 12px;
-  background: rgba(139, 69, 19, 0.08);
+  background: rgba(var(--color-primary-rgb), 0.08);
 }
 
 .impact-section h5 {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0 0 1rem 0;
   line-height: 1.3;
 }
@@ -233,8 +233,8 @@
 
 .resource-button {
   background: none;
-  border: 3px solid #8b4513;
-  color: #8b4513;
+  border: 3px solid var(--color-primary);
+  color: var(--color-text);
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
@@ -250,14 +250,14 @@
 }
 
 .resource-button:hover {
-  background: #8b4513;
-  color: #f5f5dc;
+  background: var(--color-primary);
+  color: var(--color-text);
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+  box-shadow: 0 10px 25px rgba(var(--color-primary-rgb), 0.3);
 }
 
 .resource-button:focus {
-  outline: 2px solid #8b4513;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 

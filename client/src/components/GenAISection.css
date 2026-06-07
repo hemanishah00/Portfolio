@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f5dc; /* Cream background */
+  background: var(--color-bg); /* Cream background */
   padding: 4rem 2rem;
   font-family: 'Inter', sans-serif;
 }
@@ -23,21 +23,21 @@
 
 .genai-text {
   flex: 1;
-  color: #8b4513; /* Same brown as other sections */
+  color: var(--color-text); /* Same brown as other sections */
 }
 
 .genai-title {
   font-size: 3rem;
   font-weight: 700;
   margin: 0 0 2rem 0;
-  color: #8b4513; /* Same brown */
+  color: var(--color-text); /* Same brown */
   line-height: 1.2;
 }
 
 .genai-description {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #8b4513; /* Same brown */
+  color: var(--color-text); /* Same brown */
 }
 
 .genai-description p {
@@ -57,14 +57,14 @@
   width: 450px;
   height: 300px;
   object-fit: cover;
-  border: 5px solid #8b4513; /* Brown frame */
-  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+  border: 5px solid var(--color-primary); /* Brown frame */
+  box-shadow: 0 15px 35px rgba(var(--color-primary-rgb), 0.3);
   transition: all 0.3s ease;
 }
 
 .genai-image:hover {
   transform: scale(1.05);
-  box-shadow: 0 20px 40px rgba(139, 69, 19, 0.4);
+  box-shadow: 0 20px 40px rgba(var(--color-primary-rgb), 0.4);
 }
 
 /* Responsive Design */

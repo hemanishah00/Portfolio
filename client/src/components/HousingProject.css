@@ -1,8 +1,8 @@
 .housing-project-container {
   min-height: 100vh;
-  background: #f5f5dc; /* Cream background */
+  background: var(--color-bg); /* Cream background */
   font-family: 'Inter', sans-serif;
-  color: #8b4513;
+  color: var(--color-text);
 }
 
 .housing-project-content {
@@ -23,7 +23,7 @@
   left: 0;
   background: none;
   border: none;
-  color: #8b4513;
+  color: var(--color-text);
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 600;
@@ -34,12 +34,12 @@
 }
 
 .back-button:hover {
-  background: rgba(139, 69, 19, 0.1);
+  background: rgba(var(--color-primary-rgb), 0.1);
   transform: translateX(-5px);
 }
 
 .back-button:focus {
-  outline: 2px solid #8b4513;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
@@ -58,9 +58,9 @@
   width: 400px;
   height: 300px;
   object-fit: cover;
-  border: 5px solid #8b4513;
+  border: 5px solid var(--color-primary);
   border-radius: 12px;
-  box-shadow: 0 15px 35px rgba(139, 69, 19, 0.3);
+  box-shadow: 0 15px 35px rgba(var(--color-primary-rgb), 0.3);
 }
 
 .housing-title-container {
@@ -70,14 +70,14 @@
 .housing-title {
   font-size: 3.5rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0 0 1rem 0;
   line-height: 1.1;
 }
 
 .housing-subtitle {
   font-size: 1.5rem;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0;
   opacity: 0.8;
   font-weight: 500;
@@ -92,7 +92,7 @@
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0 0 2rem 0;
   line-height: 1.2;
 }
@@ -100,7 +100,7 @@
 .section-content {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #8b4513;
+  color: var(--color-text);
 }
 
 .section-content p {
@@ -141,22 +141,22 @@
 .problem-part {
   margin: 2rem 0;
   padding: 2rem;
-  border: 2px solid #8b4513;
+  border: 2px solid var(--color-primary);
   border-radius: 12px;
-  background: rgba(139, 69, 19, 0.05);
+  background: rgba(var(--color-primary-rgb), 0.05);
 }
 
 .problem-part h3 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 0 0 1rem 0;
 }
 
 .problem-part h4 {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #8b4513;
+  color: var(--color-text);
   margin: 1.5rem 0 1rem 0;
 }
 
@@ -177,18 +177,18 @@
 }
 
 .index-section {
-  background: rgba(139, 69, 19, 0.03);
-  border: 1px solid rgba(139, 69, 19, 0.2);
+  background: rgba(var(--color-primary-rgb), 0.03);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.2);
   border-radius: 8px;
   padding: 1.5rem;
 }
 
 .index-section h4 {
-  color: #8b4513;
+  color: var(--color-text);
   font-size: 1.2rem;
   font-weight: 600;
   margin: 0 0 1rem 0;
-  border-bottom: 2px solid #8b4513;
+  border-bottom: 2px solid var(--color-primary);
   padding-bottom: 0.5rem;
 }
 
@@ -209,21 +209,21 @@
   opacity: 0.8;
   margin-top: 1.5rem;
   padding: 1rem;
-  background: rgba(139, 69, 19, 0.05);
-  border-left: 4px solid #8b4513;
+  background: rgba(var(--color-primary-rgb), 0.05);
+  border-left: 4px solid var(--color-primary);
   border-radius: 4px;
 }
 
 /* Links */
 .housing-link {
-  color: #8b4513;
+  color: var(--color-text);
   font-weight: 600;
   text-decoration: underline;
   transition: all 0.3s ease;
 }
 
 .housing-link:hover {
-  color: #654321;
+  color: var(--color-accent);
   text-decoration: none;
 }
 
@@ -237,8 +237,8 @@
 
 .resource-button {
   background: none;
-  border: 3px solid #8b4513;
-  color: #8b4513;
+  border: 3px solid var(--color-primary);
+  color: var(--color-text);
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
@@ -254,14 +254,14 @@
 }
 
 .resource-button:hover {
-  background: #8b4513;
-  color: #f5f5dc;
+  background: var(--color-primary);
+  color: var(--color-text);
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+  box-shadow: 0 10px 25px rgba(var(--color-primary-rgb), 0.3);
 }
 
 .resource-button:focus {
-  outline: 2px solid #8b4513;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 

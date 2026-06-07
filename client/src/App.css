@@ -1,3 +1,14 @@
+:root {
+  --color-bg: #0F172A;
+  --color-card: #1E293B;
+  --color-text: #F8FAFC;
+  --color-primary: #38BDF8;
+  --color-accent: #8B5CF6;
+  --color-primary-rgb: 56, 189, 248;
+  --color-accent-rgb: 139, 92, 246;
+  --color-card-rgb: 30, 41, 59;
+}
+
 /* Global Styles */
 * {
   margin: 0;
@@ -16,8 +27,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5dc; /* Same brown for all text */
-  color: #8b4513; /* Same brown for all text */
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 .App {
@@ -30,21 +41,21 @@ button {
   background: none;
   cursor: pointer;
   font-family: inherit;
-  color: #8b4513; /* Same brown for buttons */
+  color: var(--color-text);
 }
 
 /* Link styles */
 a {
   text-decoration: none;
-  color: #8b4513; /* Same brown for links */
+  color: var(--color-primary);
 }
 
 a:hover {
-  color: #654321; /* Slightly darker brown on hover for contrast */
+  color: var(--color-accent);
 }
 
 /* Selection styles */
 ::selection {
-  background-color: #cd853f; /* Peru brown selection */
-  color: #f5f5dc; /* Cream text on selection */
-} 
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
