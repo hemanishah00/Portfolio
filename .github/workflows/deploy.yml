@@ -32,10 +32,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -46,6 +46,10 @@ jobs:
       # Type errors fail the job here, before anything is built or uploaded.
       - name: Type check
         run: npm run check
+
+      # Unit tests (token pin, résumé guards, content assertions) gate the deploy too.
+      - name: Unit tests
+        run: npm test
 
       # Builds the site, then runs tests/build against dist (CNAME, phone-number
       # scan, excluded-content scan, ...). Any failure stops the job here.

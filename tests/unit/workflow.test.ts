@@ -47,7 +47,7 @@ test('permissions are pages and id-token write', () => {
   expect(perms['id-token']).toBe('write');
 });
 test('runs on Node 24 via setup-node@v4', () => {
-  const s = steps.find(uses('actions/setup-node@v4'));
+  const s = steps.find(uses('actions/setup-node@v7'));
   expect(s).toBeDefined();
   expect(String(s.with['node-version'])).toBe('24');
 });
@@ -87,6 +87,21 @@ test('the gate cannot be bypassed', () => {
 test('publishes the dist directory', () => {
   const s = steps.find(uses('actions/upload-pages-artifact@'));
   expect(s.with.path).toBe('dist');
+});
+test('all four actions are pinned to current majors (checkout v7, setup-node v7)', () => {
+  expect(idx(uses('actions/checkout@v7'))).toBeGreaterThanOrEqual(0);
+  expect(idx(uses('actions/setup-node@v7'))).toBeGreaterThanOrEqual(0);
+  expect(raw).not.toMatch(/actions\/checkout@v[0-6]\b/);
+  expect(raw).not.toMatch(/actions\/setup-node@v[0-6]\b/);
+});
+test('unit tests gate the deploy: npm test runs after check and before the build', () => {
+  const check = idx(runs('npm run check'));
+  const unit = idx(runs('npm test'));
+  const gate = idx(runs('npm run test:build'));
+  expect(unit).toBeGreaterThan(check);
+  expect(gate).toBeGreaterThan(unit);
+  expect(steps[unit]['continue-on-error']).toBeUndefined();
+  expect(steps[unit].if).toBeUndefined();
 });
 test('test:build runs the build and then the build tests', () => {
   const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
