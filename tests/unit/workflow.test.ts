@@ -64,6 +64,19 @@ test('tests gate the deploy: test:build runs before upload and deploy', () => {
   expect(upload).toBeGreaterThan(gate);
   expect(deploy).toBeGreaterThan(upload);
 });
+test('type checking gates the deploy: npm run check runs after install and before test:build', () => {
+  const ci = idx(runs('npm ci'));
+  const check = idx(runs('npm run check'));
+  const gate = idx(runs('npm run test:build'));
+  expect(check).toBeGreaterThan(ci);
+  expect(gate).toBeGreaterThan(check);
+  expect(steps[check]['continue-on-error']).toBeUndefined();
+  expect(steps[check].if).toBeUndefined();
+});
+test('the check script is astro check', () => {
+  const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+  expect(pkg.scripts.check).toBe('astro check');
+});
 test('the gate cannot be bypassed', () => {
   const gate = steps[idx(runs('npm run test:build'))];
   expect(gate['continue-on-error']).toBeUndefined();

@@ -43,6 +43,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Type errors fail the job here, before anything is built or uploaded.
+      - name: Type check
+        run: npm run check
+
       # Builds the site, then runs tests/build against dist (CNAME, phone-number
       # scan, excluded-content scan, ...). Any failure stops the job here.
       - name: Build and test
