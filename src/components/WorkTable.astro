@@ -19,35 +19,35 @@ const projects = sortWork(entries.map((e) => ({ slug: e.id, ...e.data })) as (Wo
     }
   </div>
 
-  <p class="work__total"><span data-work-count>{projects.length}</span> of {projects.length} projects</p>
+  <p class="work__total" role="status"><span data-work-count>{projects.length}</span> of {projects.length} projects</p>
 
-  <table class="work__table">
-    <thead>
-      <tr>
-        <th scope="col" class="c-year">year</th>
-        <th scope="col" class="c-domain">domain</th>
-        <th scope="col" class="c-name">name</th>
-        <th scope="col" class="c-stack">stack</th>
-        <th scope="col" class="c-impact">impact</th>
+  <table class="work__table" role="table">
+    <thead role="rowgroup">
+      <tr role="row">
+        <th scope="col" role="columnheader" class="c-year">year</th>
+        <th scope="col" role="columnheader" class="c-domain">domain</th>
+        <th scope="col" role="columnheader" class="c-name">name</th>
+        <th scope="col" role="columnheader" class="c-stack">stack</th>
+        <th scope="col" role="columnheader" class="c-impact">impact</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody role="rowgroup">
       {
         projects.map((p) => (
-          <tr data-work-row data-slug={p.slug} data-domain={p.domain}>
-            <td class="c-year" data-cell="year" data-label="year">
+          <tr role="row" data-work-row data-slug={p.slug} data-domain={p.domain}>
+            <td role="cell" class="c-year" data-cell="year" data-label="year">
               {p.year ?? '—'}
             </td>
-            <td class="c-domain" data-cell="domain" data-label="domain">
+            <td role="cell" class="c-domain" data-cell="domain" data-label="domain">
               {p.domain}
             </td>
-            <td class="c-name" data-cell="name">
+            <td role="cell" class="c-name" data-cell="name">
               {p.featured ? <a href={`/work/${p.slug}`}>{p.title}</a> : p.title}
             </td>
-            <td class="c-stack" data-cell="stack" data-label="stack">
+            <td role="cell" class="c-stack" data-cell="stack" data-label="stack">
               {p.stack.join(', ')}
             </td>
-            <td class="c-impact" data-cell="impact" data-label="impact" title={p.impact}>
+            <td role="cell" class="c-impact" data-cell="impact" data-label="impact">
               <span class="impact-text">{p.impact}</span>
             </td>
           </tr>
@@ -108,7 +108,7 @@ const projects = sortWork(entries.map((e) => ({ slug: e.id, ...e.data })) as (Wo
     background: none;
     border: 0;
     border-bottom: 1px solid transparent;
-    padding: 0;
+    padding: var(--space-1) 0;
     font: inherit;
     color: var(--muted);
     cursor: pointer;
@@ -160,7 +160,7 @@ const projects = sortWork(entries.map((e) => ({ slug: e.id, ...e.data })) as (Wo
     color: var(--muted);
   }
   /* The longest impact string would dominate the table; clamp to two lines on wide screens.
-     The full text stays in the DOM and in the title attribute. */
+     The full text stays in the DOM. */
   .impact-text {
     display: -webkit-box;
     -webkit-box-orient: vertical;

@@ -133,3 +133,41 @@ test('long cells are constrained so the table cannot force page scroll', () => {
 test('the work section heading is an h2 with the ls -la prompt', () => {
   expect(markup).toMatch(/<h2[^>]*>[\s\S]*?ls -la work\/[\s\S]*?<\/h2>/);
 });
+
+test('JS-off: the filter group is hidden in the static HTML so no dead buttons show', () => {
+  const open = markup.match(/<div\b[^>]*data-work-filters[^>]*>/);
+  expect(open, 'filter group missing').not.toBeNull();
+  expect(open![0]).toMatch(/\shidden(\s|=|>)/);
+});
+
+test('the row count is a live status region so filtering is announced', () => {
+  const m = markup.match(/<p\b[^>]*>(?=[^<]*<span[^>]*data-work-count)[\s\S]*?<\/p>/);
+  expect(m, 'count paragraph missing').not.toBeNull();
+  expect(m![0]).toMatch(/role="status"|aria-live="polite"/);
+});
+
+test('impact cells carry no redundant title attribute', () => {
+  for (const r of rows) {
+    expect(r.match(/<td\b[^>]*data-cell="impact"[^>]*>/)![0]).not.toMatch(/\stitle=/);
+  }
+});
+
+test('table roles are explicit so semantics survive display:block on mobile', () => {
+  expect(markup).toMatch(/<table\b[^>]*role="table"/);
+  expect(markup).toMatch(/<thead\b[^>]*role="rowgroup"/);
+  expect(markup).toMatch(/<tbody\b[^>]*role="rowgroup"/);
+  const heads = [...markup.matchAll(/<th\b[^>]*>/g)].map((m) => m[0]);
+  expect(heads).toHaveLength(5);
+  heads.forEach((h) => expect(h).toMatch(/role="columnheader"/));
+  expect(markup).toMatch(/<thead\b[\s\S]*?<tr\b[^>]*role="row"/);
+  for (const r of rows) {
+    expect(r.match(/^<tr\b[^>]*>/)![0], 'row role').toMatch(/role="row"/);
+    const cells = [...r.matchAll(/<td\b[^>]*>/g)].map((m) => m[0]);
+    expect(cells).toHaveLength(5);
+    cells.forEach((c) => expect(c).toMatch(/role="cell"/));
+  }
+});
+
+test('filter flags have vertical padding for a 24px touch target', () => {
+  expect(css).toMatch(/\.work__flag[^{]*\{[^}]*padding:[^;}]*[1-9]/);
+});
