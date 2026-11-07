@@ -22,7 +22,12 @@ const where = profile.location.toLowerCase();
     <div class="boot__gap"></div>
 
     <Prompt as="div" command="cat positioning.txt" />
-    <p class="boot__out" data-type>{profile.positioning}<span class="caret" data-caret aria-hidden="true"></span></p>
+    <p class="boot__out" data-type>{profile.positioning}</p>
+
+    <div class="boot__gap"></div>
+
+    <Prompt as="div" command="cat principles.txt" />
+    <p class="boot__out" data-type>{profile.principle}<span class="caret" data-caret aria-hidden="true"></span></p>
   </div>
 </TerminalFrame>
 

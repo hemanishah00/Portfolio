@@ -5,6 +5,7 @@ import StatusReadout from '../components/StatusReadout.astro';
 import ExperienceLog from '../components/ExperienceLog.astro';
 import LogoWall from '../components/LogoWall.astro';
 import WorkTable from '../components/WorkTable.astro';
+import Constellation from '../components/Constellation.astro';
 import ContactBlock from '../components/ContactBlock.astro';
 import Prompt from '../components/Prompt.astro';
 import profile from '../content/profile.json';
@@ -12,6 +13,8 @@ import profile from '../content/profile.json';
 
 <BaseLayout title={profile.name} description={profile.positioning} path="/">
   <main class="page">
+    <Constellation />
+
     <BootSequence />
 
     <section class="section">

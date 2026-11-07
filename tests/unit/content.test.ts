@@ -37,3 +37,7 @@ test('Relanto has exactly one generalized bullet; the excluded work stays off th
   expect(r!.bullets).toHaveLength(1);
   expect(r!.bullets[0]).toBe('Multi-agent workflow systems and LLM observability for enterprise customer engagement.');
 });
+
+test("profile carries the Day 2 principle", () => {
+  expect(profile.principle).toBe("Anyone can ship on Day 1. I build for Day 2.");
+});

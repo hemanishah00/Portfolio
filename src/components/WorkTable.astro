@@ -164,6 +164,12 @@ const projects = sortWork(entries.map((e) => ({ slug: e.id, ...e.data })) as (Wo
   [data-work-row]:hover {
     background: var(--surface);
   }
+  /* Set briefly when a constellation node is clicked. No transition: it appears, then disappears. */
+  [data-work-row][data-flash] {
+    background: var(--surface);
+    outline: 1px solid var(--accent);
+    outline-offset: -1px;
+  }
   [data-work-row][hidden] {
     display: none;
   }

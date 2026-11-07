@@ -12,6 +12,7 @@ const profile = defineCollection({
     github: z.url(),
     location: z.string(),
     positioning: z.string(),
+    principle: z.string(),
     resume: z.string(),
     education: z.object({
       institution: z.string(),
