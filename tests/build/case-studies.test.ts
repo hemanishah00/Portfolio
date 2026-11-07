@@ -233,3 +233,10 @@ test('every page is listed in the sitemap', () => {
     .join('');
   for (const s of slugs) expect(sm).toContain(`<loc>https://hemanishah.in/work/${s}/</loc>`);
 });
+
+test('unsourced claims stay out: no availability claim on Airport Bot, no hardware claim on VLM Fine-tuning', () => {
+  expect(text(body('airport-bot'))).not.toMatch(/any hour|24\/7|around the clock/i);
+  expect(text(header('airport-bot'))).not.toMatch(/any hour|24\/7/i);
+  expect(text(body("vlm-finetuning"))).not.toMatch(/modest|hardware/i);
+  expect(text(header('vlm-finetuning'))).not.toMatch(/modest|hardware|GPU memory/i);
+});

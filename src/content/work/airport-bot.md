@@ -24,4 +24,4 @@ The design is modular: separate structured agents cover specific airport service
 
 ## Impact
 
-Passengers get an immediate answer to routine questions about parking, bus services and other airport facilities, drawn from live service data where the answer changes and from the airport's own documentation where it does not. Human agents are no longer the only way to get that information, and the same service coverage is available at any hour. New service areas are added as another agent and set of functions rather than a rewrite.
+Passengers get an immediate answer to routine questions about parking, bus services and other airport facilities, drawn from live service data where the answer changes and from the airport's own documentation where it does not. Human agents are no longer the only way to get that information. New service areas are added as another agent and set of functions rather than a rewrite.

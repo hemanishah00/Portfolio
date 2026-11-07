@@ -15,9 +15,10 @@ export interface WorkItem {
 
 const byTitle = (a: { title: string }, b: { title: string }) => a.title.localeCompare(b.title);
 
-/** Dated projects first (newest year, then title A-Z); undated projects after, title A-Z. Returns a new array. */
+/** Featured projects first (they have a case study); within each group, dated projects (newest year, then title A-Z), then undated (title A-Z). Returns a new array. */
 export function sortWork<T extends WorkItem>(items: T[]): T[] {
   return [...items].sort((a, b) => {
+    if (!!a.featured !== !!b.featured) return a.featured ? -1 : 1;
     const aDated = a.year != null;
     const bDated = b.year != null;
     if (aDated !== bDated) return aDated ? -1 : 1;

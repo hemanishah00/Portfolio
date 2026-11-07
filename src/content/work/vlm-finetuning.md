@@ -2,7 +2,7 @@
 title: "VLM Fine-tuning"
 domain: genai
 stack: ["LoRA", "Quantization", "Vision-language models"]
-impact: "Pipeline to fine-tune a vision-language model on custom datasets within modest GPU memory."
+impact: "Pipeline to fine-tune a vision-language model on custom datasets using LoRA and quantization for efficient deployment."
 featured: true
 ---
 
@@ -24,4 +24,4 @@ Image-text dataset -> preprocessing (formatting, validation, filtering, batching
 
 ## Impact
 
-Adapting a vision-language model to a new domain became a repeatable job rather than a research project: prepare the image-text data, attach LoRA adapters to a quantized base model, train, evaluate. Only the adapters are trained, so the work fits on modest hardware, and the quantized model is also cheaper to serve. A new custom dataset goes through the same pipeline.
+Adapting a vision-language model to a new domain became a repeatable job rather than a research project: prepare the image-text data, attach LoRA adapters to a quantized base model, train, evaluate. Only the adapters are trained, and quantization shrinks the model for efficient deployment. A new custom dataset goes through the same pipeline.

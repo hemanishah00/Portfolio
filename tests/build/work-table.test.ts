@@ -65,17 +65,25 @@ test('year cell shows the year, or an em dash when undated', () => {
   expect(text(cell(rowFor('voice2insight'), 'year'))).toBe('—');
 });
 
-test('rows are in sorted order: dated newest-first, then undated A-Z', () => {
+test('rows are in sorted order: featured first, then within each group dated newest-first, then undated A-Z', () => {
   const slugs = rows.map((r) => attr(r, 'data-slug')!);
+  expect(slugs).toHaveLength(21);
   const bySlug = new Map(source.map((s) => [s.slug, s]));
-  const dated = slugs.filter((s) => bySlug.get(s)!.year);
-  const undated = slugs.filter((s) => !bySlug.get(s)!.year);
-  expect(slugs).toEqual([...dated, ...undated]);
-  expect(dated).toHaveLength(4);
-  const titles = undated.map((s) => bySlug.get(s)!.title);
-  expect(titles).toEqual([...titles].sort((a, b) => a.localeCompare(b)));
-  const datedTitles = dated.map((s) => bySlug.get(s)!.title);
-  expect(datedTitles).toEqual([...datedTitles].sort((a, b) => a.localeCompare(b)));
+  const featured = slugs.filter((s) => bySlug.get(s)!.featured);
+  const rest = slugs.filter((s) => !bySlug.get(s)!.featured);
+  expect(slugs).toEqual([...featured, ...rest]);
+  expect(featured).toHaveLength(6);
+  for (const group of [featured, rest]) {
+    const dated = group.filter((s) => bySlug.get(s)!.year);
+    const undated = group.filter((s) => !bySlug.get(s)!.year);
+    expect(group).toEqual([...dated, ...undated]);
+    const years = dated.map((s) => bySlug.get(s)!.year!);
+    expect(years).toEqual([...years].sort((x, y) => y - x));
+    const titles = undated.map((s) => bySlug.get(s)!.title);
+    expect(titles).toEqual([...titles].sort((x, y) => x.localeCompare(y)));
+  }
+  expect(rest.filter((s) => bySlug.get(s)!.year)).toHaveLength(4);
+  expect(slugs[slugs.length - 1]).not.toBe('voice2insight');
 });
 
 test('exactly the six featured projects link to their own case study', () => {
