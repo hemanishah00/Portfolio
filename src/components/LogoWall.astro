@@ -12,7 +12,7 @@ const logos = [
   {
     logos.map((l) => (
       <li class="wall__item">
-        <img src={l.src} alt={l.name} width="112" height="64" loading="lazy" decoding="async" />
+        <img src={l.src} alt={l.name} width="112" height="56" loading="lazy" decoding="async" />
       </li>
     ))
   }
@@ -23,27 +23,41 @@ const logos = [
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
+    max-width: 40rem;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: var(--space-3);
   }
   .wall__item {
     border: var(--border);
-    background: #fff;
     border-radius: 2px;
   }
+  /* The marks sit on white. Inverting turns that white to near-black so it blends
+     into the page and the dark marks read light. Hover restores the true colours
+     (invert + hue-rotate keeps hue while flipping lightness for the dark page). */
   .wall__item img {
-    width: 112px;
-    height: 64px;
+    width: 100%;
+    height: 56px;
     object-fit: contain;
-    filter: grayscale(1);
+    filter: grayscale(1) invert(1);
+    opacity: 0.7;
+    /* Inverted white is pure black, a hair darker than the page; lighten drops it out. */
+    mix-blend-mode: lighten;
   }
   .wall__item:hover img {
-    filter: grayscale(0);
+    filter: grayscale(0) invert(1) hue-rotate(180deg);
+    opacity: 1;
   }
   @media (prefers-reduced-motion: no-preference) {
     .wall__item img {
-      transition: filter 200ms ease;
+      transition:
+        filter 200ms ease,
+        opacity 200ms ease;
+    }
+  }
+  @media (max-width: 30rem) {
+    .wall {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 </style>

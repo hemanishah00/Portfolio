@@ -138,6 +138,15 @@ test('logos are grayscale by default and coloured on hover', () => {
   expect(css).toMatch(/:hover[^{]*\{[^}]*grayscale\(0\)/);
 });
 
+test('logo wall has a prompt header, no white backing, inverted marks, dimmed at rest', () => {
+  expect(markup).toContain('ls companies/');
+  expect(css).toMatch(/filter:\s*grayscale\((?:1|100%)?\)\s*invert\((?:1|100%)?\)/);
+  expect(css).toMatch(/opacity:\s*\.7/);
+  const wallRules = (css.match(/[^{}]*\.wall[^{}]*\{[^}]*\}/g) ?? []).join('');
+  expect(wallRules).not.toMatch(/background/);
+  expect(css).toMatch(/repeat\(5,\s*minmax\(0,\s*1fr\)\)/);
+});
+
 test('page has a side gutter wrapper', () => {
   expect(css).toMatch(/padding-inline\s*:\s*var\(--gutter\)|padding\s*:[^;}]*var\(--gutter\)/);
 });
