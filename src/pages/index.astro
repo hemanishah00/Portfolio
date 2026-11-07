@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BootSequence from '../components/BootSequence.astro';
+import profile from '../content/profile.json';
+---
+
+<BaseLayout title={profile.name} description={profile.positioning} path="/">
+  <main>
+    <BootSequence />
+  </main>
+</BaseLayout>

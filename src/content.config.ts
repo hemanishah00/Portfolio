@@ -10,6 +10,8 @@ const profile = defineCollection({
     email: z.string(),
     linkedin: z.string().url(),
     github: z.string().url(),
+    location: z.string(),
+    positioning: z.string(),
     resume: z.string(),
     education: z.object({
       institution: z.string(),

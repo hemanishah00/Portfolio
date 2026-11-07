@@ -1,0 +1,19 @@
+---
+interface Props {
+  command: string;
+}
+const { command } = Astro.props;
+---
+
+<div class="prompt"><span class="prompt__sigil" aria-hidden="true">$</span> <span class="prompt__command" data-type>{command}</span></div>
+
+<style>
+  .prompt {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    color: var(--text);
+  }
+  .prompt__sigil {
+    color: var(--accent);
+  }
+</style>
