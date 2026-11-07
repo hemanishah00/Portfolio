@@ -32,7 +32,7 @@ const experience = defineCollection({
     start: z.string(),
     end: z.string().nullable(),
     client: z.string().nullable(),
-    bullets: z.array(z.string()).min(1),
+    bullets: z.array(z.string()),
   }),
 });
 

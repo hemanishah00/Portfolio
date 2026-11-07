@@ -17,7 +17,14 @@
     "start": "2024-10",
     "end": "2025-09",
     "client": "Consulted for Cognizant and GSK",
-    "bullets": ["Generative AI development for consulting engagements with Cognizant and GSK."]
+    "bullets": [
+      "Developed an LLM-powered workflow analyzing 150K+ employee feedback comments and live agent call transcripts to uncover hidden Source-to-Pay process issues.",
+      "Built Databricks-based ETL pipelines using Pandas, extracted themes, sentiment, processes, and personas, and stored insights in SQL and VectorDB systems for RAG applications.",
+      "Enabled executive leadership to identify systemic and regional pain points through automated executive summaries and root-cause analysis APIs.",
+      "Reduced reporting turnaround time from 5 months to under 5 minutes, achieving approximately 99.9% effort reduction.",
+      "Developed a table extraction pipeline using Azure Document Intelligence to retrieve study intervention tables from document repositories and standardize outputs through RegEx-based cleaning.",
+      "Built intelligent document processing solutions to extract scientific substance information and key attributes from PDFs using OCR, Azure AI Search, and Retrieval-Augmented Generation techniques."
+    ]
   },
   {
     "company": "ARThink AI",
@@ -26,7 +33,13 @@
     "start": "2023-08",
     "end": "2024-07",
     "client": null,
-    "bullets": ["Data science and generative AI work."]
+    "bullets": [
+      "Built an end-to-end virtual assistant pipeline integrating multilingual speech-to-text, translation, Retrieval-Augmented Generation, and text-to-speech capabilities.",
+      "Fine-tuned LLaVA and LLaMA models using Quantization and LoRA techniques for efficient deployment in a fitness application.",
+      "Developed a facial-recognition-based attendance management system using video-to-video comparison to handle varying lighting conditions, facial expressions, and viewing angles.",
+      "Built a customer service chatbot for an airport using structured agents, OpenAI function calling, few-shot prompting, chain-of-thought prompting, and RAG.",
+      "Developed an automated image-processing pipeline using YOLO-based ROI detection for spectacle prescription classification and information extraction."
+    ]
   },
   {
     "company": "DeetsDigital",
@@ -35,7 +48,13 @@
     "start": "2023-02",
     "end": "2023-07",
     "client": null,
-    "bullets": ["Data science traineeship."]
+    "bullets": [
+      "Implemented super-resolution techniques to enhance drone imagery for downstream object detection tasks.",
+      "Automated invoice information extraction from PDF documents and transformed outputs into client-specific Excel formats.",
+      "Applied OCR techniques for multilingual document understanding and information extraction.",
+      "Built proof-of-concept sentiment analysis solutions on facial data captured through CCTV footage.",
+      "Developed resume parsing workflows using OCR and LLMs to dynamically match candidates to relevant job descriptions."
+    ]
   },
   {
     "company": "Univ.AI",
@@ -44,7 +63,7 @@
     "start": "2022-04",
     "end": "2023-01",
     "client": null,
-    "bullets": ["Teaching assistant for data science and AI coursework."]
+    "bullets": []
   },
   {
     "company": "Advanced Business & Healthcare Solutions",
@@ -53,6 +72,6 @@
     "start": "2022-01",
     "end": "2022-06",
     "client": null,
-    "bullets": ["Quality analyst traineeship."]
+    "bullets": []
   }
 ]

@@ -22,6 +22,10 @@ test('9Nexus records its consulting clients', () => {
   expect(n.client).toBe('Consulted for Cognizant and GSK');
   expect(n.end).toBe('2025-09');
 });
+test('only Relanto has a location; none are invented for the rest', () => {
+  const located = experience.filter((e) => e.location !== '');
+  expect(located.map((e) => e.company)).toEqual(['Relanto']);
+});
 test('profile carries no phone number', () => {
   expect(JSON.stringify(profile)).not.toMatch(/9924\s*475\s*599/);
 });
