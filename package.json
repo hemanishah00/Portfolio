@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "vitest run tests/unit",
-    "test:build": "astro build && vitest run tests/build"
+    "test:build": "astro build && vitest run tests/build",
+    "make:og": "node scripts/make-og.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -17,6 +18,7 @@
     "astro": "^7.4.7"
   },
   "devDependencies": {
+    "sharp": "^0.35.5",
     "vitest": "^5.1.0",
     "yaml": "^2.9.1"
   }

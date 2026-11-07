@@ -1,0 +1,67 @@
+import { readFileSync, existsSync } from 'node:fs';
+import { parse } from 'yaml';
+
+const raw = readFileSync('.github/workflows/deploy.yml', 'utf8');
+const wf = parse(raw);
+const jobs = Object.values(wf.jobs) as any[];
+const steps: any[] = jobs.flatMap((j) => j.steps ?? []);
+const idx = (pred: (s: any) => boolean) => steps.findIndex(pred);
+const uses = (name: string) => (s: any) => typeof s.uses === 'string' && s.uses.startsWith(name);
+const runs = (cmd: string) => (s: any) => typeof s.run === 'string' && s.run.trim() === cmd;
+
+test('uses the official Pages deployment action', () => {
+  expect(idx(uses('actions/deploy-pages@'))).toBeGreaterThanOrEqual(0);
+  expect(idx(uses('actions/upload-pages-artifact@'))).toBeGreaterThanOrEqual(0);
+});
+test('the superseded deploy paths are gone', () => {
+  expect(raw).not.toContain('peaceiris');
+  expect(raw).not.toContain('client/build');
+  expect(existsSync('deploy-github-pages.js')).toBe(false);
+  expect(existsSync('deploy.md')).toBe(false);
+  expect(existsSync('DEPLOYMENT_SUMMARY.md')).toBe(false);
+});
+test('nothing writes the wrong custom domain', () => {
+  expect(raw).not.toContain('hemanishah.com');
+});
+test('deploys only from main, on push, never on pull requests', () => {
+  expect(Object.keys(wf.on)).toEqual(['push']);
+  expect(wf.on.push.branches).toEqual(['main']);
+});
+test('permissions are pages and id-token write', () => {
+  const perms = wf.permissions ?? jobs[0].permissions;
+  expect(perms['pages']).toBe('write');
+  expect(perms['id-token']).toBe('write');
+});
+test('runs on Node 24 via setup-node@v4', () => {
+  const s = steps.find(uses('actions/setup-node@v4'));
+  expect(s).toBeDefined();
+  expect(String(s.with['node-version'])).toBe('24');
+});
+test('checks out the repository', () => {
+  expect(idx(uses('actions/checkout@'))).toBe(0);
+});
+test('tests gate the deploy: test:build runs before upload and deploy', () => {
+  const ci = idx(runs('npm ci'));
+  const gate = idx(runs('npm run test:build'));
+  const upload = idx(uses('actions/upload-pages-artifact@'));
+  const deploy = idx(uses('actions/deploy-pages@'));
+  expect(ci).toBeGreaterThanOrEqual(0);
+  expect(gate).toBeGreaterThan(ci);
+  expect(upload).toBeGreaterThan(gate);
+  expect(deploy).toBeGreaterThan(upload);
+});
+test('the gate cannot be bypassed', () => {
+  const gate = steps[idx(runs('npm run test:build'))];
+  expect(gate['continue-on-error']).toBeUndefined();
+  expect(gate.if).toBeUndefined();
+  for (const j of jobs) expect(j['continue-on-error']).toBeUndefined();
+  expect(raw).not.toMatch(/\|\|\s*true/);
+});
+test('publishes the dist directory', () => {
+  const s = steps.find(uses('actions/upload-pages-artifact@'));
+  expect(s.with.path).toBe('dist');
+});
+test('test:build runs the build and then the build tests', () => {
+  const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+  expect(pkg.scripts['test:build']).toMatch(/^astro build && vitest run tests\/build$/);
+});
