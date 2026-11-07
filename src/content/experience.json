@@ -1,0 +1,58 @@
+[
+  {
+    "company": "Relanto",
+    "role": "Senior Data Scientist / Senior AI Engineer",
+    "location": "Bengaluru",
+    "start": "2025-09",
+    "end": null,
+    "client": null,
+    "bullets": [
+      "Multi-agent workflow systems and LLM observability for enterprise customer engagement."
+    ]
+  },
+  {
+    "company": "9Nexus",
+    "role": "GenAI Developer",
+    "location": "",
+    "start": "2024-10",
+    "end": "2025-09",
+    "client": "Consulted for Cognizant and GSK",
+    "bullets": ["Generative AI development for consulting engagements with Cognizant and GSK."]
+  },
+  {
+    "company": "ARThink AI",
+    "role": "Data Scientist – Generative AI",
+    "location": "",
+    "start": "2023-08",
+    "end": "2024-07",
+    "client": null,
+    "bullets": ["Data science and generative AI work."]
+  },
+  {
+    "company": "DeetsDigital",
+    "role": "Data Science Trainee",
+    "location": "",
+    "start": "2023-02",
+    "end": "2023-07",
+    "client": null,
+    "bullets": ["Data science traineeship."]
+  },
+  {
+    "company": "Univ.AI",
+    "role": "Teaching Assistant",
+    "location": "",
+    "start": "2022-04",
+    "end": "2023-01",
+    "client": null,
+    "bullets": ["Teaching assistant for data science and AI coursework."]
+  },
+  {
+    "company": "Advanced Business & Healthcare Solutions",
+    "role": "Quality Analyst Trainee Intern",
+    "location": "",
+    "start": "2022-01",
+    "end": "2022-06",
+    "client": null,
+    "bullets": ["Quality analyst traineeship."]
+  }
+]

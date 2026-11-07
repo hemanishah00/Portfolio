@@ -1,0 +1,15 @@
+{
+  "name": "Hemani Shah",
+  "role": "Senior Data Scientist",
+  "email": "hemanishah00@gmail.com",
+  "linkedin": "https://www.linkedin.com/in/hemanishah00/",
+  "github": "https://github.com/hemanishah00",
+  "resume": "/HN_Shah_Resume.pdf",
+  "education": {
+    "institution": "Gujarat Technological University",
+    "degree": "B.E. Computer Engineering",
+    "start": 2018,
+    "end": 2022,
+    "cgpa": "9.02/10"
+  }
+}
