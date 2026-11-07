@@ -1,9 +1,8 @@
-import { readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync } from 'node:fs';
+import { allCss } from './css';
 
 const html = readFileSync('dist/index.html', 'utf8');
-const cssFiles = readdirSync('dist/_astro').filter((f) => f.endsWith('.css'));
-const css = cssFiles.map((f) => readFileSync(join('dist/_astro', f), 'utf8')).join('');
+const css = allCss();
 
 test('boot text is in static HTML, so it survives JS being off', () => {
   expect(html).toContain('senior data scientist @ relanto');

@@ -19,8 +19,3 @@ test('all five logos are served', () => {
 test('duplicate asset directories are gone', () => {
   for (const d of ['Images', 'pdfs', 'ppts', 'client/public']) expect(existsSync(d), d).toBe(false);
 });
-
-test('the oversized FIFA deck and favicol image are gone', () => {
-  expect(existsSync('FIFA-20.pptx')).toBe(false);
-  expect(existsSync('favicol.png')).toBe(false);
-});

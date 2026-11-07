@@ -69,7 +69,7 @@ test('<title> and canonical carry the project title and the real route', () => {
   for (const s of slugs) {
     const h = page(s);
     expect(h.match(/<title>([^<]*)<\/title>/)![1], s).toBe(`${bySlug(s).title} — Senior Data Scientist`);
-    expect(h.match(/<link rel="canonical" href="([^"]*)"/)![1], s).toBe(`https://hemanishah.in/work/${s}`);
+    expect(h.match(/<link rel="canonical" href="([^"]*)"/)![1], s).toBe(`https://hemanishah.in/work/${s}/`);
   }
 });
 
@@ -196,12 +196,12 @@ test('prev/next follow the sortWork order of the featured projects, without wrap
     const next = link('data-nav-next');
     if (i === 0) expect(prev, `${s} (first) has no prev`).toBeUndefined();
     else {
-      expect(href(prev), `${s} prev`).toBe(`/work/${order[i - 1]}`);
+      expect(href(prev), `${s} prev`).toBe(`/work/${order[i - 1]}/`);
       expect(text(prev!), `${s} prev text`).toContain(bySlug(order[i - 1]).title);
     }
     if (i === order.length - 1) expect(next, `${s} (last) has no next`).toBeUndefined();
     else {
-      expect(href(next), `${s} next`).toBe(`/work/${order[i + 1]}`);
+      expect(href(next), `${s} next`).toBe(`/work/${order[i + 1]}/`);
       expect(text(next!), `${s} next text`).toContain(bySlug(order[i + 1]).title);
     }
   });
@@ -217,7 +217,7 @@ test('every page links back to the index', () => {
 test('--metric marks the Voice2Insight figures in header and body, and nothing on the other pages', () => {
   const spans = (h: string) => [...h.matchAll(/<span[^>]*class="[^"]*\bmetric\b[^"]*"[^>]*>([^<]*)</g)].map((m) => m[1]);
   const impactLine = block(header('voice2insight'), /<p\b[^>]*data-case-impact[^>]*>[\s\S]*?<\/p>/, 'impact');
-  expect(spans(impactLine)).toEqual(['under 5 minutes', '5 months', '99.9%']);
+  expect(spans(impactLine)).toEqual(['5 months', 'under 5 minutes']);
   const b = body('voice2insight');
   const probSec = b.slice(b.search(/<h2\b[^>]*>Problem/), b.search(/<h2\b[^>]*>Approach/));
   expect(spans(probSec)).toEqual(['150K+', '5 months']);

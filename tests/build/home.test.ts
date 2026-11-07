@@ -1,11 +1,9 @@
-import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { allCss } from './css';
 
 const html = readFileSync('dist/index.html', 'utf8');
-const css = readdirSync('dist/_astro')
-  .filter((f) => f.endsWith('.css'))
-  .map((f) => readFileSync(join('dist/_astro', f), 'utf8'))
-  .join('');
+const css = allCss();
 const markup = html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
 const text = (s: string) => s.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#38;/g, '&');
 
@@ -144,7 +142,11 @@ test('timeline is newest first', () => {
 test('--metric marks exactly the quantified 9Nexus outcomes', () => {
   const marked = [...markup.matchAll(/<span[^>]*class="[^"]*\bmetric\b[^"]*"[^>]*>([^<]*)</g)].map((m) => m[1]);
   expect(marked).toEqual(['150K+', '5 months to under 5 minutes', '99.9%']);
-  expect(css.match(/var\(--metric\)/g) ?? []).toHaveLength(1);
+  // Every use of the token, across every page's CSS, sits in the one `.metric` rule.
+  const uses = [...css.matchAll(/([^{}]*)\{[^{}]*var\(--metric\)[^{}]*\}/g)].map((m) => m[1].trim());
+  expect(uses.length).toBeGreaterThan(0);
+  expect(new Set(uses)).toEqual(new Set(['.metric']));
+  expect(css.match(/var\(--metric\)/g)!.length).toBe(uses.length);
 });
 
 test('--accent is never a fill', () => {
