@@ -76,8 +76,8 @@ test('exactly 21 projects; the S2P work is one entry, not two', () => {
   expect(work).toHaveLength(21);
   expect(work.map((w) => w.id)).not.toContain('s2p-feedback-intelligence');
 });
-test('hr-bot has no year (not placed in a dated role by the resume)', () => {
-  expect(work.find((w) => w.id === 'hr-bot')!.data.year).toBeUndefined();
+test('hr-bot is dated 2023 (resume parsing bullet, DeetsDigital Feb-Jul 2023)', () => {
+  expect(work.find((w) => w.id === 'hr-bot')!.data.year).toBe(2023);
 });
 test('FIFA project is named fifa-20', () => {
   expect(work.map((w) => w.id)).toContain('fifa-20');

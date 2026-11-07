@@ -8,7 +8,7 @@ featured: true
 
 ## Problem
 
-Enterprise Feedback Analytics Dashboard. Source-to-Pay (S2P) issues tend to hide. The evidence was already there, spread across 150K+ employee feedback comments and transcriptions of calls with live agents, but nobody could read it at that volume. Surfacing systemic and regional pain points from it meant consultants working through the material by hand, which took about 5 months.
+This was a consulting engagement at 9Nexus on an enterprise's Source-to-Pay (S2P) process, where issues tend to hide. The evidence was already there, spread across 150K+ employee feedback comments and transcriptions of calls with live agents, but nobody could read it at that volume. Surfacing systemic and regional pain points from it meant consultants working through the material by hand, which took about 5 months.
 
 The ask was a way for CXO leadership to see where the process was breaking, and why, without waiting on a manual analysis cycle.
 
@@ -22,7 +22,7 @@ The extraction runs in Databricks ETL pipelines written with Pandas. Results lan
 
 <!-- diagram -->
 
-Employee comments and agent-call transcriptions enter Databricks ETL pipelines (Pandas), where the LLM extraction step tags each item with theme, sentiment, process and persona. Structured output is written to SQL; the text is stored in a vector store for RAG. On top of that sit APIs that generate automated executive summaries and root-cause analyses, and the dashboard that leadership uses: interactive charts and trends, regional breakdowns, and recommendations tied to the root causes found. This was delivered as consulting work at 9Nexus.
+Employee comments and agent-call transcriptions enter Databricks ETL pipelines (Pandas), where the LLM extraction step tags each item with theme, sentiment, process and persona. Structured output is written to SQL; the text is stored in a vector store for RAG. On top of that sit APIs that generate automated executive summaries and root-cause analyses, and the dashboard that leadership uses: interactive charts and trends, regional breakdowns, and recommendations tied to the root causes found.
 
 ## Impact
 
