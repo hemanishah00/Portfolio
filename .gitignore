@@ -8,6 +8,7 @@ yarn-error.log*
 # Production builds
 client/build/
 build/
+!tests/build/
 dist/
 
 # Environment variables
