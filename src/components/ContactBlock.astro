@@ -38,4 +38,9 @@ const routes: [string, string, string][] = [
     margin: 0;
     overflow-wrap: anywhere;
   }
+  /* 24px minimum target (WCAG 2.5.8): the 20px line box plus 4px above and below. */
+  dd a {
+    display: inline-block;
+    padding-block: var(--space-1);
+  }
 </style>

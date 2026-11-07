@@ -59,7 +59,7 @@ const mark = (s: string) =>
   );
 ---
 
-<CaseStudyLayout slug={slug as string} title={title} year={year} domain={domain} stack={stack} impact={impact} highlight={['under 5 minutes', '5 months', '99.9%'].filter((t) => highlight.includes(t))} prev={prev} next={next}>
+<CaseStudyLayout slug={slug as string} title={title} year={year} domain={domain} stack={stack} impact={impact} highlight={highlight} prev={prev} next={next}>
   <div class="prose" data-case-body>
     <Fragment set:html={mark(before)} />
     <Diagram />

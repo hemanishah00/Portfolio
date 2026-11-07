@@ -26,7 +26,3 @@ export function sortWork<T extends WorkItem>(items: T[]): T[] {
     return byTitle(a, b);
   });
 }
-
-export function filterByDomain<T extends WorkItem>(items: T[], domain: Domain | 'all'): T[] {
-  return domain === 'all' ? [...items] : items.filter((i) => i.domain === domain);
-}

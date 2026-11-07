@@ -1,4 +1,4 @@
-import { sortWork, filterByDomain, DOMAINS } from '../../src/lib/work';
+import { sortWork, DOMAINS } from '../../src/lib/work';
 import type { WorkItem } from '../../src/lib/work';
 
 const w = (title: string, year?: number, featured = false, domain = 'ocr') => ({ title, year, domain, featured }) as WorkItem;
@@ -27,19 +27,6 @@ test('sortWork does not mutate its input', () => {
   const input = [w('B', 2020), w('A', 2021)];
   sortWork(input);
   expect(input.map((x) => x.title)).toEqual(['B', 'A']);
-});
-test('filters by domain', () => {
-  const items = [{ domain: 'ocr' }, { domain: 'genai' }, { domain: 'ocr' }] as WorkItem[];
-  const out = filterByDomain(items, 'ocr');
-  expect(out).toHaveLength(2);
-  expect(out.every((x) => x.domain === 'ocr')).toBe(true);
-});
-test('a domain with no projects returns an empty list', () => {
-  expect(filterByDomain([{ domain: 'ocr' }] as WorkItem[], 'genai')).toEqual([]);
-});
-test('"all" returns everything', () => {
-  const items = [{ domain: 'ocr' }, { domain: 'genai' }] as WorkItem[];
-  expect(filterByDomain(items, 'all')).toHaveLength(2);
 });
 test('DOMAINS lists exactly the four domains in order', () => {
   expect([...DOMAINS]).toEqual(['analytics', 'computer-vision', 'genai', 'ocr']);

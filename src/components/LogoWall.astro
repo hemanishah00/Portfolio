@@ -3,7 +3,7 @@ const logos = [
   { src: '/logos/relanto.png', name: 'Relanto' },
   { src: '/logos/gsk.jpeg', name: 'GSK' },
   { src: '/logos/cognizant.jpeg', name: 'Cognizant' },
-  { src: '/logos/arthink-ai.webp', name: 'ARThink AI' },
+  { src: '/logos/arthink-ai.webp', name: 'ARThink AI', light: true },
   { src: '/logos/univ-ai.png', name: 'Univ.AI' },
 ];
 ---
@@ -11,7 +11,7 @@ const logos = [
 <ul class="wall">
   {
     logos.map((l) => (
-      <li class="wall__item">
+      <li class={l.light ? 'wall__item wall__item--light' : 'wall__item'}>
         <img src={l.src} alt={l.name} width="112" height="56" loading="lazy" decoding="async" />
       </li>
     ))
@@ -47,6 +47,14 @@ const logos = [
   .wall__item:hover img {
     filter: grayscale(0) invert(1) hue-rotate(180deg);
     opacity: 1;
+  }
+  /* ARThink is the exception: a light mark on transparency. Inverting it would drive it to mid-grey,
+     so it skips the invert and is lifted a little to sit at the weight of the other four. */
+  .wall__item--light img {
+    filter: grayscale(1) brightness(1.15);
+  }
+  .wall__item--light:hover img {
+    filter: grayscale(0);
   }
   @media (prefers-reduced-motion: no-preference) {
     .wall__item img {
