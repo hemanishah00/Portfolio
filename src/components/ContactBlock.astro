@@ -7,7 +7,7 @@ const routes: [string, string, string][] = [
   ['email', `mailto:${profile.email}`, profile.email],
   ['linkedin', profile.linkedin, bare(profile.linkedin)],
   ['github', profile.github, bare(profile.github)],
-  ['resume', profile.resume, 'HN_Shah_Resume.pdf'],
+  ['resume', profile.resume, profile.resume.replace(/^\//, '')],
 ];
 ---
 

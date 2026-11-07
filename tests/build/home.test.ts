@@ -19,18 +19,25 @@ function entries(): string[] {
 }
 
 test('every role appears with its dates', () => {
-  for (const [co, range] of [
+  const expected = [
     ['Relanto', 'Sep 2025 – Present'],
     ['9Nexus', 'Oct 2024 – Sep 2025'],
     ['ARThink AI', 'Aug 2023 – Jul 2024'],
     ['DeetsDigital', 'Feb 2023 – Jul 2023'],
     ['Univ.AI', 'Apr 2022 – Jan 2023'],
-    ['Advanced Business', 'Jan 2022 – Jun 2022'],
-  ]) {
-    expect(html).toContain(co);
-    expect(html).toContain(range);
-  }
-  expect(text(html)).toContain('Advanced Business & Healthcare Solutions');
+    ['Advanced Business & Healthcare Solutions', 'Jan 2022 – Jun 2022'],
+  ];
+  const es = entries();
+  expect(es).toHaveLength(expected.length);
+  expected.forEach(([co, range], i) => {
+    // Scoped to entry i, so a right date on the wrong company fails.
+    const t = text(es[i]);
+    expect(t, `entry ${i} company`).toContain(co);
+    expect(t, `entry ${i} range`).toContain(range);
+    for (const [otherCo, otherRange] of expected) {
+      if (otherCo !== co) expect(t).not.toContain(otherRange);
+    }
+  });
 });
 test('the phone number is absent', () => {
   expect(html).not.toMatch(/9924\s*475\s*599/);
@@ -38,14 +45,22 @@ test('the phone number is absent', () => {
 test('the Relanto xDR work is absent', () => {
   expect(html).not.toMatch(/xDR|Extended Detection|upsell recommendation|win-back/i);
 });
-test('education is present', () => {
-  expect(html).toContain('Gujarat Technological University');
-  expect(html).toContain('9.02');
+test('education row carries the university and CGPA', () => {
+  const m = markup.match(/<div[^>]*class="edu"[\s\S]*?<\/div>/);
+  expect(m, 'education row .edu is missing').not.toBeNull();
+  const t = text(m![0]);
+  expect(t).toContain('Gujarat Technological University');
+  expect(t).toContain('9.02');
 });
-test('contact routes are present and the resume path is relative', () => {
-  expect(html).toContain('hemanishah00@gmail.com');
-  expect(html).toContain('linkedin.com/in/hemanishah00');
-  expect(html).toMatch(/href="\/HN_Shah_Resume\.pdf"/);
+test('contact routes are present inside the contact list and the resume path is relative', () => {
+  const m = markup.match(/<dl[^>]*class="contact"[\s\S]*?<\/dl>/);
+  expect(m, 'contact <dl class="contact"> is missing').not.toBeNull();
+  const block = m![0];
+  expect(block).toContain('href="mailto:hemanishah00@gmail.com"');
+  expect(block).toContain('linkedin.com/in/hemanishah00');
+  expect(block).toMatch(/href="\/HN_Shah_Resume\.pdf"/);
+  const resume = JSON.parse(readFileSync('src/content/profile.json', 'utf8')).resume as string;
+  expect(text(block)).toContain(resume.replace(/^\//, ''));
 });
 test('the document title agrees with the role shown on the page', () => {
   const title = html.match(/<title>([^<]+)<\/title>/)![1];
@@ -56,7 +71,7 @@ test('the document title agrees with the role shown on the page', () => {
 });
 
 test('en dash in date ranges; no em dash or hyphen ranges in the body', () => {
-  expect(html).toContain('Sep 2025 – Present');
+  expect(entries()[0]).toContain('Sep 2025 – Present');
   expect(markup).not.toMatch(/\d{4} — /);
   expect(markup).not.toMatch(/\d{4} - (?:Present|[A-Z][a-z]{2})/);
 });
@@ -73,13 +88,30 @@ test('status readout: sourced rows only, no availability row', () => {
   const block = m![0];
   const keys = [...block.matchAll(/<dt[^>]*>([^<]+)<\/dt>/g)].map((x) => x[1]);
   expect(keys).toEqual(['ROLE', 'LOCATION', 'FOCUS', 'STACK']);
-  expect(block).toContain('Senior Data Scientist');
-  expect(block).toContain('Bengaluru, India');
+  const vals = [...block.matchAll(/<dd[^>]*>([^<]*)<\/dd>/g)].map((x) => x[1]);
+  expect(vals).toEqual([
+    'Senior Data Scientist',
+    'Bengaluru, India',
+    'generative AI · computer vision · analytics · OCR',
+    'RAG · ASR · LLM · Azure Document Intelligence · TTS · YOLO',
+  ]);
   expect(markup).not.toMatch(/AVAILABILITY|open to work|available for/i);
 });
 
 test('9Nexus shows its client line', () => {
-  expect(markup).toContain('Consulted for Cognizant and GSK');
+  expect(entries()[1]).toContain('Consulted for Cognizant and GSK');
+});
+
+test('exactly one h1 and no skipped heading levels', () => {
+  const levels = [...markup.matchAll(/<h([1-6])\b/g)].map((m) => Number(m[1]));
+  expect(levels.filter((l) => l === 1)).toHaveLength(1);
+  expect(levels[0]).toBe(1);
+  for (let i = 1; i < levels.length; i++) {
+    expect(levels[i] - levels[i - 1], `h${levels[i - 1]} -> h${levels[i]}`).toBeLessThanOrEqual(1);
+  }
+  expect(levels.filter((l) => l === 3)).toHaveLength(6);
+  expect(levels.filter((l) => l === 2).length).toBeGreaterThanOrEqual(4);
+  expect(text(markup.match(/<h1\b[\s\S]*?<\/h1>/)![0])).toContain('hemani shah');
 });
 
 test('empty locations render nothing: no empty span, no stray separator', () => {

@@ -1,16 +1,22 @@
 ---
 interface Props {
   command: string;
+  // Section prompts are headings. The boot sequence passes "div" because its
+  // whoami output is the page's h1 and its prompts are not section titles.
+  as?: 'h2' | 'div';
 }
-const { command } = Astro.props;
+const { command, as: Tag = 'h2' } = Astro.props;
 ---
 
-<div class="prompt"><span class="prompt__sigil" aria-hidden="true">$</span> <span class="prompt__command" data-type>{command}</span></div>
+<Tag class="prompt"><span class="prompt__sigil" aria-hidden="true">$</span> <span class="prompt__command" data-type>{command}</span></Tag>
 
 <style>
   .prompt {
+    margin: 0;
     font-family: var(--font-mono);
     font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--leading-base);
     color: var(--text);
   }
   .prompt__sigil {

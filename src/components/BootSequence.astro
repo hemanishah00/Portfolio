@@ -15,13 +15,13 @@ const where = profile.location.toLowerCase();
 
 <TerminalFrame>
   <div class="boot" data-boot>
-    <Prompt command="whoami" />
-    <p class="boot__out" data-type>{whoami}</p>
+    <Prompt as="div" command="whoami" />
+    <h1 class="boot__out" data-type>{whoami}</h1>
     <p class="boot__out" data-type>{where}</p>
 
     <div class="boot__gap"></div>
 
-    <Prompt command="cat positioning.txt" />
+    <Prompt as="div" command="cat positioning.txt" />
     <p class="boot__out" data-type>{profile.positioning}<span class="caret" data-caret aria-hidden="true"></span></p>
   </div>
 </TerminalFrame>
@@ -96,6 +96,9 @@ const where = profile.location.toLowerCase();
   }
   .boot__out {
     margin: 0;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: inherit;
     color: var(--text);
   }
   .boot__gap {
