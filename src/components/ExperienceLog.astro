@@ -1,0 +1,137 @@
+---
+import experience from '../content/experience.json';
+import profile from '../content/profile.json';
+import { formatRange } from '../lib/dates';
+
+// Quantified outcomes from the source bullets, the only text that uses --metric.
+const METRICS = ['150K+', '5 months to under 5 minutes', '99.9%'];
+
+type Segment = { text: string; metric: boolean };
+function segments(line: string): Segment[] {
+  let out: Segment[] = [{ text: line, metric: false }];
+  for (const m of METRICS) {
+    out = out.flatMap((seg) => {
+      if (seg.metric || !seg.text.includes(m)) return [seg];
+      const [before, ...rest] = seg.text.split(m);
+      return [
+        { text: before, metric: false },
+        { text: m, metric: true },
+        { text: rest.join(m), metric: false },
+      ];
+    });
+  }
+  return out.filter((s) => s.text !== '');
+}
+
+const edu = profile.education;
+---
+
+<ol class="log" data-experience>
+  {
+    experience.map((e) => (
+      <li class="entry">
+        <p class="entry__date">{formatRange(e.start, e.end)}</p>
+        <div class="entry__body">
+          <h3 class="entry__company">{e.company}</h3>
+          {e.client && <p class="entry__client">{e.client}</p>}
+          <p class="entry__role">
+            {e.role}
+            {e.location && <span class="entry__loc" data-location>{e.location}</span>}
+          </p>
+          {e.bullets.length > 0 && (
+            <ul class="entry__bullets">
+              {e.bullets.map((b) => (
+                <li>
+                  {segments(b).map((s) => (s.metric ? <span class="metric">{s.text}</span> : s.text))}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<div class="edu">
+  <p class="entry__date">EDUCATION</p>
+  <p class="edu__line">
+    {edu.degree}, {edu.institution}, {edu.start}–{edu.end}, CGPA {edu.cgpa}
+  </p>
+</div>
+
+<style>
+  .log {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .entry {
+    display: grid;
+    grid-template-columns: 24ch 1fr;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    border-top: var(--border);
+  }
+  .entry__date {
+    margin: 0;
+    color: var(--muted);
+    font-size: var(--text-sm);
+    white-space: nowrap;
+  }
+  .entry__company {
+    font-size: var(--text-base);
+    color: var(--text);
+  }
+  .entry__client,
+  .entry__role {
+    color: var(--muted);
+    font-size: var(--text-sm);
+  }
+  .entry__role {
+    color: var(--text);
+  }
+  .entry__loc {
+    color: var(--muted);
+  }
+  .entry__loc::before {
+    content: ' · ';
+  }
+  .entry__bullets {
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-sm);
+  }
+  .entry__bullets li {
+    position: relative;
+    padding-left: 2ch;
+    margin-bottom: var(--space-2);
+  }
+  .entry__bullets li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+  .metric {
+    color: var(--metric);
+  }
+  .edu {
+    display: grid;
+    grid-template-columns: 24ch 1fr;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    border-top: var(--border);
+  }
+  .edu__line {
+    font-size: var(--text-sm);
+  }
+  @media (max-width: 40rem) {
+    .entry,
+    .edu {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
+  }
+</style>

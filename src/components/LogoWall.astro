@@ -1,0 +1,49 @@
+---
+const logos = [
+  { src: '/logos/relanto.png', name: 'Relanto' },
+  { src: '/logos/gsk.jpeg', name: 'GSK' },
+  { src: '/logos/cognizant.jpeg', name: 'Cognizant' },
+  { src: '/logos/arthink-ai.webp', name: 'ARThink AI' },
+  { src: '/logos/univ-ai.png', name: 'Univ.AI' },
+];
+---
+
+<ul class="wall">
+  {
+    logos.map((l) => (
+      <li class="wall__item">
+        <img src={l.src} alt={l.name} width="112" height="64" loading="lazy" decoding="async" />
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .wall {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  .wall__item {
+    border: var(--border);
+    background: #fff;
+    border-radius: 2px;
+  }
+  .wall__item img {
+    width: 112px;
+    height: 64px;
+    object-fit: contain;
+    filter: grayscale(1);
+  }
+  .wall__item:hover img {
+    filter: grayscale(0);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .wall__item img {
+      transition: filter 200ms ease;
+    }
+  }
+</style>

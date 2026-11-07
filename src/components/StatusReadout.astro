@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import TerminalFrame from './TerminalFrame.astro';
+import profile from '../content/profile.json';
+
+// FOCUS and STACK are derived from the real `work` collection, never typed here.
+// There is no AVAILABILITY row: nothing in the content states availability.
+const work = await getCollection('work');
+
+const DOMAIN_LABEL: Record<string, string> = {
+  genai: 'generative AI',
+  'computer-vision': 'computer vision',
+  analytics: 'analytics',
+  ocr: 'OCR',
+};
+
+function ranked(values: string[]): string[] {
+  const counts = new Map<string, number>();
+  for (const v of values) counts.set(v, (counts.get(v) ?? 0) + 1);
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([v]) => v);
+}
+
+const focus = ranked(work.map((w) => w.data.domain)).map((d) => DOMAIN_LABEL[d] ?? d);
+const stack = ranked(work.flatMap((w) => w.data.stack)).slice(0, 6);
+
+const rows: [string, string][] = [
+  ['ROLE', profile.role],
+  ['LOCATION', profile.location],
+  ['FOCUS', focus.join(' · ')],
+  ['STACK', stack.join(' · ')],
+];
+---
+
+<TerminalFrame>
+  <dl class="status" data-status>
+    {
+      rows.map(([k, v]) => (
+        <div class="status__row">
+          <dt>{k}</dt>
+          <dd>{v}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</TerminalFrame>
+
+<style>
+  .status {
+    margin: 0;
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
+  }
+  .status__row {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+    gap: var(--space-3);
+  }
+  dt {
+    color: var(--muted);
+  }
+  dd {
+    margin: 0;
+    color: var(--text);
+  }
+  @media (max-width: 30rem) {
+    .status__row {
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin-bottom: var(--space-2);
+    }
+  }
+</style>
