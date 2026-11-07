@@ -1,12 +1,10 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'yaml';
+import { allCss } from './css';
 
 const html = readFileSync('dist/index.html', 'utf8');
-const css = readdirSync('dist/_astro')
-  .filter((f) => f.endsWith('.css'))
-  .map((f) => readFileSync(join('dist/_astro', f), 'utf8'))
-  .join('');
+const css = allCss();
 // Markup only: styles and scripts also mention data-work-row.
 const markup = html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
 const text = (s: string) =>
@@ -93,7 +91,7 @@ test('exactly the six featured projects link to their own case study', () => {
     const r = rowFor(s.slug);
     const hrefs = [...r.matchAll(/href="([^"]*)"/g)].map((m) => m[1]);
     if (featured.includes(s.slug)) {
-      expect(hrefs, s.slug).toEqual([`/work/${s.slug}`]);
+      expect(hrefs, s.slug).toEqual([`/work/${s.slug}/`]);
       expect(cell(r, 'name'), s.slug).toMatch(/<a\b[^>]*href="\/work\//);
     } else {
       expect(hrefs, `${s.slug} must not link`).toEqual([]);
@@ -178,4 +176,8 @@ test('table roles are explicit so semantics survive display:block on mobile', ()
 
 test('filter flags have vertical padding for a 24px touch target', () => {
   expect(css).toMatch(/\.work__flag[^{]*\{[^}]*padding:[^;}]*[1-9]/);
+});
+
+test('impact text is never clamped: the four non-linked projects have no other description', () => {
+  expect(css).not.toMatch(/line-clamp/);
 });

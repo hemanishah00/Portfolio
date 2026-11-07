@@ -41,7 +41,7 @@ for (const t of terms) {
 const description = impact;
 ---
 
-<BaseLayout title={title} description={description} path={`/work/${slug}`}>
+<BaseLayout title={title} description={description} path={`/work/${slug}/`}>
   <main class="page">
     <a class="back" href="/" data-back>&lt; index</a>
 
@@ -62,7 +62,7 @@ const description = impact;
     <nav class="casenav" data-case-nav aria-label="Case studies">
       {
         prev && (
-          <a class="casenav__link casenav__link--prev" href={`/work/${prev.slug}`} data-nav-prev rel="prev">
+          <a class="casenav__link casenav__link--prev" href={`/work/${prev.slug}/`} data-nav-prev rel="prev">
             <span class="casenav__dir">&lt; prev</span>
             <span class="casenav__name">{prev.title}</span>
           </a>
@@ -70,7 +70,7 @@ const description = impact;
       }
       {
         next && (
-          <a class="casenav__link casenav__link--next" href={`/work/${next.slug}`} data-nav-next rel="next">
+          <a class="casenav__link casenav__link--next" href={`/work/${next.slug}/`} data-nav-next rel="next">
             <span class="casenav__dir">next &gt;</span>
             <span class="casenav__name">{next.title}</span>
           </a>

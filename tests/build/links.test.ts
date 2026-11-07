@@ -61,7 +61,7 @@ test('every project is reachable: 21 rows on the index', () => {
 test('the six featured projects link from the index and render full case studies', () => {
   const index = readFileSync('dist/index.html', 'utf8');
   for (const s of FEATURED) {
-    expect(index, `index links /work/${s}`).toContain(`href="/work/${s}"`);
+    expect(index, `index links /work/${s}`).toContain(`href="/work/${s}/"`);
     const file = `dist/work/${s}/index.html`;
     expect(existsSync(file), file).toBe(true);
     const html = readFileSync(file, 'utf8');

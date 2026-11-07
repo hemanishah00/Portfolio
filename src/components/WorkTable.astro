@@ -42,7 +42,7 @@ const projects = sortWork(entries.map((e) => ({ slug: e.id, ...e.data })) as (Wo
               {p.domain}
             </td>
             <td role="cell" class="c-name" data-cell="name">
-              {p.featured ? <a href={`/work/${p.slug}`}>{p.title}</a> : p.title}
+              {p.featured ? <a href={`/work/${p.slug}/`}>{p.title}</a> : p.title}
             </td>
             <td role="cell" class="c-stack" data-cell="stack" data-label="stack">
               {p.stack.join(', ')}
@@ -159,14 +159,10 @@ const projects = sortWork(entries.map((e) => ({ slug: e.id, ...e.data })) as (Wo
     width: 28%;
     color: var(--muted);
   }
-  /* The longest impact string would dominate the table; clamp to two lines on wide screens.
-     The full text stays in the DOM. */
-  .impact-text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    overflow: hidden;
+  /* Impact is never clamped. Four rows have no case study, so this sentence is their whole description;
+     uneven row heights cost less than clipped text. */
+  [data-work-row]:hover {
+    background: var(--surface);
   }
   [data-work-row][hidden] {
     display: none;
@@ -206,13 +202,6 @@ const projects = sortWork(entries.map((e) => ({ slug: e.id, ...e.data })) as (Wo
     }
     [data-work-row][hidden] {
       display: none;
-    }
-    /* Cards have room to show the whole outcome. */
-    .impact-text {
-      display: block;
-      -webkit-line-clamp: unset;
-      line-clamp: unset;
-      overflow: visible;
     }
   }
 </style>
