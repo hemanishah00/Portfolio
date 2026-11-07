@@ -24,4 +24,4 @@ Call (inbound or outbound, via Twilio) -> ASR -> interaction layer (intent, sess
 
 ## Impact
 
-The bot takes a call end to end in either direction: it recognises the caller's speech, answers from retrieved pharmaceutical reference material, speaks the answer back over the phone line, and transfers to a human agent when the question should not be answered automatically. Routine drug questions can be answered by voice at any hour without an agent on the line, and agents are kept for the calls that need judgment.
+The bot takes a call end to end in either direction: it recognises the caller's speech, answers from retrieved pharmaceutical reference material, speaks the answer back over the phone line, and transfers to a human agent when the question should not be answered automatically. Routine drug questions can be answered by voice without an agent on the line, and escalation to a human agent is built into the call flow.

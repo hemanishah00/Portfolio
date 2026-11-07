@@ -14,7 +14,7 @@ Speech in India is multilingual by default, and a recognition system built aroun
 
 The pipeline detects the source language first, then transcribes with recognition for that language, then cleans and normalises the text, then translates it to the target language with a neural machine translation model.
 
-Detecting the language up front lets the system pick the right acoustic and language models rather than forcing one model to cover every script, and it reports a confidence so a doubtful detection can be flagged. The cleaning step sits between recognition and translation because recognition errors compound if they are passed straight into the translator.
+Detecting the language up front lets the system pick the right acoustic and language models rather than forcing one model to cover every script, and detection comes with a confidence score. The cleaning step sits between recognition and translation because recognition errors compound if they are passed straight into the translator.
 
 ## Architecture
 

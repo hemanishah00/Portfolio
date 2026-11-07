@@ -24,4 +24,4 @@ A React frontend uploads the encoded video to the server. A preprocessor decodes
 
 ## Impact
 
-A speaker uploads a recording and gets back a timeline: for every 10-second interval, what was said, the sentiment of those words, and how many faces in the audience read as positive, neutral or negative. That lets a speaker see which moments the audience responded to and rewrite or re-pace the rest. The project shipped as a working web app with its code repository, a presentation video and a detailed report.
+A speaker uploads a recording and gets back a timeline: for every 10-second interval, what was said, the sentiment of those words, and how many faces in the audience read as positive, neutral or negative. The report is meant to help public speakers improve their speech. The project shipped as a working web app with its code repository, a presentation video and a detailed report.

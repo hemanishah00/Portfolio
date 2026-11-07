@@ -20,7 +20,7 @@ On top of that sit structured agents, each scoped to a service area such as park
 
 <!-- diagram -->
 
-A user query goes to a router that selects a structured agent for the relevant service area. The agent either calls a function that reads the service data, or retrieves passages from the knowledge base, and the model composes the reply from that result. New services are added as new agents and functions without touching the others.
+The design is modular: separate structured agents cover specific airport services such as parking and transport, and the response is targeted by the type of query. Where the answer is live data, the agent calls a function that reads the service data; where it is documentation, the answer is grounded in passages retrieved from the knowledge base. New services are added as new modules.
 
 ## Impact
 
