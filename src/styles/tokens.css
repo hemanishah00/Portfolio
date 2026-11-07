@@ -1,0 +1,44 @@
+/* Design tokens. Dark only: there is deliberately no light theme. */
+:root {
+  /* Color */
+  --bg: #0A0E0F;
+  --surface: #12181A;
+  --hairline: #1E2729;
+  --text: #D6E0E0;
+  --muted: #7A8A8A;
+  --accent: #7EE787;  /* hairline scale only: caret, active filter, link underline, section marker */
+  --metric: #F0B429;  /* quantified outcomes only */
+
+  /* Type */
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-prose: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.375rem;
+  --text-xl: 1.875rem;
+  --text-2xl: 2.5rem;
+
+  --leading-tight: 1.25;
+  --leading-base: 1.6;
+  --leading-prose: 1.7;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Layout */
+  --measure: 68ch;
+  --page-max: 72rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --border: 1px solid var(--hairline);
+}
