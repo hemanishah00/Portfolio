@@ -9,6 +9,20 @@ const idx = (pred: (s: any) => boolean) => steps.findIndex(pred);
 const uses = (name: string) => (s: any) => typeof s.uses === 'string' && s.uses.startsWith(name);
 const runs = (cmd: string) => (s: any) => typeof s.run === 'string' && s.run.trim() === cmd;
 
+test('Pages actions are pinned to current majors (upload v5, deploy v5)', () => {
+  expect(idx(uses('actions/upload-pages-artifact@v5'))).toBeGreaterThanOrEqual(0);
+  expect(idx(uses('actions/deploy-pages@v5'))).toBeGreaterThanOrEqual(0);
+  expect(raw).not.toMatch(/upload-pages-artifact@v[0-4]\b/);
+  expect(raw).not.toMatch(/deploy-pages@v[0-4]\b/);
+});
+test('workflow documents the CNAME and Pages-source requirements', () => {
+  const head = raw.split('\n\non:')[0];
+  expect(head).toMatch(/GitHub Actions/);
+  expect(head).toMatch(/Settings/);
+  expect(head).toContain('hemanishah.in');
+  expect(head).toMatch(/CNAME/);
+  expect(head).toMatch(/ignored/i);
+});
 test('uses the official Pages deployment action', () => {
   expect(idx(uses('actions/deploy-pages@'))).toBeGreaterThanOrEqual(0);
   expect(idx(uses('actions/upload-pages-artifact@'))).toBeGreaterThanOrEqual(0);

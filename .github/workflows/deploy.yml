@@ -1,3 +1,12 @@
+# REPOSITORY SETUP REQUIRED (read before changing anything here):
+#
+# 1. Settings -> Pages -> Source must be set to "GitHub Actions" before the
+#    first run, or `deploy-pages` fails.
+# 2. The custom domain `hemanishah.in` must be set in Settings -> Pages. Under
+#    the "GitHub Actions" source, the CNAME file inside the artifact is ignored,
+#    so it does NOT set the domain. Getting this wrong takes the live domain down.
+# 3. `public/CNAME` is retained deliberately: as a fallback if the repo ever
+#    reverts to branch publishing, and as the value tests/build pins.
 name: Deploy to GitHub Pages
 
 # `main` is the only source of truth. Nobody edits the published site by hand:
@@ -40,10 +49,10 @@ jobs:
         run: npm run test:build
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
