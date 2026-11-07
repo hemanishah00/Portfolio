@@ -179,6 +179,14 @@ test('logo wall has a prompt header, no white backing, inverted marks, dimmed at
   expect(css).toMatch(/repeat\(5,\s*minmax\(0,\s*1fr\)\)/);
 });
 
+test('logo wall stays one row of five at every width: no narrower-column override', () => {
+  const wallRules = (css.match(/[^{}]*\.wall[^{}]*\{[^}]*\}/g) ?? []).join('');
+  const columnDecls = wallRules.match(/grid-template-columns:[^;}]*/g) ?? [];
+  expect(columnDecls).toHaveLength(1);
+  expect(columnDecls[0]).toMatch(/repeat\(5,/);
+  expect(wallRules).not.toMatch(/flex-wrap|grid-template-rows/);
+});
+
 test('page has a side gutter wrapper', () => {
   expect(css).toMatch(/padding-inline\s*:\s*var\(--gutter\)|padding\s*:[^;}]*var\(--gutter\)/);
 });

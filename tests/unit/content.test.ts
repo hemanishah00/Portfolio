@@ -19,8 +19,8 @@ test('current role is Relanto with no end date', () => {
 });
 test('9Nexus records its consulting clients', () => {
   const n = experience.find((e) => e.company === '9Nexus');
-  expect(n.client).toBe('Consulted for Cognizant and GSK');
-  expect(n.end).toBe('2025-09');
+  expect(n!.client).toBe('Consulted for Cognizant and GSK');
+  expect(n!.end).toBe('2025-09');
 });
 test('only Relanto has a location; none are invented for the rest', () => {
   const located = experience.filter((e) => e.location !== '');
@@ -34,6 +34,6 @@ test('profile role matches the spec', () => {
 });
 test('Relanto has exactly one generalized bullet; the excluded work stays off the site', () => {
   const r = experience.find((e) => e.company === 'Relanto');
-  expect(r.bullets).toHaveLength(1);
-  expect(r.bullets[0]).toBe('Multi-agent workflow systems and LLM observability for enterprise customer engagement.');
+  expect(r!.bullets).toHaveLength(1);
+  expect(r!.bullets[0]).toBe('Multi-agent workflow systems and LLM observability for enterprise customer engagement.');
 });

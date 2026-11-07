@@ -1,9 +1,9 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'yaml';
-import { sortWork } from '../../src/lib/work';
+import { sortWork, type Domain } from '../../src/lib/work';
 
-type Src = { slug: string; title: string; year?: number; domain: string; stack: string[]; impact: string; featured: boolean };
+type Src = { slug: string; title: string; year?: number; domain: Domain; stack: string[]; impact: string; featured: boolean };
 const dir = join(process.cwd(), 'src/content/work');
 const source: Src[] = readdirSync(dir)
   .filter((f) => f.endsWith('.md'))
