@@ -24,4 +24,4 @@ Audio in -> language detection (with confidence) -> speech recognition in the so
 
 ## Impact
 
-The pipeline lets a recording in an Indian language be read in another language, which supports accessibility, education and business use. I have no word-error-rate or translation-quality figures for it, so none are claimed here.
+A recording in an Indian language comes out as text in that language and in a second language of the reader's choice, with the detected language and its confidence reported along the way. A reader who does not speak the source language can follow the content, which supports accessibility, education and business use where speakers and readers do not share a language.

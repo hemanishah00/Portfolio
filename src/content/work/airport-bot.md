@@ -24,4 +24,4 @@ A user query goes to a router that selects a structured agent for the relevant s
 
 ## Impact
 
-The bot gives instant answers to routine passenger questions, which takes repetitive queries off human agents and keeps basic information available at any hour. I have no measured figures for accuracy or deflection from this build, so none are claimed here.
+Passengers get an immediate answer to routine questions about parking, bus services and other airport facilities, drawn from live service data where the answer changes and from the airport's own documentation where it does not. Human agents are no longer the only way to get that information, and the same service coverage is available at any hour. New service areas are added as another agent and set of functions rather than a rewrite.

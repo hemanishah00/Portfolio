@@ -57,7 +57,7 @@ test('frontmatter matches the schema shape', () => {
 test('the six featured slugs are the expected ones', () => {
   expect(
     work.filter((w) => w.data.featured).map((w) => w.id).sort(),
-  ).toEqual(['airport-bot', 'edaa', 'indian-speech-to-text', 'pharma-bot', 's2p-feedback-intelligence', 'vlm-finetuning']);
+  ).toEqual(['airport-bot', 'edaa', 'indian-speech-to-text', 'pharma-bot', 'vlm-finetuning', 'voice2insight']);
 });
 test('featured bodies have the four sections in order and a diagram marker', () => {
   for (const w of work.filter((x) => x.data.featured)) {
@@ -72,11 +72,18 @@ test('index-only projects have no body', () => {
     expect(w.body.trim(), w.id).toBe('');
   }
 });
+test('exactly 21 projects; the S2P work is one entry, not two', () => {
+  expect(work).toHaveLength(21);
+  expect(work.map((w) => w.id)).not.toContain('s2p-feedback-intelligence');
+});
+test('hr-bot has no year (not placed in a dated role by the resume)', () => {
+  expect(work.find((w) => w.id === 'hr-bot')!.data.year).toBeUndefined();
+});
 test('FIFA project is named fifa-20', () => {
   expect(work.map((w) => w.id)).toContain('fifa-20');
 });
-test('S2P study carries its quantified figures', () => {
-  const s = work.find((w) => w.id === 's2p-feedback-intelligence')!;
+test('Voice2Insight carries its quantified figures', () => {
+  const s = work.find((w) => w.id === 'voice2insight')!;
   expect(s.body).toMatch(/150K\+/);
   expect(s.body).toMatch(/5 months/);
   expect(s.body).toMatch(/under 5 minutes/);
