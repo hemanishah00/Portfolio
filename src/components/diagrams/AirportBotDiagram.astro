@@ -1,0 +1,59 @@
+---
+// Airport Bot: structured agents per service; live data via function calling, documentation via RAG.
+---
+
+<figure class="diagram" data-diagram>
+  <svg viewBox="0 0 480 470" role="img" aria-labelledby="ab-title ab-desc">
+    <title id="ab-title">Airport Bot architecture</title>
+    <desc id="ab-desc">A passenger query reaches structured agents scoped to services such as parking and transport, with new services added as new modules. For live data an agent uses function calling to read service data. For documentation it uses retrieval-augmented generation over a knowledge base. Both paths produce the response.</desc>
+    <defs>
+      <marker id="ab-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path class="arrowhead" d="M0 0 L10 5 L0 10 z" />
+      </marker>
+    </defs>
+
+    <rect class="node" x="140" y="10" width="200" height="40" />
+    <text x="240" y="35">Passenger query</text>
+
+    <path class="edge" d="M240 50 V84" marker-end="url(#ab-arrow)" />
+
+    <rect class="frame hl" x="20" y="86" width="440" height="98" />
+    <text class="tag" x="32" y="104">Structured agents</text>
+    <text class="tag" x="170" y="104">one per service area</text>
+    <rect class="node" x="36" y="118" width="124" height="44" />
+    <text x="98" y="145">Parking</text>
+    <rect class="node" x="172" y="118" width="124" height="44" />
+    <text x="234" y="145">Transport</text>
+    <rect class="node node--dashed" x="308" y="118" width="136" height="44" />
+    <text x="376" y="145">+ new module</text>
+
+    <path class="edge" d="M125 184 V236" marker-end="url(#ab-arrow)" />
+    <text class="tag" x="135" y="214">live data</text>
+    <path class="edge" d="M355 184 V236" marker-end="url(#ab-arrow)" />
+    <text class="tag" x="365" y="214">documentation</text>
+
+    <rect class="node" x="25" y="238" width="200" height="48" />
+    <text x="125" y="259">Function calling</text>
+    <text class="sub" x="125" y="276">OpenAI</text>
+    <rect class="node" x="255" y="238" width="200" height="48" />
+    <text x="355" y="259">RAG retrieval</text>
+    <text class="sub" x="355" y="276">grounded passages</text>
+
+    <path class="edge" d="M125 286 V326" marker-end="url(#ab-arrow)" />
+    <path class="edge" d="M355 286 V326" marker-end="url(#ab-arrow)" />
+
+    <rect class="node" x="25" y="328" width="200" height="48" />
+    <text x="125" y="349">Service data</text>
+    <text class="sub" x="125" y="366">parking, schedules</text>
+    <rect class="node" x="255" y="328" width="200" height="48" />
+    <text x="355" y="349">Knowledge base</text>
+    <text class="sub" x="355" y="366">policies, FAQs</text>
+
+    <path class="edge" d="M125 376 V400 H240 V418" marker-end="url(#ab-arrow)" />
+    <path class="edge" d="M355 376 V400 H240" />
+
+    <rect class="node" x="140" y="420" width="200" height="40" />
+    <text x="240" y="445">Response</text>
+  </svg>
+  <figcaption>Airport Bot, routing by query type to live data or documentation.</figcaption>
+</figure>

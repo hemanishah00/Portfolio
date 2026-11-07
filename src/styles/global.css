@@ -108,3 +108,72 @@ a:hover { color: var(--accent); }
     scroll-behavior: auto !important;
   }
 }
+
+/* Quantified outcomes only. Single rule: every highlighted figure on the site goes through this class. */
+.metric {
+  color: var(--metric);
+}
+
+/* Architecture diagrams: inline SVG, themed from the page tokens. Hairline strokes, mono labels. */
+.diagram {
+  margin: var(--space-5) 0;
+  max-width: 34rem;
+}
+.diagram svg {
+  width: 100%;
+  height: auto;
+}
+.diagram figcaption {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+.diagram .node {
+  fill: var(--surface);
+  stroke: var(--muted);
+  stroke-opacity: 0.5;
+  stroke-width: 1;
+}
+.diagram .frame {
+  fill: none;
+  stroke: var(--muted);
+  stroke-opacity: 0.4;
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+.diagram .node--dashed {
+  stroke-dasharray: 4 3;
+}
+.diagram .hl {
+  stroke: var(--accent);
+  stroke-opacity: 1;
+}
+.diagram .edge {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+.diagram .edge--loop {
+  stroke-dasharray: 4 3;
+}
+.diagram .arrowhead {
+  fill: var(--muted);
+}
+.diagram text {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  fill: currentColor;
+  text-anchor: middle;
+}
+.diagram .sub,
+.diagram .tag {
+  font-size: 12px;
+  fill: var(--muted);
+}
+.diagram .tag {
+  text-anchor: start;
+}
+.diagram .start {
+  text-anchor: start;
+}

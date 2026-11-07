@@ -1,0 +1,51 @@
+---
+// Indian speech-to-text: detect language, recognise, clean, translate.
+---
+
+<figure class="diagram" data-diagram>
+  <svg viewBox="0 0 480 460" role="img" aria-labelledby="ist-title ist-desc">
+    <title id="ist-title">Indian Speech-to-Text pipeline</title>
+    <desc id="ist-desc">Audio goes through language detection with a confidence score, speech recognition in the detected source language, text cleaning and normalisation, and neural machine translation. The output is text in the source language and in the target language.</desc>
+    <defs>
+      <marker id="ist-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path class="arrowhead" d="M0 0 L10 5 L0 10 z" />
+      </marker>
+    </defs>
+
+    <rect class="node" x="140" y="10" width="200" height="40" />
+    <text x="240" y="35">Audio in</text>
+
+    <path class="edge" d="M240 50 V80" marker-end="url(#ist-arrow)" />
+
+    <rect class="node hl" x="100" y="82" width="280" height="48" />
+    <text x="240" y="103">Language detection</text>
+    <text class="sub" x="240" y="120">source language + confidence</text>
+
+    <path class="edge" d="M240 130 V158" marker-end="url(#ist-arrow)" />
+
+    <rect class="node" x="100" y="160" width="280" height="48" />
+    <text x="240" y="181">Speech recognition</text>
+    <text class="sub" x="240" y="198">in the detected language</text>
+
+    <path class="edge" d="M240 208 V236" marker-end="url(#ist-arrow)" />
+
+    <rect class="node" x="100" y="238" width="280" height="48" />
+    <text x="240" y="259">Clean and normalise</text>
+    <text class="sub" x="240" y="276">before translation</text>
+
+    <path class="edge" d="M240 286 V314" marker-end="url(#ist-arrow)" />
+
+    <rect class="node" x="100" y="316" width="280" height="48" />
+    <text x="240" y="337">Neural machine translation</text>
+    <text class="sub" x="240" y="354">to the target language</text>
+
+    <path class="edge" d="M240 364 V380 H135 V396" marker-end="url(#ist-arrow)" />
+    <path class="edge" d="M240 380 H345 V396" marker-end="url(#ist-arrow)" />
+
+    <rect class="node" x="40" y="398" width="190" height="48" />
+    <text x="135" y="427">Text, source language</text>
+    <rect class="node" x="250" y="398" width="190" height="48" />
+    <text x="345" y="427">Text, target language</text>
+  </svg>
+  <figcaption>Indian Speech-to-Text, audio to source and target text.</figcaption>
+</figure>

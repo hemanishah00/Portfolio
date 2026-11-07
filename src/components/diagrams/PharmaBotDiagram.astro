@@ -1,0 +1,64 @@
+---
+// Pharma Bot: one turn of a call, run in a loop. Escalation branches off the interaction layer.
+---
+
+<figure class="diagram" data-diagram>
+  <svg viewBox="0 0 480 530" role="img" aria-labelledby="pb-title pb-desc">
+    <title id="pb-title">Pharma Bot architecture</title>
+    <desc id="pb-desc">A call arrives through Twilio, inbound or outbound. Speech recognition turns audio to text, an interaction layer handles intent, session state, call flow and escalation to a human agent, retrieval-augmented generation fetches pharmaceutical data, an LLM writes the response, text-to-speech speaks it, and the audio returns through Twilio. Every turn repeats this loop.</desc>
+    <defs>
+      <marker id="pb-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path class="arrowhead" d="M0 0 L10 5 L0 10 z" />
+      </marker>
+    </defs>
+
+    <rect class="node" x="20" y="10" width="230" height="48" />
+    <text x="135" y="31">Call</text>
+    <text class="sub" x="135" y="48">Twilio · inbound or outbound</text>
+
+    <path class="edge" d="M135 58 V86" marker-end="url(#pb-arrow)" />
+
+    <rect class="node" x="20" y="88" width="230" height="48" />
+    <text x="135" y="109">ASR</text>
+    <text class="sub" x="135" y="126">caller audio to text</text>
+
+    <path class="edge" d="M135 136 V164" marker-end="url(#pb-arrow)" />
+
+    <rect class="node hl" x="20" y="166" width="230" height="64" />
+    <text x="135" y="187">Interaction layer</text>
+    <text class="sub" x="135" y="205">intent · session state</text>
+    <text class="sub" x="135" y="221">call flow · escalation</text>
+
+    <path class="edge" d="M250 198 H318" marker-end="url(#pb-arrow)" />
+    <text class="sub" x="284" y="190">escalate</text>
+    <rect class="node node--dashed" x="320" y="176" width="140" height="44" />
+    <text x="390" y="203">Human agent</text>
+
+    <path class="edge" d="M135 230 V258" marker-end="url(#pb-arrow)" />
+
+    <rect class="node" x="20" y="260" width="230" height="48" />
+    <text x="135" y="281">RAG retrieval</text>
+    <text class="sub" x="135" y="298">pharmaceutical data</text>
+
+    <path class="edge" d="M135 308 V336" marker-end="url(#pb-arrow)" />
+
+    <rect class="node" x="20" y="338" width="230" height="48" />
+    <text x="135" y="359">LLM</text>
+    <text class="sub" x="135" y="376">answers from retrieved text</text>
+
+    <path class="edge" d="M135 386 V414" marker-end="url(#pb-arrow)" />
+
+    <rect class="node" x="20" y="416" width="230" height="48" />
+    <text x="135" y="437">TTS</text>
+    <text class="sub" x="135" y="454">text to speech</text>
+
+    <path class="edge" d="M135 464 V482" marker-end="url(#pb-arrow)" />
+
+    <rect class="node" x="20" y="484" width="230" height="40" />
+    <text x="135" y="509">Audio back via Twilio</text>
+
+    <path class="edge edge--loop" d="M250 504 H472 V34 H252" marker-end="url(#pb-arrow)" />
+    <text class="sub" x="361" y="496">every turn of the call</text>
+  </svg>
+  <figcaption>Pharma Bot, one turn of the call loop.</figcaption>
+</figure>
