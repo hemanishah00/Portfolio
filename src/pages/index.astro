@@ -4,6 +4,7 @@ import BootSequence from '../components/BootSequence.astro';
 import StatusReadout from '../components/StatusReadout.astro';
 import ExperienceLog from '../components/ExperienceLog.astro';
 import LogoWall from '../components/LogoWall.astro';
+import WorkTable from '../components/WorkTable.astro';
 import ContactBlock from '../components/ContactBlock.astro';
 import Prompt from '../components/Prompt.astro';
 import profile from '../content/profile.json';
@@ -28,7 +29,10 @@ import profile from '../content/profile.json';
       <LogoWall />
     </section>
 
-    <!-- `$ ls -la work/` is added by Task 7 between the logo wall and contact. -->
+    <section class="section">
+      <Prompt command="ls -la work/" />
+      <WorkTable />
+    </section>
 
     <section class="section">
       <Prompt command="cat contact.txt" />
