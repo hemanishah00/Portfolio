@@ -2,7 +2,7 @@
 title: "Voice2Insight"
 domain: genai
 stack: ["LLM", "Databricks", "Pandas", "SQL", "VectorDB", "RAG", "Sentiment analysis", "Topic modeling"]
-impact: "Analysis reports in under 5 minutes against roughly 5 months of manual consultant effort, about a 99.9% effort reduction."
+impact: "Reporting cut from roughly 5 months to under 5 minutes."
 featured: true
 ---
 
