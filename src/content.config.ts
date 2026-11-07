@@ -1,5 +1,5 @@
 import { defineCollection } from 'astro:content';
-import { file } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const profile = defineCollection({
@@ -36,4 +36,18 @@ const experience = defineCollection({
   }),
 });
 
-export const collections = { profile, experience };
+// `year` is optional: the sources give no project dates, and only the
+// DeetsDigital projects (all within 2023) can be dated without guessing.
+const work = defineCollection({
+  loader: glob({ pattern: '*.md', base: 'src/content/work' }),
+  schema: z.object({
+    title: z.string(),
+    year: z.number().int().optional(),
+    domain: z.enum(['analytics', 'computer-vision', 'genai', 'ocr']),
+    stack: z.array(z.string()),
+    impact: z.string(),
+    featured: z.boolean(),
+  }),
+});
+
+export const collections = { profile, experience, work };

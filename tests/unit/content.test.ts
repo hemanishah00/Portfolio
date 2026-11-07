@@ -32,3 +32,8 @@ test('profile carries no phone number', () => {
 test('profile role matches the spec', () => {
   expect(profile.role).toBe('Senior Data Scientist');
 });
+test('Relanto has exactly one generalized bullet; the excluded work stays off the site', () => {
+  const r = experience.find((e) => e.company === 'Relanto');
+  expect(r.bullets).toHaveLength(1);
+  expect(r.bullets[0]).toBe('Multi-agent workflow systems and LLM observability for enterprise customer engagement.');
+});
