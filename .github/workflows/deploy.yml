@@ -1,39 +1,78 @@
-name: Deploy React App to GitHub Pages
+# REPOSITORY SETUP REQUIRED (read before changing anything here):
+#
+# 1. Settings -> Pages -> Source must be set to "GitHub Actions" before the
+#    first run, or `deploy-pages` fails.
+# 2. The custom domain `hemanishah.in` must be set in Settings -> Pages. Under
+#    the "GitHub Actions" source, the CNAME file inside the artifact is ignored,
+#    so it does NOT set the domain. Getting this wrong takes the live domain down.
+# 3. `public/CNAME` is retained deliberately: as a fallback if the repo ever
+#    reverts to branch publishing, and as the value tests/build pins.
+name: Deploy to GitHub Pages
 
+# `main` is the only source of truth. Nobody edits the published site by hand:
+# this workflow is the sole writer.
+#
+# `verify` runs on pull requests too, so a change is proven green before it is
+# merged. `deploy` is gated to pushes on `main`, so a pull request can never
+# publish. A failing test blocks the deploy, because deploy `needs: verify`.
 on:
   push:
-    branches: [ main, master, stable ]
+    branches: [main]
   pull_request:
-    branches: [ main, master, stable ]
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  verify:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        cache-dependency-path: client/package-lock.json
-        
-    - name: Install dependencies
-      run: |
-        cd client
-        npm ci
-        
-    - name: Build React App
-      run: |
-        cd client
-        npm run build
-        
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/stable'
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: client/build 
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Type errors fail the job here, before anything is built or uploaded.
+      - name: Type check
+        run: npm run check
+
+      # Unit tests (token pin, résumé guards, content assertions) gate the deploy too.
+      - name: Unit tests
+        run: npm test
+
+      # Builds the site, then runs tests/build against dist (CNAME, phone-number
+      # scan, excluded-content scan, ...). Any failure stops the job here.
+      - name: Build and test
+        run: npm run test:build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    # Only a push to `main` publishes. Pull requests stop after `verify`.
+    needs: verify
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

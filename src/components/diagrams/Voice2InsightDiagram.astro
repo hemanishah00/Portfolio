@@ -1,0 +1,58 @@
+---
+// Voice2Insight: comments and call transcripts -> Databricks ETL (LLM extraction) -> SQL + vector store -> APIs -> dashboard.
+---
+
+<figure class="diagram" data-diagram>
+  <svg viewBox="0 0 480 548" role="img" aria-labelledby="v2i-title v2i-desc">
+    <title id="v2i-title">Voice2Insight architecture</title>
+    <desc id="v2i-desc">Employee comments and agent call transcripts enter Databricks ETL pipelines, where LLM extraction tags theme, sentiment, process and persona. Output goes to SQL and a vector store, which feed executive summary and root-cause analysis APIs, which feed the dashboard.</desc>
+    <defs>
+      <marker id="v2i-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path class="arrowhead" d="M0 0 L10 5 L0 10 z" />
+      </marker>
+    </defs>
+
+    <rect class="node" x="20" y="10" width="200" height="40" />
+    <text x="120" y="35">Employee comments</text>
+    <rect class="node" x="260" y="10" width="200" height="40" />
+    <text x="360" y="35">Agent call transcripts</text>
+
+    <path class="edge" d="M120 50 V88" marker-end="url(#v2i-arrow)" />
+    <path class="edge" d="M360 50 V88" marker-end="url(#v2i-arrow)" />
+
+    <rect class="frame" x="20" y="90" width="440" height="150" />
+    <text class="tag" x="32" y="108">Databricks ETL</text>
+    <text class="tag" x="150" y="108">Pandas pipelines</text>
+    <rect class="node hl" x="60" y="124" width="360" height="96" />
+    <text x="240" y="154">LLM extraction</text>
+    <text class="sub" x="240" y="178">tags each item with</text>
+    <text class="sub" x="240" y="196">theme · sentiment · process · persona</text>
+
+    <path class="edge" d="M150 220 V278" marker-end="url(#v2i-arrow)" />
+    <path class="edge" d="M330 220 V278" marker-end="url(#v2i-arrow)" />
+
+    <rect class="node" x="60" y="280" width="180" height="52" />
+    <text x="150" y="303">SQL</text>
+    <text class="sub" x="150" y="321">aggregate queries</text>
+    <rect class="node" x="240" y="280" width="180" height="52" />
+    <text x="330" y="303">Vector store</text>
+    <text class="sub" x="330" y="321">retrieval for RAG</text>
+
+    <path class="edge" d="M150 332 V372" marker-end="url(#v2i-arrow)" />
+    <path class="edge" d="M330 332 V372" marker-end="url(#v2i-arrow)" />
+
+    <rect class="frame" x="20" y="374" width="440" height="88" />
+    <text class="tag" x="32" y="392">APIs</text>
+    <rect class="node" x="40" y="402" width="200" height="40" />
+    <text x="140" y="427">Executive summary</text>
+    <rect class="node" x="250" y="402" width="190" height="40" />
+    <text x="345" y="427">Root-cause analysis</text>
+
+    <path class="edge" d="M240 462 V490" marker-end="url(#v2i-arrow)" />
+
+    <rect class="node" x="80" y="492" width="320" height="48" />
+    <text x="240" y="513">Dashboard</text>
+    <text class="sub" x="240" y="530">charts · trends · regions · recommendations</text>
+  </svg>
+  <figcaption>Voice2Insight, data flow from raw feedback to the leadership dashboard.</figcaption>
+</figure>

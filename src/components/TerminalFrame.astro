@@ -1,0 +1,39 @@
+---
+// A bordered panel built from CSS borders. Box-drawing glyphs are not in the
+// latin font subsets and would fall back to a mismatched system font.
+---
+
+<div class="terminal-frame">
+  <div class="terminal-frame__bar" aria-hidden="true">
+    <span class="terminal-frame__dot"></span>
+    <span class="terminal-frame__dot"></span>
+    <span class="terminal-frame__dot"></span>
+  </div>
+  <div class="terminal-frame__body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .terminal-frame {
+    border: var(--border);
+    background: var(--surface);
+    border-radius: 4px;
+    max-width: var(--measure);
+  }
+  .terminal-frame__bar {
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-bottom: var(--border);
+  }
+  .terminal-frame__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--hairline);
+  }
+  .terminal-frame__body {
+    padding: var(--space-5);
+  }
+</style>

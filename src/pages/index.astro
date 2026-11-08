@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BootSequence from '../components/BootSequence.astro';
+import StatusReadout from '../components/StatusReadout.astro';
+import ExperienceLog from '../components/ExperienceLog.astro';
+import LogoWall from '../components/LogoWall.astro';
+import WorkTable from '../components/WorkTable.astro';
+import Constellation from '../components/Constellation.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import Prompt from '../components/Prompt.astro';
+import profile from '../content/profile.json';
+---
+
+<BaseLayout title={profile.name} description={profile.positioning} path="/">
+  <main class="page">
+    <Constellation />
+
+    <BootSequence />
+
+    <section class="section">
+      <Prompt command="cat status" />
+      <StatusReadout />
+    </section>
+
+    <section class="section">
+      <Prompt command="cat experience.log" />
+      <ExperienceLog />
+    </section>
+
+    <section class="section">
+      <Prompt command="ls companies/" />
+      <LogoWall />
+    </section>
+
+    <section class="section">
+      <Prompt command="ls -la work/" />
+      <WorkTable />
+    </section>
+
+    <section class="section">
+      <Prompt command="cat contact.txt" />
+      <ContactBlock />
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page {
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    padding-block: var(--space-6) var(--space-8);
+  }
+  .section {
+    margin-top: var(--space-7);
+  }
+  .section > :global(.prompt) {
+    margin-bottom: var(--space-3);
+  }
+</style>

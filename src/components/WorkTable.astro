@@ -1,0 +1,213 @@
+---
+import { getCollection } from 'astro:content';
+import { DOMAINS, sortWork } from '../lib/work';
+import type { WorkItem } from '../lib/work';
+
+const entries = await getCollection('work');
+const projects = sortWork(entries.map((e) => ({ slug: e.id, ...e.data })) as (WorkItem & { slug: string })[]);
+---
+
+<div class="work" data-work>
+  <!-- Revealed by the script below. Without JavaScript the flags would do nothing, so they stay hidden. -->
+  <div class="work__filters" data-work-filters role="group" aria-label="Filter projects by domain" hidden>
+    {
+      ['all', ...DOMAINS].map((d) => (
+        <button type="button" class="work__flag" data-filter={d} aria-pressed={d === 'all' ? 'true' : 'false'}>
+          --filter={d}
+        </button>
+      ))
+    }
+  </div>
+
+  <p class="work__total" role="status"><span data-work-count>{projects.length}</span> of {projects.length} projects</p>
+
+  <table class="work__table" role="table">
+    <thead role="rowgroup">
+      <tr role="row">
+        <th scope="col" role="columnheader" class="c-year">year</th>
+        <th scope="col" role="columnheader" class="c-domain">domain</th>
+        <th scope="col" role="columnheader" class="c-name">name</th>
+        <th scope="col" role="columnheader" class="c-stack">stack</th>
+        <th scope="col" role="columnheader" class="c-impact">impact</th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup">
+      {
+        projects.map((p) => (
+          <tr role="row" data-work-row data-slug={p.slug} data-domain={p.domain}>
+            <td role="cell" class="c-year" data-cell="year" data-label="year">
+              {p.year ?? '—'}
+            </td>
+            <td role="cell" class="c-domain" data-cell="domain" data-label="domain">
+              {p.domain}
+            </td>
+            <td role="cell" class="c-name" data-cell="name">
+              {p.featured ? <a href={`/work/${p.slug}/`}>{p.title}</a> : p.title}
+            </td>
+            <td role="cell" class="c-stack" data-cell="stack" data-label="stack">
+              {p.stack.join(', ')}
+            </td>
+            <td role="cell" class="c-impact" data-cell="impact" data-label="impact">
+              <span class="impact-text">{p.impact}</span>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<!--
+  Progressive enhancement. All rows are already in the HTML and visible. This script
+  only reveals the flags and toggles the `hidden` attribute on rows that exist.
+-->
+<script is:inline>
+  (function () {
+    var root = document.querySelector('[data-work]');
+    if (!root) return;
+    var bar = root.querySelector('[data-work-filters]');
+    var rows = root.querySelectorAll('[data-work-row]');
+    var count = root.querySelector('[data-work-count]');
+    if (!bar) return;
+    bar.hidden = false;
+    bar.addEventListener('click', function (ev) {
+      var btn = ev.target.closest('[data-filter]');
+      if (!btn) return;
+      var want = btn.getAttribute('data-filter');
+      var shown = 0;
+      rows.forEach(function (row) {
+        var match = want === 'all' || row.getAttribute('data-domain') === want;
+        row.hidden = !match;
+        if (match) shown++;
+      });
+      bar.querySelectorAll('[data-filter]').forEach(function (b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      if (count) count.textContent = String(shown);
+    });
+  })();
+</script>
+
+<style>
+  .work {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    min-width: 0;
+  }
+  .work__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+  .work__filters[hidden] {
+    display: none;
+  }
+  .work__flag {
+    appearance: none;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    padding: var(--space-1) 0;
+    font: inherit;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .work__flag:hover {
+    color: var(--text);
+  }
+  .work__flag[aria-pressed='true'] {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .work__total {
+    margin-bottom: var(--space-3);
+    color: var(--muted);
+  }
+  .work__table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  .work__table th {
+    text-align: left;
+    font-weight: 400;
+    color: var(--muted);
+    padding: var(--space-2) var(--space-3) var(--space-2) 0;
+    border-bottom: var(--border);
+  }
+  .work__table [data-work-row] td {
+    padding: var(--space-3) var(--space-3) var(--space-3) 0;
+    border-bottom: var(--border);
+    vertical-align: top;
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .c-year {
+    width: 6ch;
+    color: var(--muted);
+  }
+  .c-domain {
+    width: 17ch;
+    color: var(--muted);
+  }
+  .c-name {
+    width: 20%;
+  }
+  .c-stack {
+    width: 28%;
+    color: var(--muted);
+  }
+  /* Impact is never clamped. Four rows have no case study, so this sentence is their whole description;
+     uneven row heights cost less than clipped text. */
+  [data-work-row]:hover {
+    background: var(--surface);
+  }
+  /* Set briefly when a constellation node is clicked. No transition: it appears, then disappears. */
+  [data-work-row][data-flash] {
+    background: var(--surface);
+    outline: 1px solid var(--accent);
+    outline-offset: -1px;
+  }
+  [data-work-row][hidden] {
+    display: none;
+  }
+
+  @media (max-width: 40rem) {
+    .work__table,
+    .work__table tbody {
+      display: block;
+    }
+    .work__table thead {
+      /* Visually hidden, still exposed to assistive tech. */
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+    [data-work-row] {
+      display: block;
+      padding: var(--space-3) 0;
+      border-bottom: var(--border);
+      overflow-wrap: anywhere;
+    }
+    .work__table [data-work-row] td {
+      display: block;
+      width: auto;
+      padding: 0 0 var(--space-1);
+      border: 0;
+    }
+    [data-work-row] td[data-label]::before {
+      content: attr(data-label) ': ';
+      color: var(--muted);
+    }
+    [data-work-row] .c-name {
+      font-weight: 700;
+    }
+    [data-work-row][hidden] {
+      display: none;
+    }
+  }
+</style>

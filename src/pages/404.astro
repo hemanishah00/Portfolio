@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Prompt from '../components/Prompt.astro';
+---
+
+<BaseLayout title="Not found" description="This page does not exist." path="/404.html">
+  <main class="lost">
+    <Prompt command="./this-page" as="div" />
+    <h1 class="lost__error">bash: ./this-page: command not found</h1>
+    <p class="lost__hint">
+      Nothing lives at this address. <a href="/">cd ~</a> to go back to the home page.
+    </p>
+  </main>
+</BaseLayout>
+
+<style>
+  .lost {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter);
+    font-family: var(--font-mono);
+  }
+  .lost__error {
+    margin: var(--space-3) 0 var(--space-5);
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: var(--leading-base);
+    color: var(--text);
+  }
+  .lost__hint {
+    margin: 0;
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
+    color: var(--muted);
+  }
+</style>

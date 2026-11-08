@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+import profile from '../content/profile.json';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+}
+
+const { title, description, path } = Astro.props;
+
+// Home page is the only page whose path is "/"; it is titled with the person's name.
+const isHome = path === '/';
+const fullTitle = isHome
+  ? `${profile.name} — ${profile.role}`
+  : `${title} — ${profile.role}`;
+
+const site = Astro.site ?? new URL('https://hemanishah.in');
+const canonical = new URL(path, site).href;
+const ogImage = new URL('/og.png', site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={profile.name} />
+    <meta name="theme-color" content="#0A0E0F" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={profile.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <slot />
+  </body>
+</html>

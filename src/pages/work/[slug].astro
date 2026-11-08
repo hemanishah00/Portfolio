@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import { sortWork } from '../../lib/work';
+import type { WorkItem } from '../../lib/work';
+import Voice2InsightDiagram from '../../components/diagrams/Voice2InsightDiagram.astro';
+import PharmaBotDiagram from '../../components/diagrams/PharmaBotDiagram.astro';
+import AirportBotDiagram from '../../components/diagrams/AirportBotDiagram.astro';
+import VlmFinetuningDiagram from '../../components/diagrams/VlmFinetuningDiagram.astro';
+import IndianSpeechToTextDiagram from '../../components/diagrams/IndianSpeechToTextDiagram.astro';
+import EdaaDiagram from '../../components/diagrams/EdaaDiagram.astro';
+
+export const getStaticPaths = (async () => {
+  const entries = await getCollection('work');
+  const featured = sortWork(entries.filter((e) => e.data.featured).map((e) => ({ slug: e.id, entry: e, ...e.data })) as (WorkItem & {
+    slug: string;
+    entry: (typeof entries)[number];
+  })[]);
+  // Neighbours come from the sorted featured list. The ends do not wrap: first has no prev, last has no next.
+  return featured.map((p, i) => ({
+    params: { slug: p.slug },
+    props: {
+      entry: p.entry,
+      prev: i > 0 ? { slug: featured[i - 1].slug, title: featured[i - 1].title } : undefined,
+      next: i < featured.length - 1 ? { slug: featured[i + 1].slug, title: featured[i + 1].title } : undefined,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+const { entry, prev, next } = Astro.props;
+const { title, year, domain, stack, impact } = entry.data;
+
+const diagrams = {
+  voice2insight: Voice2InsightDiagram,
+  'pharma-bot': PharmaBotDiagram,
+  'airport-bot': AirportBotDiagram,
+  'vlm-finetuning': VlmFinetuningDiagram,
+  'indian-speech-to-text': IndianSpeechToTextDiagram,
+  edaa: EdaaDiagram,
+} as const;
+const Diagram = diagrams[slug as keyof typeof diagrams];
+
+// Quantified outcomes that carry --metric, from the 9Nexus Voice2Insight résumé bullets. Quantified outcomes only.
+const figures: Record<string, string[]> = {
+  voice2insight: ['150K+', 'under 5 minutes', '5 months', '99.9%'],
+};
+const highlight = figures[slug as string] ?? [];
+
+// The Task 3 markdown carries a `<!-- diagram -->` marker inside Architecture. Render the prose as written and
+// put the hand-authored SVG exactly where the marker sits.
+const html = entry.rendered?.html ?? '';
+const [before, after = ''] = html.split(/<!--\s*diagram\s*-->/);
+const mark = (s: string) =>
+  [...highlight].sort((a, b) => b.length - a.length).reduce(
+    (acc, t) => acc.split(t).join(`<span class="metric">${t}</span>`),
+    s,
+  );
+---
+
+<CaseStudyLayout slug={slug as string} title={title} year={year} domain={domain} stack={stack} impact={impact} highlight={highlight} prev={prev} next={next}>
+  <div class="prose" data-case-body>
+    <Fragment set:html={mark(before)} />
+    <Diagram />
+    <Fragment set:html={mark(after)} />
+  </div>
+</CaseStudyLayout>
+
+<style is:global>
+  [data-case-body] {
+    margin-top: var(--space-6);
+  }
+  [data-case-body] h2 {
+    margin: var(--space-7) 0 var(--space-3);
+    font-size: var(--text-lg);
+    color: var(--text);
+  }
+  [data-case-body] h2:first-child {
+    margin-top: 0;
+  }
+  [data-case-body] h2::before {
+    content: '## ';
+    color: var(--accent);
+    font-weight: 400;
+  }
+  [data-case-body] p + p {
+    margin-top: var(--space-4);
+  }
+  [data-case-body] p {
+    overflow-wrap: break-word;
+  }
+</style>

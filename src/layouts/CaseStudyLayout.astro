@@ -1,0 +1,162 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+export interface Neighbour {
+  slug: string;
+  title: string;
+}
+
+interface Props {
+  slug: string;
+  title: string;
+  year?: number;
+  domain: string;
+  stack: string[];
+  impact: string;
+  // Figures in `impact` that get --metric. Quantified outcomes only.
+  highlight?: string[];
+  prev?: Neighbour;
+  next?: Neighbour;
+}
+
+const { slug, title, year, domain, stack, impact, highlight = [], prev, next } = Astro.props;
+
+// Split the impact line into plain and highlighted segments. Longest figures first so a short one never splits a long one.
+const terms = [...highlight].sort((a, b) => b.length - a.length);
+type Seg = { text: string; metric: boolean };
+let segs: Seg[] = [{ text: impact, metric: false }];
+for (const t of terms) {
+  segs = segs.flatMap((seg) => {
+    if (seg.metric || !seg.text.includes(t)) return [seg];
+    const parts = seg.text.split(t);
+    return parts.flatMap((p, i): Seg[] => {
+      const out: Seg[] = [{ text: p, metric: false }];
+      if (i < parts.length - 1) out.push({ text: t, metric: true });
+      return out;
+    });
+  });
+}
+
+// The summary line reads the impact, in the order the figures appear in the sentence.
+const description = impact;
+---
+
+<BaseLayout title={title} description={description} path={`/work/${slug}/`}>
+  <main class="page">
+    <a class="back" href="/" data-back>&lt; index</a>
+
+    <header class="head" data-case-header>
+      <h1 class="title">{title}</h1>
+      <ul class="meta" aria-label="Project details">
+        <li data-case-domain>{domain}</li>
+        {year != null && <li data-case-year>{year}</li>}
+      </ul>
+      <ul class="stack" data-case-stack aria-label="Stack">
+        {stack.map((s) => <li>{s}</li>)}
+      </ul>
+      <p class="impact" data-case-impact>{segs.map((s) => (s.metric ? <span class="metric">{s.text}</span> : s.text))}</p>
+    </header>
+
+    <slot />
+
+    <nav class="casenav" data-case-nav aria-label="Case studies">
+      {
+        prev && (
+          <a class="casenav__link casenav__link--prev" href={`/work/${prev.slug}/`} data-nav-prev rel="prev">
+            <span class="casenav__dir">&lt; prev</span>
+            <span class="casenav__name">{prev.title}</span>
+          </a>
+        )
+      }
+      {
+        next && (
+          <a class="casenav__link casenav__link--next" href={`/work/${next.slug}/`} data-nav-next rel="next">
+            <span class="casenav__dir">next &gt;</span>
+            <span class="casenav__name">{next.title}</span>
+          </a>
+        )
+      }
+    </nav>
+  </main>
+</BaseLayout>
+
+<style>
+  .page {
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    padding-block: var(--space-6) var(--space-8);
+  }
+  .back {
+    display: inline-block;
+    font-size: var(--text-sm);
+    color: var(--muted);
+    padding-block: var(--space-2);
+  }
+  .head {
+    margin-top: var(--space-5);
+    padding-bottom: var(--space-5);
+    border-bottom: var(--border);
+  }
+  .title {
+    font-size: var(--text-xl);
+    overflow-wrap: anywhere;
+  }
+  .meta,
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    font-size: var(--text-sm);
+  }
+  .meta li {
+    color: var(--muted);
+  }
+  .stack li {
+    border: var(--border);
+    padding: 0 var(--space-2);
+    color: var(--text);
+  }
+  .impact {
+    margin-top: var(--space-4);
+    max-width: var(--measure);
+    font-size: var(--text-base);
+    color: var(--text);
+  }
+
+  .casenav {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-top: var(--space-7);
+    padding-top: var(--space-4);
+    border-top: var(--border);
+  }
+  .casenav__link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+    max-width: 48%;
+    padding-block: var(--space-2);
+    text-decoration: none;
+  }
+  .casenav__link--next {
+    margin-left: auto;
+    text-align: right;
+  }
+  .casenav__dir {
+    font-size: var(--text-xs);
+    color: var(--muted);
+  }
+  .casenav__name {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    overflow-wrap: anywhere;
+  }
+</style>

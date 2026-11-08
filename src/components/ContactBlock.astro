@@ -1,0 +1,46 @@
+---
+import profile from '../content/profile.json';
+
+const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+// There is deliberately no phone route: profile.json has no phone field.
+const routes: [string, string, string][] = [
+  ['email', `mailto:${profile.email}`, profile.email],
+  ['linkedin', profile.linkedin, bare(profile.linkedin)],
+  ['github', profile.github, bare(profile.github)],
+  ['resume', profile.resume, profile.resume.replace(/^\//, '')],
+];
+---
+
+<dl class="contact">
+  {
+    routes.map(([k, href, label]) => (
+      <div class="contact__row">
+        <dt>{k}</dt>
+        <dd><a href={href}>{label}</a></dd>
+      </div>
+    ))
+  }
+</dl>
+
+<style>
+  .contact {
+    margin: 0;
+  }
+  .contact__row {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+    gap: var(--space-3);
+  }
+  dt {
+    color: var(--muted);
+  }
+  dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  /* 24px minimum target (WCAG 2.5.8): the 20px line box plus 4px above and below. */
+  dd a {
+    display: inline-block;
+    padding-block: var(--space-1);
+  }
+</style>

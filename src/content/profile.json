@@ -1,0 +1,18 @@
+{
+  "name": "Hemani Shah",
+  "role": "Senior Data Scientist",
+  "location": "Bengaluru, India",
+  "positioning": "I build production-grade AI systems: multi-agent workflows, RAG pipelines, document intelligence, and computer vision.",
+  "principle": "Anyone can ship on Day 1. I build for Day 2.",
+  "email": "hemanishah00@gmail.com",
+  "linkedin": "https://www.linkedin.com/in/hemanishah00/",
+  "github": "https://github.com/hemanishah00",
+  "resume": "/HN_Shah_Resume.pdf",
+  "education": {
+    "institution": "Gujarat Technological University",
+    "degree": "B.E. Computer Engineering",
+    "start": 2018,
+    "end": 2022,
+    "cgpa": "9.02/10"
+  }
+}
