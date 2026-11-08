@@ -37,9 +37,24 @@ test('the superseded deploy paths are gone', () => {
 test('nothing writes the wrong custom domain', () => {
   expect(raw).not.toContain('hemanishah.com');
 });
-test('deploys only from main, on push, never on pull requests', () => {
-  expect(Object.keys(wf.on)).toEqual(['push']);
+test('verify runs on pull requests as well as pushes to main', () => {
+  expect(Object.keys(wf.on).sort()).toEqual(['pull_request', 'push']);
   expect(wf.on.push.branches).toEqual(['main']);
+  expect(wf.on.pull_request.branches).toEqual(['main']);
+});
+
+test('only a push to main can publish: the deploy job is gated and needs verify', () => {
+  const deploy = wf.jobs.deploy;
+  expect(deploy).toBeDefined();
+  // Without both halves of this condition a pull request could publish.
+  expect(deploy.if).toContain("github.event_name == 'push'");
+  expect(deploy.if).toContain("github.ref == 'refs/heads/main'");
+  // Without `needs`, deploy would run even when verify failed.
+  expect([].concat(deploy.needs)).toContain('verify');
+  // deploy-pages must live in the gated job, never in the one PRs run.
+  const uses = (j: any) => (j?.steps ?? []).map((s: any) => s.uses ?? '').join(' ');
+  expect(uses(deploy)).toContain('actions/deploy-pages@');
+  expect(uses(wf.jobs.verify)).not.toContain('actions/deploy-pages@');
 });
 test('permissions are pages and id-token write', () => {
   const perms = wf.permissions ?? jobs[0].permissions;

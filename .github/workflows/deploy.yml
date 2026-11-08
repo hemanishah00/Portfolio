@@ -10,9 +10,15 @@
 name: Deploy to GitHub Pages
 
 # `main` is the only source of truth. Nobody edits the published site by hand:
-# this workflow is the sole writer. A failing test blocks the deploy.
+# this workflow is the sole writer.
+#
+# `verify` runs on pull requests too, so a change is proven green before it is
+# merged. `deploy` is gated to pushes on `main`, so a pull request can never
+# publish. A failing test blocks the deploy, because deploy `needs: verify`.
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
 
 permissions:
@@ -21,15 +27,12 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  verify:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -61,6 +64,15 @@ jobs:
         with:
           path: dist
 
+  deploy:
+    # Only a push to `main` publishes. Pull requests stop after `verify`.
+    needs: verify
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
